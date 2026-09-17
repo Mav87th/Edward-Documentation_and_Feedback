@@ -1,0 +1,71 @@
+name: Bug report
+description: Something in Edward is not working the way it should
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. A rough report is much better than no report — fill in what you
+        can and leave the rest blank.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you expect, and what did Edward do instead?
+      placeholder: |
+        I selected WP3 as the target, and Edward announced WP2 instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to bring it about
+      description: What you did, in order, as far as you can remember.
+      placeholder: |
+        1. Started the mission cold on the ramp
+        2. Pressed "e" and opened Weapons and Bombing
+        3. ...
+    validations:
+      required: false
+
+  - type: input
+    id: mission
+    attributes:
+      label: Mission and map
+      description: Which mission, and which theatre. Your own mission or a stock one.
+      placeholder: My own strike mission, Normandy
+    validations:
+      required: false
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often
+      options:
+        - Every time
+        - Most times
+        - Only once so far
+        - Not sure
+    validations:
+      required: false
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: |
+        The part of `dcs.log` mentioning EDWARD, if you can find it. The file is at
+        `Saved Games\<your DCS folder>\Logs\dcs.log`. Attaching the whole file is fine too.
+      render: text
+    validations:
+      required: false
+
+  - type: input
+    id: dcs-version
+    attributes:
+      label: DCS version
+      placeholder: 2.9.29.27468
+    validations:
+      required: false

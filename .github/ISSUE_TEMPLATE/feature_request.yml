@@ -1,0 +1,47 @@
+name: Feature request
+description: An idea for something Edward could do
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas are welcome, including half-formed ones. If you are not sure whether something is
+        already possible, ask anyway.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like Edward to do
+      placeholder: |
+        Show the current nav target somewhere in the Navigation wedge, so I can check where I am
+        headed without reselecting it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: What would it help with
+      description: What you are doing in the aeroplane when you would want this.
+      placeholder: |
+        On a long leg I forget which waypoint I picked, and reselecting it restarts the callouts.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of Edward
+      options:
+        - Navigation
+        - Fuel
+        - Radio
+        - Weapons and Bombing
+        - Hold My Aircraft
+        - Status
+        - Settings
+        - The menu itself
+        - Dead reckoning
+        - Something else / not sure
+    validations:
+      required: false

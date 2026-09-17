@@ -1,0 +1,1681 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edward Menu Notes</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f4f5f1;
+    --surface: #ffffff;
+    --surface-2: #eceee8;
+    --ink: #1e2320;
+    --ink-muted: #5b6259;
+    --ink-faint: #838a7f;
+    --accent: #a3651f;
+    --accent-strong: #7d4c17;
+    --line: #d9dcd2;
+    --code-bg: #f7f6f1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14170f;
+      --surface: #1b1f18;
+      --surface-2: #232820;
+      --ink: #e8e7dd;
+      --ink-muted: #a3aa97;
+      --ink-faint: #767d6d;
+      --accent: #dd9f4f;
+      --accent-strong: #ecb877;
+      --line: #343a2c;
+      --code-bg: #1f2318;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto, sans-serif;
+    line-height: 1.5;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 28px 72px;
+  }
+
+  header.page-head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .dek {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-muted);
+    font-size: 15.5px;
+  }
+
+  .dek code, .inline-code {
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    font-size: 0.92em;
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.05em 0.4em;
+  }
+
+  section { margin-bottom: 34px; }
+
+  h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+
+  .wedge-section {
+    margin: 24px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .wedge-section:first-of-type {
+    margin-top: 18px;
+  }
+  .wedge-section h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .wedge-section p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+  .wedge-section p + p {
+    margin-top: 8px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    padding: 14px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+  }
+  .legend .item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  .legend .glyph {
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    color: var(--ink);
+    font-weight: 700;
+    min-width: 1.1em;
+    display: inline-block;
+    text-align: center;
+  }
+  .legend .glyph.dyn { color: var(--accent-strong); font-weight: 400; font-style: italic; }
+
+  figure {
+    margin: 18px 0 0;
+    padding: 0;
+  }
+
+  .diagram-frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  .diagram-frame svg {
+    display: block;
+    width: 100%;
+    max-width: 1220px;
+    height: auto;
+    color: var(--ink);
+    min-width: 760px;
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  .notes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .notes li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+  .notes li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .notes b { font-weight: 600; }
+  .notes .muted { color: var(--ink-muted); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+  }
+
+  a { color: var(--accent-strong); }
+
+  @media (max-width: 560px) {
+    main { padding: 32px 16px 56px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header class="page-head">
+    <span class="eyebrow">Edward Menu Notes &middot; complementary to the Installation Notes</span>
+    <h1>The Edward Menu &mdash; Notes</h1>
+    <p class="dek">
+      These notes describe the Edward Menu, the overlay control panel of EDWARD, a DCS World
+      simulator modification for the De Havilland Mosquito F.B. Mk. VI. They are complementary to
+      the Installation Notes for fitting EDWARD in the first place, and stand on their own for the
+      menu itself; <span class="inline-code">By D.R. Landmarks</span> is described in fuller detail
+      by the separate Dead Reckoning Survey Notes, which are themselves complementary to this
+      publication. They are prepared for the guidance of the player only, and create no obligation
+      beyond the simulator itself. A demonstration of the menu, copied directly from its own source,
+      is given at the foot of these notes.
+    </p>
+  </header>
+
+  <section>
+    <h2>Notes to users</h2>
+
+    <div class="step"><h3><span class="num">1.</span> Complementary publications</h3>
+      <p>This publication is complementary to the Installation Notes, and assumes EDWARD has
+      already been installed and found to be working correctly. The Dead Reckoning Survey Notes are
+      complementary to this publication, not the reverse, and describe
+      <span class="inline-code">By D.R. Landmarks</span> in fuller detail than is given here.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">2.</span> Nature of this publication</h3>
+      <p>This publication describes EDWARD, a DCS World simulator modification for the Mosquito
+      F.B. Mk. VI, and not the aeroplane itself; nothing in it creates any obligation beyond the
+      simulator. Throughout, words in capital letters indicate the actual wording shown upon a menu
+      wedge, and &ldquo;the player&rdquo; denotes the person at the controls.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">3.</span> Binding force</h3>
+      <p>The limitations stated below are mandatory. The remainder is mainly advisory, but
+      instructions containing the words &ldquo;is to be&rdquo; and &ldquo;are to be&rdquo; are also
+      mandatory.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Check list</h2>
+    <pre style="background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,'Cascadia Code',Consolas,monospace;font-size:13.5px;line-height:1.7;color:var(--ink);white-space:pre;">The Edward Menu &mdash; the &ldquo;e&rdquo; key opens and closes it &mdash;
+    Status ................ Settings ............. Fuel
+    Radio .................. Navigation ............ Hold My Aircraft
+    Weapons and Bombing
+
+Settings &mdash; Automations &mdash;
+    Master ................. Fuel Management ....... Arming Management
+    Pitot Heat .............. Radiator Management .... Bombbay Automation
+    Nav Updates</pre>
+  </section>
+
+  <section>
+    <h2>The Edward Menu</h2>
+
+    <div class="step"><h3><span class="num">4.</span> The Edward Menu</h3>
+      <p>The menu is a radial dial superimposed upon the cockpit, opened and closed with the
+      &ldquo;e&rdquo; key while flying; it is available only during flight in the Mosquito F.B. Mk.
+      VI, and not in the Mission Editor or the main menu. It is fitted with seven root wedges,
+      described below at 4.1&ndash;4.7. Stepping back &mdash; by right-click, or by a wedge marked
+      <span class="inline-code">GO BACK</span> where one is fitted &mdash; rebuilds the parent ring
+      afresh from current data, exactly as drilling into it does. Where a ring calls for a number
+      &mdash; Manually Tune under Radio, or Set Track and Set Altitude under Hold My Aircraft &mdash;
+      digits are to be clicked to build it, and the centre hub clicked to confirm; confirming always
+      closes the menu outright, never re-showing any ring.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">4.1</span> Status</h3>
+      <p>Two groups are given, both read-only: Weather (Wind, Temp, QNH) and Aircraft (Ammo,
+      Damage). Each reading is given immediately upon the wedge being clicked, and the ring remains
+      open afterward, so that several readings may be taken in succession.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">4.2</span> Settings</h3>
+      <p>Distance, Headings, Speed, and Altitude are each a simple choice among the units offered
+      &mdash; Nautical Miles or Kilometers; Magnetic or True; Knots, M.P.H., or K.P.H.; Feet or
+      Metres. Automations lists every action EDWARD is able to take of his own accord: a master
+      switch for all of them, and one switch each for Fuel Management, Arming Management, Pitot
+      Heat, Radiator Management, Bombbay Automation, and Nav Updates (see Check List). Bombbay
+      Automation governs whether EDWARD works the bomb doors himself during a run, separate from
+      Arming Management, which gates the run controller as a whole. Nav Updates governs whether
+      EDWARD calls out navigation information at all; it is already turned on the moment a waypoint
+      or map point is selected under Navigation, so this switch chiefly serves to turn it off again.
+      Choosing a unit, or any automation switch, is to be understood as resetting the menu to its
+      root and leaving it open, Bombbay Automation excepted, which re-shows the Automations ring
+      itself instead.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">4.3</span> Fuel</h3>
+      <p>Time Left gives the remaining flight time and gallons for All, Outer, or Mains, the overall
+      burn rate being used regardless of which tank the engines are actually drawing from. A.M.P.G.
+      measures true fuel efficiency: it is clicked, a timed reading of about fifteen seconds is
+      taken, and it is clicked again for the result. Both rings remain open after a reading, as
+      at 4.1 above. Fuel to Point gives the gallons and time required to reach the Waypoint,
+      Homebase, or Map Point selected, calculated the moment the ring is opened and re-checked upon
+      a further click. Homebase is EDWARD's own determination of the flight's starting airfield,
+      found by a fourfold test &mdash; the nearest field to a cold or hot start; failing that, the
+      first or last waypoint if authored as a ground point; failing that, the nearest friendly field
+      there is.</p>
+      <p><i>Note.&mdash;</i> The distances governing this test have not been confirmed in flight;
+      the airfield found is usually, but not certainly, correct.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">4.4</span> Radio</h3>
+      <p>The T-1154 transmitter and the R-1155 receiver are each governed independently, each having
+      a power switch, a Manually Tune digit ring (para. 4), and a Predefined Frequencies list
+      covering all twenty-four channels laid down in the Mission Editor for that radio, each shown
+      with its preset letter and frequency. The R-1155 may be tuned to any frequency typed; the
+      T-1154 is to be set only to one of its fixed presets, and a frequency typed upon it is snapped
+      to the nearest of these.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">4.5</span> Navigation</h3>
+      <p>By Waypoints and By Map Points list the route and the map markers presently held, each
+      refreshed automatically upon being opened. Selecting one begins navigation to it and turns on
+      navigation callouts if they were not already on, then resets the menu to its root and leaves
+      it open. While the ring itself is open, its centre hub shows the target's tag and steering
+      heading, and, for a route waypoint, the speed required; a map point carries no planned leg
+      time, so its speed is left out.</p>
+      <p>Drift Recorder is a single wedge, Check Drift. Clicking it closes the menu outright, and
+      the check proceeds in the background:&mdash;</p>
+      <p>(a) a mantle of about ten seconds is followed by a measuring window of about forty seconds,
+      with a &ldquo;Steady&rdquo; callout given at intervals;</p>
+      <p>(b) Drift, Groundspeed, and Estimated Wind are then reported in turn, a few seconds apart,
+      each by toast;</p>
+      <p>(c) should any other action be taken elsewhere in the menu while the check is running, it
+      is interrupted early and no reading is given for that attempt; drilling into a submenu or
+      stepping back does not interrupt it.</p>
+      <p>The last completed reading is shown in the centre hub upon re-entering the ring, though it
+      is not to be understood as live while the ring sits open.</p>
+      <p>By D.R. Landmarks is fitted here as a fourth wedge and is described fully in the Dead
+      Reckoning Survey Notes.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">4.6</span> Hold My Aircraft</h3>
+      <p>Hold turns EDWARD's holding of a fixed heading and altitude on or off. Set Track and Set
+      Altitude are digit rings, worked as at 4.4 above. Set Track accepts 0&deg; to 359&deg; only;
+      Set Altitude accepts 0 to 60,000 (feet or metres, according to the unit chosen); a value
+      outside these is not accepted.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">4.7</span> Weapons and Bombing</h3>
+      <p>TGT and IP are each chosen from a route Waypoint or a Map Point. Where the mission carries
+      a waypoint named TGT or IP, EDWARD chooses it of his own accord as soon as the mission's route
+      is known to him &mdash; once only in a mission, and only where none has already been chosen by
+      hand, which always overrides it. He announces the pair upon the screen as he does so, together
+      with the planned time on target where the Mission Editor supplies one, so that no visit to this
+      page is needed to learn of it; a Map Point must always be placed and chosen by hand. TGT's
+      list of waypoints includes both those matched by name and any carrying a DCS Bombing task, the
+      latter marked with a trailing asterisk; IP is matched by name only, a Bombing task marking the
+      point of attack, not of run-in. In choosing of his own accord he takes the route in order of
+      authority: a waypoint named exactly TGT or IP; failing that, one whose name merely begins with
+      those letters; failing that, and for TGT alone, the first waypoint carrying a Bombing task.
+      The point at which the aircraft begins its flight is not offered upon this page at all, being
+      neither a target nor a point of run-in.</p>
+      <p>Arm Weapons governs the physical setup: Select Bombs toggles each of the four bomb
+      stations, and Select Fuzes toggles Nose and Tail fuzing, both reading the actual cockpit
+      switches, so that a switch worked by hand in the cockpit is shown here too. A final wedge
+      shows the state of the run and doubles as the means of starting or stopping it. Upon a run
+      being stopped, the mission's own TGT and IP are restored a few seconds later rather than the
+      page being left empty; the run itself does not begin afresh until the aircraft has left the IP
+      and come upon it again. Choosing a TGT or IP lands upon the Weapons and Bombing root; toggling
+      a station or fuze lands upon Select Bombs or Select Fuzes itself, so that the freshly altered
+      marking is seen at once.</p>
+      <p><i>Note.&mdash;</i> Jettison is fitted but does not yet operate anything, and is not to be
+      relied upon; clicking it explains only that those controls have not been live-tested.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Demonstration Menu</h2>
+
+    <div class="step"><h3><span class="num">5.</span> Demonstration Menu</h3>
+      <p>The figure below is copied directly from EDWARD's own source, and may be worked through by
+      the player as if seated at the controls.</p>
+    </div>
+
+    <figure>
+      <div class="pie-frame" id="pieFrame">
+        <div class="pie-breadcrumb" id="pieBreadcrumb">Root</div>
+        <div class="pie-stage">
+          <svg id="pieSvg" viewBox="0 0 380 380" role="img" aria-label="Interactive demo of the Edward overlay pie menu"></svg>
+          <div class="pie-closed" id="pieClosed" hidden>
+            <button id="pieReopenBtn" type="button">&#9658; press &lsquo;e&rsquo; to reopen</button>
+          </div>
+        </div>
+        <div class="pie-toast" id="pieToast" hidden></div>
+        <div class="pie-controls">
+          <button id="pieBackBtn" type="button">&#8630; Back (right-click)</button>
+          <span class="pie-hint">Right-click anywhere on the wheel also steps back.</span>
+        </div>
+      </div>
+      <figcaption>
+        This is a demonstration, not a photograph &mdash; the wedge tree, the markings, and the
+        behaviour flags (<span class="inline-code">back</span>/<span class="inline-code">submenu</span>/<span class="inline-code">digit</span>/<span class="inline-code">keepOpen</span>/<span class="inline-code">keepOpenHere</span>/<span class="inline-code">gotoLevel</span>)
+        are copied directly from <span class="inline-code">Hooks/EdwardOverlayMenu.lua</span> and
+        <span class="inline-code">Hooks/EdwardMenuPoints/*.lua</span>, By D.R. Landmarks included.
+        Colours match the actual Mosquito-panel skin. Fuel figures, weather, ammunition and damage
+        states, and the waypoint and marker lists shown are illustrative only, and are not to be
+        taken as readings from a live sortie.
+      </figcaption>
+    </figure>
+  </section>
+  <footer>
+    Edward &mdash; Menu Notes. Source: Hooks/EdwardOverlayMenu.lua and
+    Hooks/EdwardMenuPoints/{Status,Settings,Fuel,Radio,Navigation,HoldMyAircraft,WeaponsAndBombing}.lua.
+    The automatic use of Dead Reckoning points during a live sortie is not yet in service &mdash;
+    see the Dead Reckoning Survey Notes, Operating Data.
+  </footer>
+</main>
+
+<style>
+  /* League Spartan SemiBold (600), latin subset, embedded as a data URI (2026-09-15) so the
+     page stays fully self-contained (no network fetch to render offline) - SIL Open Font License
+     1.1, The League of Moveable Type, https://www.theleagueofmoveabletype.com/league-spartan.
+     Chosen after RAF placard font research: period RAF spec placard lettering is documented as
+     "Spartan" (Linotype/ATF's unlicensed 1939 copy of Futura - the original digitisation is a
+     paid Monotype/MyFonts product, not freely embeddable/redistributable). League Spartan is a
+     FOSS revival explicitly modelled on and named for that same original, making it the closest
+     legally embeddable match - closer than the initial Jost/generic-Futura-homage guess it
+     replaces here. Still matched to the aircraft, not confirmed against the live cockpit - see
+     WORKLOG.md for the full research trail (two supersessions: Bahnschrift -> Jost -> this). */
+  @font-face {
+    font-family: 'League Spartan';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(data:font/woff2;base64,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) format('woff2');
+  }
+</style>
+
+<style>
+  .pie-frame {
+    background: #090709;
+    border: 1px solid #343a2c;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .pie-breadcrumb {
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    font-size: 12.5px;
+    color: #dab42d;
+    opacity: 0.85;
+    letter-spacing: 0.02em;
+    min-height: 1.2em;
+    text-align: center;
+  }
+  .pie-stage {
+    position: relative;
+    width: min(380px, 90vw);
+  }
+  .pie-stage svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .pie-wedge {
+    fill: #1d2018;
+    stroke: #090709;
+    stroke-width: 1.5;
+    cursor: pointer;
+    transition: fill 0.1s ease;
+  }
+  .pie-wedge:hover, .pie-wedge.hover {
+    fill: #1f271c;
+  }
+  /* Real cockpit placards (Martin's reference photos, 2026-09-15) are stamped/engraved plate
+     lettering, always upper case, not the page's own Segoe UI body font - see the @font-face
+     comment above for the League Spartan/"Spartan" research this is matched to. The real wedge label font is
+     DejaVuLGCSansCondensed.ttf (read from a live skin dump 2026-09-15, now set explicitly in
+     EdwardOverlayMenu.lua) - this demo keeps the placard face, matched to the aircraft rather than the menu. */
+  .pie-wedge-text {
+    fill: #87824d; /* instrument-face green-yellow, same as the real wedge labels */
+    font-family: 'League Spartan', "Century Gothic", Futura, "Bahnschrift SemiBold", Bahnschrift, "Arial Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  .pie-center {
+    fill: #090709;
+    stroke: #343a2c;
+    stroke-width: 1;
+  }
+  .pie-center-hit {
+    fill: transparent;
+    cursor: default;
+  }
+  .pie-center-hit.confirmable {
+    cursor: pointer;
+  }
+  .pie-center-text {
+    fill: #dab42d;
+    /* Same placard family as .pie-wedge-text (2026-09-15) - was monospace before, an arbitrary
+       "digital readout" choice with nothing in the reference photos to support it; nothing marks
+       the hub as a different widget style from the wedges in the real cockpit either. */
+    font-family: 'League Spartan', "Century Gothic", Futura, "Bahnschrift SemiBold", Bahnschrift, "Arial Narrow", sans-serif;
+    font-weight: 600;
+    /* Matches the real centre label's single fontSize=14 on the 600px window (attachCentreLabel())
+       scaled onto this 380px viewBox: 380*14/600 ~= 9px. The real hub has no separate small size -
+       .small below keeps only the opacity dip, not a size drop, for that reason. */
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  .pie-center-text.small { opacity: 0.8; }
+  .pie-closed {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(9, 7, 9, 0.92);
+    border-radius: 50%;
+  }
+  .pie-closed button {
+    background: #1d2018;
+    color: #dab42d;
+    border: 1px solid #343a2c;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .pie-closed button:hover { background: #1f271c; }
+  /* Author CSS beats the browser's default [hidden]{display:none} regardless of specificity
+     order, so the unconditional display:flex above never let the hidden attribute hide this -
+     restate it here, scoped to [hidden], so JS toggling el.hidden actually works. */
+  .pie-closed[hidden] { display: none; }
+  .pie-toast {
+    min-height: 1.4em;
+    font-size: 13px;
+    color: #dab42d;
+    background: #1d2018;
+    border: 1px solid #343a2c;
+    border-radius: 6px;
+    padding: 6px 12px;
+    text-align: center;
+    max-width: 340px;
+  }
+  .pie-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pie-controls button {
+    background: #1d2018;
+    color: #dab42d;
+    border: 1px solid #343a2c;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12.5px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .pie-controls button:hover { background: #1f271c; }
+  .pie-hint {
+    font-size: 12px;
+    color: #a3aa97;
+  }
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---- Demo state (mirrors the fields each real menu-point module tracks) ----------------------
+  var state = {
+    distanceUnit: 'nm', headingMode: 'mag', speedUnit: 'mph', altitudeUnit: 'ft',
+    // arming defaults true (2026-09-05) - was the last of the five automation toggles to flip its
+    // default, matching Fuel/Pitot Heat/Radiator; only the master/fuel/pitotHeat/radiator group
+    // defaulted true from the start. bombBay (2026-09-10) moved here from state.weapons - see
+    // Hooks/EdwardMenuPoints/Settings.lua's automation.bombBay.
+    automation: { master: true, fuel: true, arming: true, pitotHeat: true, radiator: true, bombBay: true },
+    navActive: true,
+    holdEnabled: false,
+    fuel: { timeLeft: {}, ampg: null },
+    fuelToPoint: {},
+    t1154PowerOn: false,
+    driftChecking: false,
+    driftResults: 'No reading yet',
+    navPicture: null, // null, or {tag, source:'waypoint'|'marker', steerDeg, speed} - set on selection, read by navPictureText()
+    weapons: {
+      selectedTarget: null, selectedIP: null, // null, or a demo label string like 'WP5'
+      runInAltitude: null, runInSpeed: null,
+      stations: [false, false, false, false], // St.1-4 Select/Selected, live cockpit read in reality
+      noseFuze: false, tailFuze: false
+    }
+  };
+
+  var UNIT_GROUPS = [
+    { id: 'distanceUnit', label: 'Distance', options: [
+      { value: 'nm', label: 'Nautical Miles', short: 'NM' }, { value: 'km', label: 'Kilometers', short: 'KM' } ] },
+    { id: 'headingMode', label: 'Headings', options: [
+      { value: 'mag', label: 'Magnetic', short: 'MAG' }, { value: 'true', label: 'True', short: 'TRUE' } ] },
+    { id: 'speedUnit', label: 'Speed', options: [
+      { value: 'kts', label: 'Knots', short: 'KTS' }, { value: 'mph', label: 'MPH', short: 'MPH' }, { value: 'kph', label: 'KPH', short: 'KPH' } ] },
+    { id: 'altitudeUnit', label: 'Altitude', options: [
+      { value: 'ft', label: 'Feet', short: 'FT' }, { value: 'm', label: 'Meters', short: 'M' } ] }
+  ];
+
+  function shortFor(group) {
+    for (var i = 0; i < group.options.length; i++) if (group.options[i].value === state[group.id]) return group.options[i].short;
+    return '?';
+  }
+
+  // ---- Wedge-tree builders — one per Hooks/EdwardMenuPoints/*.lua module -----------------------
+  function weatherWedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: 'Wind', keepOpenHere: true, action: function () { toast('Wind: From 240° / 18 kts (demo)'); } },
+      { text: 'Temp', keepOpenHere: true, action: function () { toast('OAT: 4°C (demo)'); } },
+      { text: 'QNH', keepOpenHere: true, action: function () { toast('QNH: 1013 hPa (demo)'); } }
+    ];
+  }
+  function aircraftWedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: 'Ammo', keepOpenHere: true, action: function () { toast('20mm: 480 rds · .303: 3600 rds (demo)'); } },
+      { text: 'Damage', keepOpenHere: true, action: function () { toast('Airframe: 100% (demo)'); } }
+    ];
+  }
+  function statusWedges() {
+    var w = [
+      { text: 'Weather', submenu: weatherWedges },
+      { text: 'Aircraft', submenu: aircraftWedges }
+    ];
+    w.rotateStart = 90; // top/bottom split for this clean 2-wedge ring, same as Drift Recorder/By DR Landmarks below
+    return w;
+  }
+
+  // No "Go Back" wedge (2026-09-12, Martin's ask, same as Automations below and Fuel to Point's
+  // rings above) - right-click still steps back.
+  function groupWedges(group) {
+    var wedges = [];
+    group.options.forEach(function (opt) {
+      wedges.push({
+        text: opt.label + (opt.value === state[group.id] ? ' (current)' : ''),
+        keepOpen: true,
+        action: function () { state[group.id] = opt.value; }
+      });
+    });
+    return wedges;
+  }
+  function automationWedges() {
+    var a = state.automation;
+    function toggleWedge(key, label) {
+      return {
+        text: (a[key] ? label + ' is ON' : label + ' is OFF'),
+        keepOpen: true,
+        action: function () { a[key] = !a[key]; toast(label + ' automation: ' + (a[key] ? 'ON' : 'OFF')); }
+      };
+    }
+    // No 'Go Back' wedge here (2026-09-10, Martin's ask) - right-click still steps back; this ring
+    // is dense enough (7 toggles) that the redundant on-ring button wasn't worth keeping.
+    return [
+      { text: a.master ? 'All Automatics are ON' : 'All Automatics are OFF', keepOpen: true,
+        action: function () { a.master = !a.master; toast('Automatic Navigator Actions: ' + (a.master ? 'ON' : 'OFF')); } },
+      toggleWedge('fuel', 'Fuel Management'),
+      toggleWedge('arming', 'Arming Management'),
+      toggleWedge('pitotHeat', 'Pitot Heat'),
+      toggleWedge('radiator', 'Radiator Management'),
+      // Moved here from Weapons and Bombing (2026-09-10). Unlike its siblings above, this uses
+      // gotoLevel (rebuild THIS same Automations ring) rather than keepOpen (reset to pie-menu
+      // root) - Martin's explicit ask: flipping it should show the new ON/OFF state immediately,
+      // right here, not bounce out to root the way the other automation toggles do.
+      { text: a.bombBay ? 'Bombbay Automation is ON' : 'Bombbay Automation is OFF',
+        action: function () {
+          a.bombBay = !a.bombBay;
+          toast(a.bombBay
+            ? 'Bomb bay automation ON - I will open it on the run in and close it after. (demo)'
+            : 'Bomb bay automation OFF - the bomb bay is yours. (demo)', 5);
+        },
+        gotoLevel: automationWedges, gotoLevelLabel: ['Settings', 'Automations'] },
+      // Moved here from Navigation (2026-09-10). Plain keepOpen like the toggles above, not
+      // gotoLevel like Bombbay - this one doesn't need to show its new state in place. Its own
+      // bridge (state.navActive), not part of the automation table `a` above - in the real code
+      // NAV_ACTIVE already auto-activates on waypoint/map point selection (WaypointMarkerMenu.lua's
+      // selectWaypointFunc/selectMarkerFunc, both live-tested), independent of anything here.
+      { text: state.navActive ? 'Nav Updates are ON' : 'Nav Updates are OFF', keepOpen: true,
+        action: function () { state.navActive = !state.navActive; } }
+    ];
+  }
+  function settingsWedges() {
+    var wedges = UNIT_GROUPS.map(function (g) {
+      return { text: g.label + ' — ' + shortFor(g), submenu: function () { return groupWedges(g); } };
+    });
+    wedges.push({ text: 'Automations', submenu: automationWedges });
+    return wedges;
+  }
+
+  // Restructured 2026-08-31 (was one flat 4-wedge ring, see Hooks/EdwardMenuPoints/Fuel.lua's own
+  // header comment) - Time Left/AMPG, each All/Outer/Mains, plus a distance-based Fuel to Point.
+  // Every leaf wedge here updates only ITS OWN state.fuel/state.fuelToPoint entry when clicked
+  // (falling back to a "tap to check" placeholder until then) - since keepOpenHere re-invokes the
+  // whole builder function fresh (see showLevelFromBuilder below), a shared counter like the old
+  // fuelTick would have updated every sibling on any one click, same "awful" behavior being fixed.
+  var FUEL_DEMO_RATES = { all: 97 }; // gal/hr, illustrative - single overall rate, see below
+  var FUEL_DEMO_GAL    = { all: 227, outer: 31, mains: 196 };
+  var FUEL_DEMO_TAS_MPH = 274;
+
+  function formatRemainingHM(totalSeconds) {
+    var totalMin = Math.round(totalSeconds / 60);
+    var h = Math.floor(totalMin / 60);
+    var m = totalMin % 60;
+    return h > 0 ? (h + 'h' + m + 'm') : (m + 'm');
+  }
+
+  // Rate is always the overall (All) rate, even for Outer/Mains (2026-08-31, matching the real
+  // Fuel.lua logic) - the engines burn at the same rate regardless of which tank feeds them, so
+  // Mains can report a time even while the aircraft is actually drawing from Outer.
+  function tapFuelTimeLeft(bucket, label) {
+    var gal = Math.max(0, FUEL_DEMO_GAL[bucket] - Math.round(Math.random() * 6));
+    var remainS = gal / FUEL_DEMO_RATES.all * 3600;
+    state.fuel.timeLeft[bucket] = label + ' ' + gal + ' gal (' + formatRemainingHM(remainS) + ')';
+  }
+  function fuelTimeLeftWedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: state.fuel.timeLeft.all || 'All — tap to check', keepOpenHere: true,
+        action: function () { tapFuelTimeLeft('all', 'All'); } },
+      { text: state.fuel.timeLeft.outer || 'Outer — tap to check', keepOpenHere: true,
+        action: function () { tapFuelTimeLeft('outer', 'Outer'); } },
+      { text: state.fuel.timeLeft.mains || 'Mains — tap to check', keepOpenHere: true,
+        action: function () { tapFuelTimeLeft('mains', 'Mains'); } }
+    ];
+  }
+
+  // AMPG (2026-08-31, revised same day): collapsed from three per-tank wedges to one - efficiency
+  // doesn't meaningfully change with which tank the engines draw from, only with power/altitude/
+  // speed - and turned into a genuine timed measurement (press, wait, press again for the result),
+  // not an instant read, mirroring Hooks/EdwardMenuPoints/Fuel.lua's own AMPG_MEASURE_S design.
+  // Uses the page's real clock (Date.now()), so this one demo action genuinely takes ~15s, unlike
+  // every other instant-resolving demo action on this page.
+  var AMPG_MEASURE_S = 15;
+  var ampgMeasureStart = null;
+  function tapFuelAMPG() {
+    var now = Date.now() / 1000;
+    if (!ampgMeasureStart) {
+      ampgMeasureStart = now;
+      state.fuel.ampg = 'AMPG — measuring (' + AMPG_MEASURE_S + 's)…';
+      return;
+    }
+    var elapsed = now - ampgMeasureStart;
+    if (elapsed < AMPG_MEASURE_S) {
+      state.fuel.ampg = 'AMPG — measuring (' + Math.ceil(AMPG_MEASURE_S - elapsed) + 's left)…';
+      return;
+    }
+    ampgMeasureStart = null;
+    state.fuel.ampg = 'AMPG ' + (FUEL_DEMO_TAS_MPH / FUEL_DEMO_RATES.all).toFixed(1)
+      + ' (' + FUEL_DEMO_TAS_MPH.toFixed(0) + ' Mph)';
+  }
+
+  // "at current (All) burn rate" per the real spec - not split per tank system like the two
+  // categories above.
+  function fuelToPointResult(label) {
+    var dist_mi = 20 + Math.random() * 80; // demo distance, illustrative
+    var eteHr = dist_mi / FUEL_DEMO_TAS_MPH;
+    var gal = FUEL_DEMO_RATES.all * eteHr;
+    return label + ' ' + gal.toFixed(0) + ' gal ' + formatRemainingHM(eteHr * 3600);
+  }
+  // Eager-calculated (2026-09-12, Martin's ask): every leaf shows its computed gal/time the moment
+  // this ring is entered, not a placeholder needing an individual click first - matches the same
+  // change just made in the real Fuel.lua. Computed once per key (not re-rolled on every re-render)
+  // so re-entering the same chunk without clicking anything doesn't change the numbers out from
+  // under you; the action below still re-rolls on an explicit click, same as before.
+  // No "Go Back" wedge (2026-09-12, Martin's ask, same as Fuel to Point's own root ring above) -
+  // right-click still steps back; a WP leaf click already goes nowhere and its number is already
+  // sitting there from the eager calculation, so Go Back had nothing left to be doing here either.
+  function fuelWpChunkWedges(start, end) {
+    var w = [];
+    for (var i = start; i <= end; i++) {
+      (function (n) {
+        var key = 'WP' + n;
+        if (!state.fuelToPoint[key]) state.fuelToPoint[key] = fuelToPointResult(key);
+        w.push({ text: state.fuelToPoint[key], keepOpenHere: true,
+          action: function () { state.fuelToPoint[key] = fuelToPointResult(key); } });
+      })(i);
+    }
+    return w;
+  }
+  function fuelWaypointChunks() {
+    var w = [];
+    for (var s = 0; s < DEMO_WAYPOINTS; s += 5) {
+      var e = Math.min(s + 4, DEMO_WAYPOINTS - 1);
+      (function (s, e) {
+        w.push({ text: 'WP' + s + '-WP' + e, submenu: function () { return fuelWpChunkWedges(s, e); } });
+      })(s, e);
+    }
+    return w;
+  }
+  // No "Go Back" wedge here either (2026-09-12, same reasoning as fuelWpChunkWedges above).
+  function fuelMarkerWedges() {
+    var w = [];
+    DEMO_MARKERS.forEach(function (tag) {
+      if (!state.fuelToPoint[tag]) state.fuelToPoint[tag] = fuelToPointResult(tag); // eager, see fuelWpChunkWedges' own comment
+      w.push({ text: state.fuelToPoint[tag], keepOpenHere: true,
+        action: function () { state.fuelToPoint[tag] = fuelToPointResult(tag); } });
+    });
+    return w;
+  }
+  // "To Homebase" (added 2026-09-12, Martin's ask) is now REAL, not just previewed - shipped the
+  // same day in EdwardCore.lua's EdwardCaptureHomeAirfield (four-tier fallback: cold/hot-parked
+  // spawn position, then WP0-as-ground-point, then last-WP-as-ground-point, then a no-cutoff
+  // nearest-friendly-airfield catch-all) and Fuel.lua's buildHomebaseWedge. Demo name here is still
+  // illustrative, same as every other placeholder value on this page - only the underlying
+  // detection logic and the "To Waypoint"/"To Map Point" rename are real. Takes the place of the
+  // ring's own "Go Back" wedge - safe to drop since right-click still steps back everywhere, same
+  // convention Settings ▸ Automations already relies on.
+  var DEMO_HOMEBASE = 'Maupertus';
+  function fuelToPointWedges() {
+    // Eager-calculated (2026-09-12, same change as the WP/map-point rings above).
+    if (!state.fuelToPoint.home) state.fuelToPoint.home = fuelToPointResult('Home (' + DEMO_HOMEBASE + ')');
+    // Order matters for layout, not just reading order: with 3 equal 120° wedges and no rotation,
+    // index 1 of 3 is the one that lands at the bottom (index 0 lands upper-right, index 2 upper-
+    // left) - To Homebase is placed there deliberately (Martin's ask, 2026-09-12), not first.
+    return [
+      { text: 'To Waypoint', submenu: fuelWaypointChunks },
+      { text: state.fuelToPoint.home, keepOpenHere: true,
+        action: function () { state.fuelToPoint.home = fuelToPointResult('Home (' + DEMO_HOMEBASE + ')'); } },
+      { text: 'To Map Point', submenu: fuelMarkerWedges }
+    ];
+  }
+  function fuelWedges() {
+    return [
+      { text: 'Time Left', submenu: fuelTimeLeftWedges },
+      { text: state.fuel.ampg || 'AMPG — tap to measure', keepOpenHere: true, action: tapFuelAMPG },
+      { text: 'Fuel to Point', submenu: fuelToPointWedges }
+    ];
+  }
+
+  function digitWedges(withDot) {
+    var w = [];
+    for (var d = 0; d <= 9; d++) w.push({ text: String(d), digit: String(d) });
+    if (withDot) w.push({ text: '.', digit: '.' });
+    w.push({ text: 'DEL', digit: 'DEL' });
+    return w;
+  }
+  // ---- Radio (Hooks/EdwardMenuPoints/Radio.lua) — rebuilt 2026-09-03 to match the real two-radio
+  // structure (T-1154 Transmitter / R-1155 Receiver, restructured 2026-09-01) plus the preset-letter
+  // labels added 2026-09-03. DEMO_PRESETS holds the real sample values from the mission-preset-
+  // frequencies memory doc (matches EdwardRadioBridge.lua's own T1154_PRESETS table for the first 7
+  // letters of each range; the 8th per range, H/R/Z, is a real Mission Editor-configurable channel the T1154's
+  // own preset-letter hardware can't reach, but still shown here since the display list always
+  // shows all 8 and the R-1155 can tune to any of them). -------------------------------------------
+  var RANGE_LABELS = { 1: 'Range 1 (10.0 - 5.5 Mc)', 2: 'Range 2 (5.5 - 3.0 Mc)', 3: 'Range 3 (500 - 200 Kc)' };
+  var RANGE_LETTERS = { 1: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 2: ['J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R'], 3: ['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'] };
+  var DEMO_PRESETS = {
+    1: [9.255, 8, 7.71, 6.872, 5.955, 5.85, 5.75, 5.65],
+    2: [5.25, 5, 4.75, 4.5, 4.25, 3.25, 3.012, 3.011],
+    3: [0.444, 0.421, 0.303, 0.3, 0.27, 0.26, 0.25, 0.24]
+  };
+  function formatPresetFreq(mhz) {
+    return mhz >= 1 ? mhz.toFixed(3) + ' Mc' : Math.round(mhz * 1000) + ' Kc';
+  }
+  function findT1154Preset(hz) {
+    // Mirrors EdwardRadioBridge.lua's findT1154Preset: nearest match within +/-5000 Hz across all
+    // 24 listed slots (not just the 21 the real hardware can reach - close enough for a menu demo).
+    var best = null, bestDiff = Infinity;
+    [1, 2, 3].forEach(function (range) {
+      DEMO_PRESETS[range].forEach(function (mhz, i) {
+        var diff = Math.abs(mhz * 1e6 - hz);
+        if (diff < bestDiff) { bestDiff = diff; best = { letter: RANGE_LETTERS[range][i], mhz: mhz }; }
+      });
+    });
+    return (best && bestDiff <= 5000) ? best : null;
+  }
+  function buildPresetRangeWedges(range, onSelect) {
+    var w = [{ text: 'Go Back', back: true }];
+    DEMO_PRESETS[range].forEach(function (mhz, i) {
+      var letter = RANGE_LETTERS[range][i];
+      w.push({ text: letter + ' : ' + formatPresetFreq(mhz), keepOpen: true,
+        action: function () { onSelect(letter, mhz); } });
+    });
+    return w;
+  }
+  function buildPresetFrequencyWedges(onSelect) {
+    return [
+      { text: 'Go Back', back: true },
+      { text: RANGE_LABELS[1], submenu: function () { return buildPresetRangeWedges(1, onSelect); } },
+      { text: RANGE_LABELS[2], submenu: function () { return buildPresetRangeWedges(2, onSelect); } },
+      { text: RANGE_LABELS[3], submenu: function () { return buildPresetRangeWedges(3, onSelect); } }
+    ];
+  }
+  function interpretManualTune(buffer) {
+    var v = parseFloat(buffer);
+    if (isNaN(v)) return [null, null];
+    if (v > 0 && v <= 18) return [Math.round(v * 1e6), 'MC/S'];
+    if (v >= 75 && v <= 1500) return [Math.round(v * 1e3), 'KC/S'];
+    return [null, null];
+  }
+  function manualTuneWedgesR1155() {
+    var w = digitWedges(true);
+    w.interpretBuffer = interpretManualTune;
+    w.onConfirm = function (hz) { toast('R-1155 tune request: ' + hz + ' Hz (demo)'); };
+    return w;
+  }
+  function manualTuneWedgesT1154() {
+    // Same digit entry as the R-1155's, but onConfirm snaps to the nearest known preset letter
+    // instead of a real continuous tune - the T1154's oscillator condensers are free-rotating rings
+    // with no usable absolute position (see claude-memory/edward-t1154-manual-tune-investigation.md),
+    // so there's no way to reach an arbitrary typed frequency, only Predefined Frequencies' 21-24
+    // known letters.
+    var w = digitWedges(true);
+    w.interpretBuffer = interpretManualTune;
+    w.onConfirm = function (hz) {
+      var preset = findT1154Preset(hz);
+      if (preset) toast('T-1154 tuning to preset ' + preset.letter + ' (' + formatPresetFreq(preset.mhz) + ') (demo)', 6);
+      else toast('T.1154N: not one of the transmitter\'s fixed preset letters, cannot auto-select (demo)', 6);
+    };
+    return w;
+  }
+  function t1154Wedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: 'Manually Tune', submenu: manualTuneWedgesT1154 },
+      { text: 'Predefined Frequencies', submenu: function () {
+        return buildPresetFrequencyWedges(function (letter, mhz) {
+          toast('T-1154 tuning to preset ' + letter + ' (' + formatPresetFreq(mhz) + ') (demo)', 6);
+        });
+      } }
+    ];
+  }
+  function r1155Wedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: 'Manually Tune', submenu: manualTuneWedgesR1155 },
+      { text: 'Predefined Frequencies', submenu: function () {
+        return buildPresetFrequencyWedges(function (letter, mhz) {
+          toast('R-1155 tune request: ' + Math.round(mhz * 1e6) + ' Hz (demo)');
+        });
+      } }
+    ];
+  }
+  function radioWedges() {
+    return [
+      { text: state.t1154PowerOn ? 'T-1154 Transmitter is ON' : 'T-1154 Transmitter is OFF', keepOpen: true,
+        action: function () {
+          state.t1154PowerOn = !state.t1154PowerOn;
+          toast('T.1154 Transmitter: requesting power ' + (state.t1154PowerOn ? 'ON' : 'OFF'), 4);
+        } },
+      { text: 'Tune T-1154 Transmitter', submenu: t1154Wedges },
+      { text: 'Tune R-1155 Receiver', submenu: r1155Wedges },
+      // No keepOpen - closes the menu outright, same as the real wedge (the player is about to be
+      // relocated to the navigator's seat for manual tuning).
+      { text: 'Manual Radio Tuning', action: function () { toast('Manual Radio Tuning: seat-swapping to the navigator (demo)', 4); } }
+    ];
+  }
+
+  var DEMO_WAYPOINTS = 13; // demo route length, enough to show chunking
+  var DEMO_MARKERS = ['TGT', 'HOME', 'IP'];
+  function chunkWedges(start, end) {
+    var w = [{ text: 'Go Back', back: true }];
+    for (var i = start; i <= end; i++) {
+      (function (n) {
+        w.push({ text: 'WP' + n, keepOpen: true, action: function () {
+          // Mirrors WaypointMarkerMenu.lua's selectWaypointFunc: auto-activates Nav Updates on
+          // selection (idempotent - only announces "ACTIVE" on the false->true transition).
+          var justActivated = !state.navActive;
+          state.navActive = true;
+          // A route leg has a planned time, so navReqSpeed is present - mirrors
+          // Navigation.lua's buildNavPictureText (real values come from NavCallouts.lua; this demo
+          // just picks a plausible heading and reuses the demo cruise speed already used by Fuel).
+          state.navPicture = { tag: 'WP' + n, source: 'waypoint',
+            steerDeg: Math.round(Math.random() * 359), speed: FUEL_DEMO_TAS_MPH };
+          toast('Selected WP' + n + (justActivated ? ' - BRG/RNG ACTIVE (demo)' : ' — navigating (demo)'));
+        } });
+      })(i);
+    }
+    return w;
+  }
+  function waypointChunks() {
+    var w = [];
+    for (var s = 0; s < DEMO_WAYPOINTS; s += 5) {
+      var e = Math.min(s + 4, DEMO_WAYPOINTS - 1);
+      (function (s, e) {
+        w.push({ text: 'WP' + s + '-WP' + e, submenu: function () { return chunkWedges(s, e); } });
+      })(s, e);
+    }
+    return w;
+  }
+  function markerWedges() {
+    var w = [{ text: 'Go Back', back: true }];
+    DEMO_MARKERS.forEach(function (tag) {
+      w.push({ text: tag, keepOpen: true, action: function () {
+        // Mirrors WaypointMarkerMenu.lua's selectMarkerFunc - same auto-activation as the waypoint
+        // picker above (fixed live 2026-08-28 to match; both selectors are symmetric now).
+        var justActivated = !state.navActive;
+        state.navActive = true;
+        // A map point has no planned leg time, so navReqSpeed stays absent - the heading-only
+        // case buildNavPictureText's own comment calls out ("TGT3 / 164°M", no speed part).
+        state.navPicture = { tag: tag, source: 'marker',
+          steerDeg: Math.round(Math.random() * 359), speed: null };
+        toast('Selected marker ' + tag + (justActivated ? ' - BRG/RNG ACTIVE (demo)' : ' — navigating (demo)'));
+      } });
+    });
+    return w;
+  }
+  // ---- Drift Recorder (Hooks/EdwardMenuPoints/Navigation.lua) — one "Check Drift" action wedge;
+  // the reading itself lives in the centre hub, not a second wedge (2026-09-14, Martin's call -
+  // it was briefly a 2-wedge submenu from 2026-09-03 until the reading grew Heading/Track and
+  // overflowed the ring, at which point it moved to the hub via the generic centreText mechanism
+  // instead). The wedge still runs the real ~65s mantle/measure/report timing (unchanged below)
+  // and closes the menu outright on click; the hub mirrors DriftRecorder.lua's own
+  // formatResultsText() - kt->mph, real uncapped drift degrees, "No reading yet" until the first
+  // completed check. driftCheckTimers holds the pending setTimeout ids so interruptDriftCheck()
+  // can cancel them outright - JS timers are natively cancellable, unlike DCS's
+  // timer.scheduleFunction (which has no cancel call and needs the real code's generation-counter
+  // workaround instead; not needed here). ------------------------------------------------------
+  var driftCheckTimers = [];
+  var KTS_TO_MPH_DEMO = 1.15078; // same conversion Radio-side already uses via MPS_TO_MPH/MPS_TO_KTS
+  var DEMO_DRIFT = { driftPart: null, gsPart: null, windPart: null };
+  function composeDriftResults() {
+    if (!DEMO_DRIFT.driftPart) return 'No reading yet';
+    return DEMO_DRIFT.driftPart + ' | ' + (DEMO_DRIFT.gsPart || 'GS --') + ' | ' + (DEMO_DRIFT.windPart || 'Wind --');
+  }
+  function clearDriftCheckTimers() {
+    driftCheckTimers.forEach(function (id) { clearTimeout(id); });
+    driftCheckTimers = [];
+  }
+  // Mirrors EdwardOverlayMenu.lua's requestDriftInterrupt(): fired for any OTHER action-wedge
+  // while a check is running (never for submenu drill-down, digit entry, or Go Back - those don't
+  // call this at all, matching the real onChange dispatch exactly).
+  function interruptDriftCheck() {
+    if (driftCheckTimers.length) {
+      clearDriftCheckTimers();
+      state.driftChecking = false;
+      toast('Navigator: Drift check interrupted', 3);
+    }
+  }
+  function startDriftCheckDemo() {
+    if (driftCheckTimers.length) { toast('Navigator: Drift recorder already mantled', 3); return; }
+    function schedule(delayMs, fn) { driftCheckTimers.push(setTimeout(fn, delayMs)); }
+    state.driftChecking = true;
+    toast('Navigator: Mantling drift recorder...', 10);
+    schedule(10000, function () { toast('Navigator: Recorder mantled, measuring drift - steady please', 10); });
+    schedule(20000, function () { toast('Navigator: Steady...', 10); });
+    schedule(30000, function () { toast('Navigator: Steady...', 10); });
+    schedule(40000, function () { toast('Navigator: Steady...', 10); });
+    schedule(50000, function () {
+      // Spoken toast keeps the demo's original +/-8deg range; the results wedge below uses the
+      // same uncapped value (real code shows the true figure there, not the spoken report's
+      // "More than 30 degrees" cap - simplified to this narrower demo range either way).
+      var drift = Math.round(Math.random() * 16 - 8);
+      var side = drift > 0 ? 'Port' : 'Starboard';
+      DEMO_DRIFT = { driftPart: 'Drift ' + Math.abs(drift) + '° ' + side, gsPart: null, windPart: null };
+      state.driftResults = composeDriftResults();
+      toast('Navigator: Drift - ' + Math.abs(drift) + ' degrees to ' + side.toLowerCase() + ' (demo)', 8);
+    });
+    schedule(55000, function () {
+      var gsKts = 170 + Math.round(Math.random() * 40);
+      DEMO_DRIFT.gsPart = 'GS ' + Math.round(gsKts * KTS_TO_MPH_DEMO) + ' Mph';
+      state.driftResults = composeDriftResults();
+      toast('Navigator: Groundspeed - ' + gsKts + ' kts (demo)', 8);
+    });
+    schedule(65000, function () {
+      DEMO_DRIFT.windPart = 'Wind 240°/' + Math.round(18 * KTS_TO_MPH_DEMO) + ' Mph';
+      state.driftResults = composeDriftResults();
+      state.driftChecking = false;
+      toast('Navigator: Estimated wind - From 240° / 18 kt (demo)', 10);
+      driftCheckTimers = [];
+    });
+  }
+  function driftRecorderWedges() {
+    var w = [
+      { text: state.driftChecking ? 'Checking Drift - stb.' : 'Check Drift', skipDriftInterrupt: true, action: startDriftCheckDemo }
+    ];
+    w.centreText = state.driftResults;
+    return w;
+  }
+
+  // ---- By DR Landmarks (Hooks/EdwardMenuPoints/Navigation.lua's buildDRLandmarkWedges()) — real,
+  // shipped code (Dead Reckoning Phase 1: the theatre survey + F10-map curation workflow, built and
+  // live-tested 2026-09-16), not a preview - see Distribution/DeadReckoning_Survey_Guide.html for the
+  // full player-facing workflow this drives. Wedge text, order, and the "closes on click, not
+  // keepOpenHere" behaviour below are copied straight from the real function - Martin's own comment
+  // there explains why: "every one of these actions is followed by going to look at the F10 map, and
+  // keepOpenHere would re-show this ring on top of the map the player is trying to reach... The
+  // curation loop is click View -> menu closes -> edit the map -> press 'e' again", same shape as
+  // Check Drift above. Real F10-map curation (deleting a bad point, adding an FP - mark) can't be
+  // represented on this page, so the two "(demo)" -prefixed wedges below stand in for it just to
+  // advance the label state machine - they aren't real menu items, and unlike the wedge above them
+  // they deliberately keep the ring open (keepOpenHere) so this demo stays usable without a real F10
+  // map to click on. Theatre name and point/anchor counts are illustrative placeholders, not the real
+  // Normandy survey's live-tested figures (1,427 points as of 2026-09-16).
+  var drSurveyTimers = [];
+  state.drLandmarks = { theatre: 'Normandy', points: 0, unsavedCount: 0, dirty: false, surveying: false, surveyDone: 0, surveyTotal: 46 };
+
+  function drStatusLabel() {
+    var d = state.drLandmarks;
+    if (d.surveying) return 'Surveying ' + Math.floor(d.surveyDone / d.surveyTotal * 100) + '%';
+    if (d.points === 0) return 'Create DR Points';
+    if (d.dirty) return d.unsavedCount > 0 ? ('Save (' + d.unsavedCount + ' unsaved)') : 'Save DR Points';
+    return 'View on Map (' + d.points + ')';
+  }
+  function drCentreText() {
+    var d = state.drLandmarks;
+    if (d.surveying) return 'DR LANDMARKS\nSurveying ' + d.theatre + '\n' + d.surveyDone + ' of ' + d.surveyTotal;
+    if (d.points === 0) return 'DR LANDMARKS\nNo points yet for\n' + d.theatre;
+    if (d.dirty) return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points\n' + d.unsavedCount + ' UNSAVED';
+    return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points';
+  }
+  function runDrSurveyDemo() {
+    var d = state.drLandmarks;
+    d.surveying = true; d.surveyDone = 0;
+    toast('Navigator: Surveying this theatre for landmarks - this takes a minute for real (sped up here).', 4);
+    function tick() {
+      d.surveyDone = Math.min(d.surveyTotal, d.surveyDone + Math.ceil(d.surveyTotal / 6));
+      if (d.surveyDone >= d.surveyTotal) {
+        d.surveying = false; d.points = 62; d.dirty = false; d.unsavedCount = 0;
+        toast('Navigator: Survey done - ' + d.points + ' points found (demo)', 5);
+        return;
+      }
+      drSurveyTimers.push(setTimeout(tick, 450));
+    }
+    drSurveyTimers.push(setTimeout(tick, 450));
+  }
+  function drLandmarksWedges() {
+    var d = state.drLandmarks;
+    var w = [];
+    w.push({
+      text: drStatusLabel(),
+      action: function () {
+        if (d.surveying) {
+          toast('Navigator: Survey in progress - ' + Math.floor(d.surveyDone / d.surveyTotal * 100) + '% done.', 3);
+        } else if (d.points === 0) {
+          runDrSurveyDemo();
+        } else if (d.dirty) {
+          toast('Navigator: Saving ' + d.points + ' DR points for ' + d.theatre + ' (keeps a .bak backup of the old file) (demo)', 4);
+          d.dirty = false; d.unsavedCount = 0;
+        } else {
+          toast('Navigator: Placed ' + d.points + ' DR -/FP - marks on the F10 map (demo)', 4);
+        }
+      }
+    });
+    w.push({
+      text: 'Clear Marks',
+      action: function () { toast('Navigator: Clearing DR marks from the map (demo) - reopen this ring to put them back.', 4); }
+    });
+    if (!d.surveying && d.points > 0) {
+      w.push({
+        text: '(demo) place a new FP - mark on the map',
+        keepOpenHere: true,
+        action: function () { d.points += 1; d.unsavedCount += 1; d.dirty = true; }
+      });
+      w.push({
+        text: '(demo) delete a DR - mark on the map',
+        keepOpenHere: true,
+        action: function () { if (d.points > 0) { d.points -= 1; d.unsavedCount += 1; d.dirty = true; } }
+      });
+    }
+    w.push({ text: 'Go Back', back: true });
+    w.centreText = drCentreText();
+    return w;
+  }
+
+  // Nav picture for the centre hub (GitHub feature request #3, 2026-09-14) - mirrors
+  // Navigation.lua's buildNavPictureText() exactly, including the '\n' headline/detail split and
+  // the ' · ' (U+00B7) separator between fields. This is the Navigation root ring's DEFAULT hub
+  // content (EdwardOverlayMenu.lua's three-layer hub, layer 2) - shown whenever nothing is
+  // hovered and no digit entry is sticky, replacing the plain breadcrumb every other ring falls
+  // back to.
+  function navPictureText() {
+    var p = state.navPicture;
+    if (!p) return 'EDWARD\nNothing Selected';
+    var headline = p.source === 'waypoint' ? 'By Waypoint' : 'Map Point';
+    var parts = [p.tag, p.steerDeg + '°M'];
+    if (p.speed != null) parts.push(p.speed + ' Mph');
+    return headline + '\n' + parts.join(' · ');
+  }
+
+  function navigationWedges() {
+    // "\n" wrap points added 2026-09-15 (Martin's ask) - matches Navigation.lua's real wedge
+    // text exactly, including "By\nDR Landmarks" now that it's real, shipped code (added to the
+    // real ring 2026-09-16). "Drift-Recorder" is hyphenated rather than wrapped, same as the real
+    // wedge. Order matches buildNavigationWedges() exactly.
+    var w = [
+      { text: 'By\nWaypoints', submenu: waypointChunks },
+      { text: 'By\nMap Points', submenu: markerWedges },
+      { text: 'Drift-Recorder', submenu: driftRecorderWedges },
+      { text: 'By\nDR Landmarks', submenu: drLandmarksWedges }
+    ];
+    w.centreText = navPictureText();
+    return w;
+  }
+
+  function headingRingWedges() {
+    var w = digitWedges(false);
+    w.interpretBuffer = function (buf) { var v = parseInt(buf, 10); return (!isNaN(v) && v >= 0 && v <= 359) ? [v, '°'] : [null, null]; };
+    w.onConfirm = function (v) { toast('Hold track: ' + v + '° (demo)'); };
+    return w;
+  }
+  function altitudeRingWedges() {
+    var unit = state.altitudeUnit === 'm' ? 'm' : 'ft';
+    var w = digitWedges(false);
+    w.interpretBuffer = function (buf) { var v = parseInt(buf, 10); return (!isNaN(v) && v >= 0 && v <= 60000) ? [v, unit] : [null, null]; };
+    w.onConfirm = function (v) { toast('Hold altitude: ' + v + ' ' + unit + ' (demo)'); };
+    return w;
+  }
+  function holdWedges() {
+    var headingRef = state.headingMode === 'mag' ? 'MAG' : 'TRUE';
+    var altUnit = state.altitudeUnit === 'm' ? 'm' : 'ft';
+    return [
+      { text: state.holdEnabled ? 'Hold is ON' : 'Hold is OFF', keepOpen: true,
+        action: function () { state.holdEnabled = !state.holdEnabled; toast('Hold My Aircraft: ' + (state.holdEnabled ? 'ON' : 'OFF')); } },
+      { text: 'Set Track (' + headingRef + ')', submenu: headingRingWedges },
+      { text: 'Set Altitude (' + altUnit + ')', submenu: altitudeRingWedges }
+    ];
+  }
+
+  // ---- Weapons and Bombing (Hooks/EdwardMenuPoints/WeaponsAndBombing.lua) — added 2026-09-09 to
+  // this demo; the wedge tree itself landed 2026-09-05. Root wedge order in the real
+  // EdwardOverlayMenu.lua is Status/Settings/Fuel/Radio/Navigation/Hold My Aircraft/Weapons and
+  // Bombing - this was the one root branch missing from this page for a few days. -----------------
+  //
+  // Demo waypoint/marker data deliberately shows BOTH the matched and the empty-fallback code path
+  // across the two pickers, since a real mission only ever shows one or the other depending on
+  // what's actually named TGT*/IP* - can't toggle both live without adding a second demo-only
+  // control that doesn't exist in the real menu. TGT Waypoint demos the union-with-Bombing-task
+  // case (WP8 gets the trailing "*" for being task-only, not name-matched); IP Waypoint demos the
+  // empty-match "All Waypoints" fallback instead, since IP never gets the task-union (by design -
+  // see the real file's own header on why). Both MapPoint pickers demo the ordinary matched case.
+  var DEMO_TGT_WAYPOINTS = [
+    { label: 'WP5', starred: false },
+    { label: 'WP8', starred: true } // task-only match: real label would show "WP8 *"
+  ];
+  var DEMO_IP_WAYPOINTS = []; // empty on purpose - demos the "All Waypoints" fallback below
+
+  function waypointPickerWedges(role, matched) {
+    if (matched.length === 0) {
+      return [
+        { text: 'Go Back', back: true },
+        { text: 'No ' + role + ' waypoints' },
+        { text: 'All Waypoints', submenu: waypointChunks } // reuses Navigation's generic chunker
+      ];
+    }
+    var w = [{ text: 'Go Back', back: true }];
+    matched.forEach(function (pt) {
+      w.push({
+        text: pt.label + (pt.starred ? ' *' : ''),
+        action: function () { state.weapons[role === 'TGT' ? 'selectedTarget' : 'selectedIP'] = pt.label; },
+        // Lands back on the Weapons and Bombing root, not root-of-everything or this same picker -
+        // real reason (2026-09-05, Martin's ask): picking a TGT then an IP is the normal flow, and
+        // keepOpen meant walking the whole tree from the top twice.
+        gotoLevel: weaponsWedges
+      });
+    });
+    return w;
+  }
+
+  function markerPickerWedges(role) {
+    var matched = DEMO_MARKERS.filter(function (tag) { return tag.indexOf(role) === 0; });
+    var w = [{ text: 'Go Back', back: true }];
+    if (matched.length === 0) {
+      w.push({ text: 'No ' + role + ' map points' });
+      w.push({ text: 'All Map Points', submenu: markerWedges }); // generic flat ring, every mark
+    } else {
+      matched.forEach(function (tag) {
+        w.push({
+          text: tag,
+          action: function () { state.weapons[role === 'TGT' ? 'selectedTarget' : 'selectedIP'] = 'MP-' + tag; },
+          gotoLevel: weaponsWedges
+        });
+      });
+    }
+    // MapPoint branch only - a Waypoint pick already carries an authored altitude/speed from the
+    // mission (the Bombing task's own, or the TGT waypoint's own as fallback); a Map Point is just
+    // a pin with no authored data behind it, so these two have to be entered by hand here.
+    w.push({
+      text: state.weapons.runInAltitude != null ? ('Run In Alt ' + state.weapons.runInAltitude + 'ft') : 'Run In Altitude',
+      submenu: function () {
+        var rw = digitWedges(true);
+        rw.interpretBuffer = function (buf) { var v = parseFloat(buf); return (!isNaN(v) && v >= 0 && v <= 45000) ? [Math.floor(v), 'ft'] : [null, null]; };
+        rw.onConfirm = function (v) { state.weapons.runInAltitude = v; toast('Run-in altitude set: ' + v + ' ft (demo)', 3); };
+        return rw;
+      }
+    });
+    w.push({
+      text: state.weapons.runInSpeed != null ? ('Run In Spd ' + state.weapons.runInSpeed + 'MPH') : 'Run In Speed',
+      submenu: function () {
+        var rw = digitWedges(true);
+        rw.interpretBuffer = function (buf) { var v = parseFloat(buf); return (!isNaN(v) && v >= 0 && v <= 500) ? [Math.floor(v), 'MPH'] : [null, null]; };
+        rw.onConfirm = function (v) { state.weapons.runInSpeed = v; toast('Run-in speed set: ' + v + ' MPH (demo)', 3); };
+        return rw;
+      }
+    });
+    return w;
+  }
+
+  function selectBombsWedges() {
+    var w = [{ text: 'Go Back', back: true }];
+    state.weapons.stations.forEach(function (selected, i) {
+      w.push({
+        text: 'St·' + (i + 1) + (selected ? ' Selected' : ' Select'),
+        action: function () { state.weapons.stations[i] = !state.weapons.stations[i]; },
+        // Rebuilds THIS page (not root, not a re-show of the stale pre-click labels) so all four
+        // stations can be toggled in sequence with fresh labels each time - same reasoning as the
+        // real gotoLevel = function() return buildSelectBombsWedges() end.
+        gotoLevel: selectBombsWedges
+      });
+    });
+    return w;
+  }
+
+  function selectFuzesWedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: state.weapons.noseFuze ? 'Nose is ON' : 'Nose is OFF',
+        action: function () { state.weapons.noseFuze = !state.weapons.noseFuze; }, gotoLevel: selectFuzesWedges },
+      { text: state.weapons.tailFuze ? 'Tail is ON' : 'Tail is OFF',
+        action: function () { state.weapons.tailFuze = !state.weapons.tailFuze; }, gotoLevel: selectFuzesWedges }
+    ];
+  }
+
+  function bombsWedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: 'Select Bombs', submenu: selectBombsWedges },
+      { text: 'Select Fuzes', submenu: selectFuzesWedges }
+    ];
+  }
+
+  function armWeaponsWedges() {
+    return [
+      { text: 'Go Back', back: true },
+      { text: 'Bombs', submenu: bombsWedges },
+      // Single leaf, NOT a submenu - deliberately non-functional (real code's own comment: the
+      // jettison args are the same device family as confirmed controls but were never live-tested,
+      // and guessing at a write that dumps real stores isn't worth the risk for a convenience wedge).
+      { text: 'Jettison', keepOpenHere: true,
+        action: function () { toast('Jettison is not wired up yet - those controls have not been live-tested against the aircraft, so Edward will not guess at them. Use the cockpit levers. (demo)', 6); } }
+    ];
+  }
+
+  function stopTheRunLabel() {
+    // Mirrors buildWeaponsWedges' own IIFE exactly - 5 possible texts, not the 3 this page's prose
+    // used to summarize. No real run controller in this demo (IP-proximity triggering is Hooks-env
+    // background automation, not a menu action), so 'active'/'securing' are never reached here -
+    // only the three selection-driven states are, which is everything actually reachable by
+    // clicking around this menu alone.
+    if (state.weapons.selectedTarget && state.weapons.selectedIP) return 'Stop the Run (armed)';
+    if (state.weapons.selectedTarget) return 'Stop the Run';
+    return 'No Target Set';
+  }
+
+  function weaponsWedges() {
+    return [
+      { text: 'TGT — ' + (state.weapons.selectedTarget || 'none'), submenu: function () {
+        return [
+          { text: 'Go Back', back: true },
+          { text: 'TGT Waypoint', submenu: function () { return waypointPickerWedges('TGT', DEMO_TGT_WAYPOINTS); } },
+          { text: 'TGT MapPoint', submenu: function () { return markerPickerWedges('TGT'); } }
+        ];
+      } },
+      { text: 'IP — ' + (state.weapons.selectedIP || 'none'), submenu: function () {
+        return [
+          { text: 'Go Back', back: true },
+          { text: 'IP Waypoint', submenu: function () { return waypointPickerWedges('IP', DEMO_IP_WAYPOINTS); } },
+          { text: 'IP MapPoint', submenu: function () { return markerPickerWedges('IP'); } }
+        ];
+      } },
+      { text: 'Arm Weapons', submenu: armWeaponsWedges },
+      { text: stopTheRunLabel(), keepOpen: true,
+        action: function () {
+          if (!state.weapons.selectedTarget) { toast('No run to stop - pick a target under TGT first. (demo)', 3); return; }
+          var was = state.weapons.selectedTarget;
+          state.weapons.selectedTarget = null; state.weapons.selectedIP = null;
+          toast('Bomb run ended (' + was + ') (demo)', 3);
+        } }
+    ];
+  }
+
+  function rootWedges() {
+    return [
+      { text: 'Status', submenu: statusWedges },
+      { text: 'Settings', submenu: settingsWedges },
+      { text: 'Fuel', submenu: fuelWedges },
+      { text: 'Radio', submenu: radioWedges },
+      { text: 'Navigation', submenu: navigationWedges },
+      { text: 'Hold My Aircraft', submenu: holdWedges },
+      // Three wrap points (2026-09-15, Martin's ask), "&" for "and" - matches the real wedge text
+      // in WeaponsAndBombing.lua exactly.
+      { text: 'Weapons\n&\nBombing', submenu: weaponsWedges }
+    ];
+  }
+
+  // ---- Engine: mirrors EdwardOverlayMenu.lua's showLevel/onChange/stepBack exactly, including ---
+  // ---- the 2026-09-12 fix (Martin's ask) that stepping back now rebuilds the parent ring fresh --
+  // ---- instead of replaying whatever it looked like when the player left it. --------------------
+  var levelStack = [];       // stores BUILDER FUNCTIONS to call again on step-back, not resolved
+                              // wedge arrays - same change as the real levelStack (see
+                              // EdwardOverlayMenu.lua's own currentBuilderFn comment for the why).
+  var pathLabels = [];
+  var currentWedges = null;
+  var currentBuilder = null;
+  var isDigitLevel = false;
+  var digitBuffer = '';
+  var currentInterpret = null;
+  var currentConfirm = null;
+  var closed = true;
+
+  function toast(msg, seconds) {
+    var el = document.getElementById('pieToast');
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.hidden = true; }, (seconds || 3) * 1000);
+  }
+
+  function showLevelFromBuilder(builderFn, labelForCrumb) {
+    var wedges = builderFn();
+    currentWedges = wedges;
+    currentBuilder = builderFn;
+    isDigitLevel = wedges.some(function (w) { return w.digit; });
+    digitBuffer = '';
+    currentInterpret = isDigitLevel ? wedges.interpretBuffer : null;
+    currentConfirm = isDigitLevel ? wedges.onConfirm : null;
+    if (labelForCrumb !== undefined) {
+      pathLabels.push(labelForCrumb);
+    }
+    render();
+  }
+
+  function openRoot() {
+    closed = false;
+    levelStack = [];
+    pathLabels = [];
+    showLevelFromBuilder(rootWedges);
+  }
+
+  function closeMenu() {
+    levelStack = [];
+    pathLabels = [];
+    closed = true;
+    render();
+  }
+
+  function stepBack() {
+    if (closed) return;
+    if (levelStack.length > 0) {
+      // Rebuilds fresh (2026-09-12) - pops the PARENT's builder function and calls it again,
+      // rather than reusing whatever resolved array was current when the player drilled deeper.
+      var parentBuilder = levelStack.pop();
+      var wedges = parentBuilder();
+      currentWedges = wedges;
+      currentBuilder = parentBuilder;
+      pathLabels.pop();
+      isDigitLevel = wedges.some(function (w) { return w.digit; });
+      digitBuffer = '';
+      currentInterpret = isDigitLevel ? wedges.interpretBuffer : null;
+      currentConfirm = isDigitLevel ? wedges.onConfirm : null;
+      render();
+    } else {
+      closeMenu();
+    }
+  }
+
+  function appendDigit(ch) {
+    if (ch === 'DEL') { digitBuffer = digitBuffer.slice(0, -1); return; }
+    if (ch === '.') { if (digitBuffer.indexOf('.') !== -1) return; digitBuffer = (digitBuffer === '' ? '0' : digitBuffer) + '.'; return; }
+    digitBuffer += ch;
+  }
+
+  // Used by gotoLevel: same as showLevelFromBuilder (calls builderFn fresh, tracks it as
+  // currentBuilder so a later step-back rebuilds it too), but REPLACES the whole crumb trail
+  // instead of pushing one more entry onto it - gotoLevel can land from any depth onto a
+  // specific page with its own fixed trail (e.g. ['Weapons and Bombing']), not a deeper step
+  // along the path the player actually walked.
+  function showGotoLevel(builderFn, crumbTrail) {
+    var wedges = builderFn();
+    currentWedges = wedges;
+    currentBuilder = builderFn;
+    isDigitLevel = wedges.some(function (w) { return w.digit; });
+    digitBuffer = '';
+    currentInterpret = isDigitLevel ? wedges.interpretBuffer : null;
+    currentConfirm = isDigitLevel ? wedges.onConfirm : null;
+    pathLabels = crumbTrail;
+    render();
+  }
+
+  function onWedgeClick(w) {
+    if (closed) return;
+    if (w.back) { stepBack(); return; }
+    if (w.digit) { appendDigit(w.digit); render(); return; }
+    if (w.submenu) { levelStack.push(currentBuilder); showLevelFromBuilder(w.submenu, w.text); return; }
+    if (w.action) {
+      // Mirrors EdwardOverlayMenu.lua's onChange: fires for every action-wedge except the one
+      // flagged skipDriftInterrupt (Check Drift itself) - never for submenu/digit/back, which all
+      // already returned above.
+      if (!w.skipDriftInterrupt) interruptDriftCheck();
+      w.action();
+    }
+    if (w.gotoLevel) {
+      // Mirrors EdwardOverlayMenu.lua's gotoLevelById exactly (added 2026-09-05 for Weapons and
+      // Bombing, reused 2026-09-10 by Settings' Bombbay Automation toggle): land on a SPECIFIC page
+      // (its own page, to show a freshly-rebuilt label, or a parent root) instead of root
+      // (keepOpen) or the level the action fired from (keepOpenHere) - checked before both of
+      // those, same priority order as the real dispatch. levelStack resets to just [root] so a
+      // right-click from here steps back to the pie-menu root REGARDLESS of how deep the landed-on
+      // page actually is - a real, confirmed quirk of the live implementation (gotoLevelById always
+      // does `levelStack = { rootBuilder }`), not a demo shortcut. rootWedges pushed as the
+      // function itself (not called) - levelStack holds builders uniformly since 2026-09-12.
+      // gotoLevelLabel lets each wedge supply its own breadcrumb trail for where it lands; defaults
+      // to the original Weapons and Bombing wording for wedges that don't set one.
+      levelStack = [rootWedges];
+      showGotoLevel(w.gotoLevel, w.gotoLevelLabel || ['Weapons and Bombing']);
+    } else if (w.keepOpenHere) {
+      showLevelFromBuilder(currentBuilder); // no label arg -> re-render same level, crumb trail untouched
+    } else if (w.keepOpen) {
+      levelStack = []; pathLabels = [];
+      showLevelFromBuilder(rootWedges);
+    } else {
+      closeMenu();
+    }
+  }
+
+  function onCenterConfirm() {
+    if (closed || !isDigitLevel || !digitBuffer || !currentInterpret) return;
+    var res = currentInterpret(digitBuffer);
+    var value = res[0];
+    if (value === null || value === undefined) return;
+    currentConfirm(value);
+    closeMenu();
+  }
+
+  // ---- Rendering --------------------------------------------------------------------------------
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  // Proportions matched to the real PieMenuDialog.dlg window (fixed 600x600, centre 300,300):
+  // innerRadius=100, itemHeight=190 (so the ring runs 100->290, its outer edge 97% of the way to
+  // the window edge - EdwardOverlayMenu.lua's applySkin()), and the centre label's 150px box
+  // (radius 75, "sized to sit inside innerRadius" - attachCentreLabel()). Scaled onto this SVG's
+  // 190px half-width: INNER_R=190*100/300, OUTER_R=190*290/300, CENTER_R=190*75/300.
+  var CX = 190, CY = 190, INNER_R = 63, OUTER_R = 184, CENTER_R = 48;
+
+  function polar(cx, cy, r, angleDeg) {
+    var a = (angleDeg - 90) * Math.PI / 180;
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  }
+
+  function wedgePath(startAngle, endAngle) {
+    var p0 = polar(CX, CY, INNER_R, startAngle), p1 = polar(CX, CY, OUTER_R, startAngle);
+    var p2 = polar(CX, CY, OUTER_R, endAngle), p3 = polar(CX, CY, INNER_R, endAngle);
+    var large = (endAngle - startAngle) > 180 ? 1 : 0;
+    return [
+      'M', p0.x, p0.y, 'L', p1.x, p1.y,
+      'A', OUTER_R, OUTER_R, 0, large, 1, p2.x, p2.y,
+      'L', p3.x, p3.y,
+      'A', INNER_R, INNER_R, 0, large, 0, p0.x, p0.y, 'Z'
+    ].join(' ');
+  }
+
+  // Mirrors EdwardOverlayMenu.lua's unbreakable(): a real wedge label has every space replaced by
+  // U+00A0 and so cannot wrap on its own. Only an explicit "\n" in the label is a wrap point, which
+  // is why this splits on "\n" alone rather than greedily filling lines by width. A label with no
+  // "\n" renders on one line here exactly as it does in the cockpit.
+  function wrapLabel(text) {
+    return text.split('\n');
+  }
+
+  function el(tag, attrs) {
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function render() {
+    var svg = document.getElementById('pieSvg');
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    document.getElementById('pieClosed').hidden = !closed;
+    document.getElementById('pieBreadcrumb').textContent = closed ? 'closed' :
+      'Root' + (pathLabels.length ? ' › ' + pathLabels.join(' › ') : '');
+    if (closed) return;
+
+    var n = currentWedges.length;
+    var step = 360 / n;
+    var rotate = currentWedges.rotateStart || 0;
+    currentWedges.forEach(function (w, i) {
+      var startA = rotate + i * step, endA = rotate + (i + 1) * step;
+      var path = el('path', { d: wedgePath(startA, endA), class: 'pie-wedge' });
+      path.addEventListener('click', function () { onWedgeClick(w); });
+      svg.appendChild(path);
+
+      var midA = startA + step / 2;
+      var labelR = (INNER_R + OUTER_R) / 2;
+      var pos = polar(CX, CY, labelR, midA);
+      var lines = wrapLabel(typeof w.text === 'function' ? w.text() : w.text);
+      var t = el('text', { x: pos.x, y: pos.y - (lines.length - 1) * 5.5, class: 'pie-wedge-text' });
+      t.style.pointerEvents = 'none';
+      lines.forEach(function (line, li) {
+        var tspan = el('tspan', { x: pos.x, dy: li === 0 ? 0 : 11 });
+        tspan.textContent = line;
+        t.appendChild(tspan);
+      });
+      svg.appendChild(t);
+    });
+
+    // Center hub
+    var hub = el('circle', { cx: CX, cy: CY, r: CENTER_R, class: 'pie-center' });
+    svg.appendChild(hub);
+    var hit = el('circle', { cx: CX, cy: CY, r: CENTER_R, class: 'pie-center-hit' + (isDigitLevel && digitBuffer ? ' confirmable' : '') });
+    hit.addEventListener('click', onCenterConfirm);
+    svg.appendChild(hit);
+
+    if (isDigitLevel) {
+      var res = digitBuffer && currentInterpret ? currentInterpret(digitBuffer) : [null, null];
+      var label = res && res[1] ? res[1] : '';
+      var t1 = el('text', { x: CX, y: CY - 2, class: 'pie-center-text' });
+      t1.textContent = digitBuffer || '–';
+      svg.appendChild(t1);
+      var t2 = el('text', { x: CX, y: CY + 14, class: 'pie-center-text small' });
+      t2.textContent = label ? label + (res[0] != null ? ' — click to confirm' : '') : 'type a value';
+      svg.appendChild(t2);
+    } else {
+      // DEFAULT layer of EdwardOverlayMenu.lua's three-layer hub: a level's own centreText (the
+      // Navigation ring's nav picture, or Drift Recorder's reading) when it sets one; at the root
+      // ring itself that's the real 'EDWARD' branding (rootWedges sets no centreText of its own,
+      // same as the live menu); one level deeper, this demo shows a breadcrumb of the ring you're
+      // in instead, since every one of those rings falls back to the same literal 'EDWARD' for
+      // real and a wayfinding label reads better here than a repeated word.
+      var crumb = pathLabels.length ? pathLabels[pathLabels.length - 1] : 'EDWARD';
+      var hubLines = wrapLabel(currentWedges.centreText || crumb);
+      var t3 = el('text', { x: CX, y: CY + 5 - (hubLines.length - 1) * 6, class: 'pie-center-text' });
+      hubLines.forEach(function (line, li) {
+        var tspan = el('tspan', { x: CX, dy: li === 0 ? 0 : 12 });
+        tspan.textContent = line;
+        t3.appendChild(tspan);
+      });
+      svg.appendChild(t3);
+    }
+  }
+
+  document.getElementById('pieReopenBtn').addEventListener('click', openRoot);
+  document.getElementById('pieBackBtn').addEventListener('click', stepBack);
+  document.getElementById('pieFrame').addEventListener('contextmenu', function (ev) {
+    ev.preventDefault();
+    if (closed) openRoot(); else stepBack();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
