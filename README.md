@@ -13,7 +13,7 @@ source code lives elsewhere and is not public.
 
 ## Documentation
 
-- **[The Edward Menu — Notes](Edward_Menu_Overview.html)** — every wedge of the cockpit menu, what it
+- **[The Edward Menu](Edward_Menu_Overview.html)** — every wedge of the cockpit menu, what it
   does and what it shows. Includes a clickable demonstration of the menu itself, copied from the
   mod's own source, which you can work through in the browser without starting DCS.
 - **[Dead Reckoning Survey Notes](DeadReckoning_Survey_Guide.html)** — the one-time setup a theatre
