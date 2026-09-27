@@ -34,7 +34,24 @@
   }
 
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  /* One line sets the whole publication. Every prose size below is in rem, and
+     the text column below is in ch, so this single value drives both the size of
+     the type and the width of the column - they grow together and the line stays
+     78 characters whatever the window is doing.
+
+       min 17px    - a phone or a narrow window; never smaller than this
+       1.2vw       - scales with the window between the two
+       max 30px    - a 4K or ultrawide desktop; never larger than this
+
+     Widen or narrow the page by changing 1.2vw; raise the ceiling for bigger type
+     on a large monitor. The demonstration menu near the foot follows the same
+     value: its frame and controls are in rem, and its stage width in rem carries
+     the wheel with it. The px sizes inside that SVG are viewBox user units - they
+     scale with the drawing and must stay as they are. */
+  html {
+    font-size: clamp(17px, 1.2vw, 30px);
+    -webkit-text-size-adjust: 100%;
+  }
 
   /* Nimbus Mono PS (Regular 400 + Bold 700), latin subset, embedded as data URIs
      (2026-09-18) - the typewriter body face for every doc in Documentation/. URW Type Foundry's PostScript-metric-compatible clone of Courier, from the urw-base35-fonts release (https://github.com/ArtifexSoftware/urw-base35-fonts), AGPLv3. */
@@ -61,8 +78,13 @@
     line-height: 1.6;
   }
 
+  /* 78 characters to the line - the measure of a wartime Air Publication page,
+     typed at 10 characters to the inch across about eight inches. Stated in ch,
+     so it stays 78 characters whatever the size above is set to. content-box
+     puts the padding outside that measure rather than eating into it. */
   main {
-    max-width: 1000px;
+    box-sizing: content-box;
+    max-width: 78ch;
     margin: 0 auto;
     padding: 48px 28px 72px;
   }
@@ -78,7 +100,7 @@
 
   .eyebrow {
     font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
-    font-size: 12px;
+    font-size: 0.75rem;
     letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--accent-strong);
@@ -86,17 +108,18 @@
 
   h1 {
     margin: 0;
-    font-size: clamp(28px, 4vw, 36px);
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
+  /* No measure of its own - the opening paragraph runs to the same 78 characters
+     as the body beneath it, as it does on the AP page. */
   .dek {
     margin: 0;
-    max-width: 62ch;
     color: var(--ink-muted);
-    font-size: 15.5px;
+    font-size: 1rem;
   }
 
   .dek code, .inline-code {
@@ -111,7 +134,7 @@
   section { margin-bottom: 34px; }
 
   h2 {
-    font-size: 13px;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--ink-faint);
@@ -129,13 +152,13 @@
   }
   .wedge-section h3 {
     margin: 0 0 8px;
-    font-size: 16px;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--ink);
   }
   .wedge-section p {
     margin: 0;
-    font-size: 14.5px;
+    font-size: 1rem;
     color: var(--ink);
   }
   .wedge-section p + p {
@@ -150,7 +173,7 @@
     background: var(--surface-2);
     border: 1px solid var(--line);
     border-radius: 8px;
-    font-size: 13.5px;
+    font-size: 0.88rem;
     color: var(--ink-muted);
   }
   .legend .item {
@@ -193,7 +216,7 @@
 
   figcaption {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 0.82rem;
     color: var(--ink-faint);
   }
 
@@ -207,7 +230,7 @@
   .notes li {
     position: relative;
     padding-left: 18px;
-    font-size: 14.5px;
+    font-size: 1rem;
     color: var(--ink);
   }
   .notes li::before {
@@ -227,7 +250,7 @@
     margin-top: 40px;
     padding-top: 18px;
     border-top: 1px solid var(--line);
-    font-size: 12.5px;
+    font-size: 0.78rem;
     color: var(--ink-faint);
     font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
   }
@@ -249,7 +272,7 @@
   .step:last-child { margin-bottom: 0; }
   .step h3 {
     margin: 0 0 8px;
-    font-size: 15px;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--ink);
   }
@@ -259,7 +282,7 @@
   }
   .step p {
     margin: 0 0 10px;
-    font-size: 14.5px;
+    font-size: 1rem;
     color: var(--ink);
   }
   .step p:last-child { margin-bottom: 0; }
@@ -272,11 +295,11 @@
     border: 1px solid var(--line);
     border-left: 3px solid var(--accent);
     border-radius: 0 8px 8px 0;
-    font-size: 13.5px;
+    font-size: 0.9rem;
   }
   .markings .head {
     display: block;
-    font-size: 11.5px;
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--ink-faint);
@@ -354,7 +377,7 @@
 
   <section>
     <h2>Check list</h2>
-    <pre style="background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,'Cascadia Code',Consolas,monospace;font-size:13.5px;line-height:1.7;color:var(--ink);white-space:pre;">The Edward Menu &mdash; the &ldquo;e&rdquo; key opens and closes it &mdash;
+    <pre style="background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,'Cascadia Code',Consolas,monospace;font-size:0.85rem;line-height:1.7;color:var(--ink);white-space:pre;">The Edward Menu &mdash; the &ldquo;e&rdquo; key opens and closes it &mdash;
     Status ................ Settings ............. Fuel
     Radio .................. Navigation ............ Hold My Aircraft
     Weapons and Bombing
@@ -723,24 +746,29 @@ Settings &mdash; Automations &mdash;
     background: #090709;
     border: 1px solid #343a2c;
     border-radius: 12px;
-    padding: 18px;
+    padding: 1.1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
   }
   .pie-breadcrumb {
     font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
-    font-size: 12.5px;
+    font-size: 0.78rem;
     color: #dab42d;
     opacity: 0.85;
     letter-spacing: 0.02em;
     min-height: 1.2em;
     text-align: center;
   }
+  /* In rem, not px, so the wheel grows with the page instead of sitting small in
+     a wide frame. Everything drawn inside the SVG scales with it for free - the
+     viewBox means the wedge and hub lettering below are user units, not screen
+     pixels. 34rem against the 46.8rem text column keeps the figure at about
+     three-quarters of the measure at every window size. */
   .pie-stage {
     position: relative;
-    width: min(380px, 90vw);
+    width: min(34rem, 90vw);
   }
   .pie-stage svg {
     display: block;
@@ -815,9 +843,9 @@ Settings &mdash; Automations &mdash;
     color: #dab42d;
     border: 1px solid #343a2c;
     border-radius: 8px;
-    padding: 10px 16px;
+    padding: 0.6rem 1rem;
     font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
-    font-size: 13px;
+    font-size: 0.8rem;
     cursor: pointer;
   }
   .pie-closed button:hover { background: #1f271c; }
@@ -827,14 +855,14 @@ Settings &mdash; Automations &mdash;
   .pie-closed[hidden] { display: none; }
   .pie-toast {
     min-height: 1.4em;
-    font-size: 13px;
+    font-size: 0.8rem;
     color: #dab42d;
     background: #1d2018;
     border: 1px solid #343a2c;
     border-radius: 6px;
-    padding: 6px 12px;
+    padding: 0.35rem 0.75rem;
     text-align: center;
-    max-width: 340px;
+    max-width: 21rem;
   }
   .pie-controls {
     display: flex;
@@ -848,14 +876,14 @@ Settings &mdash; Automations &mdash;
     color: #dab42d;
     border: 1px solid #343a2c;
     border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 12.5px;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.78rem;
     cursor: pointer;
     font-family: inherit;
   }
   .pie-controls button:hover { background: #1f271c; }
   .pie-hint {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #a3aa97;
   }
 </style>
