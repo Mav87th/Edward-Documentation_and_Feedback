@@ -461,10 +461,14 @@ body:
         ---
         ## Part 3 — Missions FuelLow-NoTanks and FuelLow-Tanks: outer tanks running low
 
-        Both missions start at 5,000 ft with little fuel, so the outer tanks run low within minutes.
-        Fly straight and level at 5,000 ft and leave the fuel cocks alone; Edward handles them.
-        Watch the main fuel cocks
-        and the outer tank gauges (or the *Fuel* page).
+        Both missions start at 5,000 ft with **full** fuel, and each is a long flight, about 40
+        minutes: fly straight and level at cruise power until the outer tanks are nearly empty, and
+        watch the main fuel cocks and the outer tank gauges (or the *Fuel* page).
+
+        **Why so long:** the mission loadout has one fuel setting for all internal tanks, and lowering
+        it empties the centre tanks first, then the inner tanks, and the outer tanks last. A mission
+        can't start with low outer tanks and fuel still in the main tanks, so you burn them down.
+        Edward feeds from the outer tanks first, so that happens by itself.
 
   - type: dropdown
     id: p3-1
@@ -473,7 +477,8 @@ body:
       description: |
         **What:** the Pilot's Notes say to use the outer tanks first and change to the main tanks
         when they are nearly empty. Edward does that at 8 gal.
-        **Do:** mission *FuelLow-NoTanks*. Fly until the outer tanks are below 8 gal.
+        **Do:** mission *FuelLow-NoTanks*, Fuel automation ON. Leave the fuel cocks alone and fly
+        until the outer tanks are below 8 gal, about 40 minutes.
         **Pass:** the main fuel cocks move from OUTER to MAIN **once**, at about 8 gal, never flip
         back, and both engines keep running. dcs.log has `outer tanks low`.
       options: [Not tested, Passed, Not passed]
@@ -485,10 +490,15 @@ body:
       label: 3.2 — With drop tanks — stay on MAIN and start the transfer
       description: |
         **What:** with drop tanks fitted and the outer tanks low, Edward feeds from the main tanks
-        and refills the outer tanks from the drop tanks.
-        **Do:** mission *FuelLow-Tanks*, then watch the cocks.
-        **Pass:** the main fuel cocks go to MAIN and stay there, and the transfer cock and venting
-        cock go ON, 1-2 s apart.
+        and refills the outer tanks from the drop tanks. Normally he starts that refill at 25 gal,
+        so to test it you switch his fuel handling off while you burn the outer tanks down.
+        **Do:** mission *FuelLow-Tanks*. (1) Wait until the main fuel cocks show OUTER. (2) *Settings
+        ▸ Automations ▸ Fuel* OFF, and leave all fuel cocks alone. (3) Fly until both outer tanks are
+        below 8 gal, about 40 minutes. (4) Straight away set Fuel back ON and fly straight and level.
+        **Don't wait:** 8 gal a side lasts only about 7 minutes, and with Fuel OFF nothing switches
+        the tanks for you; if they get close to empty, switch the main fuel cocks to MAIN yourself.
+        **Pass:** within about a minute of Fuel ON, the main fuel cocks go to MAIN and stay there,
+        and the transfer cock and venting cock go ON, 1-2 s apart.
       options: [Not tested, Passed, Not passed]
       default: 0
 
@@ -497,8 +507,11 @@ body:
     attributes:
       label: 3.3 — Refilled — back to the outer tanks
       description: |
-        **Do:** in FuelLow-Tanks, keep flying until the outer tanks have refilled above 25 gal (a few minutes).
-        **Pass:** the main fuel cocks go back to OUTER, and dcs.log has `low-outer latch released`.
+        **Do:** in FuelLow-Tanks, keep flying while the drop tanks refill the outer tanks, about 5-10
+        minutes. They should end at about 30 gal a side (the DCS Mosquito delivers only half the
+        drop tanks' fuel, a known DCS fault).
+        **Pass:** once the outer tanks are above 25 gal, the main fuel cocks go back to OUTER, and
+        dcs.log has `low-outer latch released`.
       options: [Not tested, Passed, Not passed]
       default: 0
 
