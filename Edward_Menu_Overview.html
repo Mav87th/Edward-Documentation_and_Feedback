@@ -380,7 +380,7 @@
     <pre style="background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,'Cascadia Code',Consolas,monospace;font-size:0.85rem;line-height:1.7;color:var(--ink);white-space:pre;">The Edward Menu &mdash; the &ldquo;e&rdquo; key opens and closes it &mdash;
     Status ................ Settings ............. Fuel
     Radio .................. Navigation ............ Hold My Aircraft
-    Weapons and Bombing
+    Weapons and Bombing .... Earlier Calls
 
 Settings &mdash; Automations &mdash;
     Master ................. Fuel Management ....... Arming Management
@@ -394,8 +394,8 @@ Settings &mdash; Automations &mdash;
     <div class="step"><h3><span class="num">4.</span> The Edward Menu</h3>
       <p>The menu is a radial dial superimposed upon the cockpit, opened and closed with the
       &ldquo;e&rdquo; key while flying; it is available only during flight in the Mosquito F.B. Mk.
-      VI, and not in the Mission Editor or the main menu. It is fitted with seven root wedges,
-      described below at 4.1&ndash;4.7. Stepping back &mdash; by right-click, or by a wedge marked
+      VI, and not in the Mission Editor or the main menu. It is fitted with eight root wedges,
+      described below at 4.1&ndash;4.8. Stepping back &mdash; by right-click, or by a wedge marked
       <span class="menu-label">Go Back</span> where one is fitted &mdash; rebuilds the parent ring
       afresh from current data, exactly as drilling into a wedge that opens a further ring does. A
       ring is never drawn of fewer than three wedges: where a list has only one or two listings, its
@@ -435,7 +435,7 @@ Settings &mdash; Automations &mdash;
       mission starting. The AMPG is the exception, being worked out afresh only when its wedge is
       tapped; below 120 m.p.h. indicated it reads <span class="menu-label">No AMPG &middot; Below 120 Mph</span>,
       the figure having no meaning on the ground or in the circuit.</p>
-      <p><i>Note.&mdash;</i> In the markings given at 4.1&ndash;4.7 below, wording set in capitals is
+      <p><i>Note.&mdash;</i> In the markings given at 4.1&ndash;4.8 below, wording set in capitals is
       the wedge's own; <i>wording set thus</i> stands for a figure or a name filled in by EDWARD as
       the wedge is drawn.</p>
     </div>
@@ -746,6 +746,23 @@ Settings &mdash; Automations &mdash;
             <span class="menu-label">Stop the Run (armed)</span> &rarr;
             <span class="menu-label">Stop the Run (RUN ON)</span> &rarr;
             <span class="menu-label">Securing...</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step"><h3><span class="num">4.8</span> Earlier Calls</h3>
+      <p>A single wedge, opening no further ring. Clicking it closes the menu and shows, in EDWARD's
+      message box, the last ten messages of the present flight, each preceded by the time upon the
+      mission clock at which it was given, the latest at the foot. The list stands for thirty
+      seconds, or until the wedge is clicked a second time; a message arriving meanwhile is added to
+      it, and messages carry on as usual once it closes. It serves to recover a call missed or half
+      read at a busy moment, as in a turn or upon the bomb run. Looking back in this way does not
+      interrupt a drift check in progress. The list is begun afresh with each flight, and holds only
+      the messages shown in EDWARD's box: where Settings &mdash; Messages has them sent to DCS's own
+      window, the list says so instead, the game's own message history then serving the purpose.</p>
+      <div class="markings"><span class="head">Markings</span>
+        <ul>
+          <li><span class="menu-label">Earlier Calls</span></li>
         </ul>
       </div>
     </div>
@@ -1868,7 +1885,19 @@ Settings &mdash; Automations &mdash;
       { text: 'Hold My Aircraft', submenu: holdWedges },
       // Three wrap points (2026-09-15, Martin's ask), "&" for "and" - matches the real wedge text
       // in WeaponsAndBombing.lua exactly.
-      { text: 'Weapons\n&\nBombing', submenu: weaponsWedges }
+      { text: 'Weapons\n&\nBombing', submenu: weaponsWedges },
+      // Hooks/EdwardMenuPoints/EarlierCalls.lua: the real list lives in EdwardMessageBox.lua; here
+      // it is the demo's own toast history (toastHistory below), shown the same way, newest last.
+      { text: 'Earlier Calls',
+        action: function () {
+          var el = document.getElementById('pieToast');
+          if (!el.hidden && el._history) { el.hidden = true; return; } // second click closes it
+          var lines = toastHistory.length === 0
+            ? ['EDMod: No calls yet this flight']
+            : ['EDMod: Last ' + toastHistory.length + ' call' + (toastHistory.length === 1 ? '' : 's')
+                + ' (Earlier Calls again to close)'].concat(toastHistory);
+          toast(lines.join('\n'), 8, true);
+        } }
     ];
   }
 
@@ -1887,8 +1916,19 @@ Settings &mdash; Automations &mdash;
   var currentConfirm = null;
   var closed = true;
 
-  function toast(msg, seconds) {
+  // Last 10 demo messages with a clock time, for the Earlier Calls wedge (noHistory: that wedge's
+  // own list isn't itself a call).
+  var toastHistory = [];
+  function toast(msg, seconds, noHistory) {
     var el = document.getElementById('pieToast');
+    if (!noHistory) {
+      var d = new Date();
+      var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+      toastHistory.push('[' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()) + '] ' + msg);
+      if (toastHistory.length > 10) toastHistory.shift();
+    }
+    el._history = !!noHistory;
+    el.style.whiteSpace = 'pre-line';
     el.textContent = msg;
     el.hidden = false;
     clearTimeout(el._t);
