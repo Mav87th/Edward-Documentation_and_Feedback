@@ -139,11 +139,11 @@ body:
   - type: dropdown
     id: p1-5
     attributes:
-      label: 1.5 — No steering in the last minute before the target
+      label: 1.5 — No course directions in the last minute before the target
       description: |
         **What:** real Mosquito crews flew the last part of a bomb run by eye, and inside the last
-        minute it is too late for course or speed corrections. So from one minute out Edward stops
-        steering. He only counts down to the target and calls the bomb bay; later builds add
+        minute it is too late for course or speed corrections. So from one minute out Edward gives
+        no more course directions. He only counts down to the target and calls the bomb bay; later builds add
         altitude calls there too.
         **Do:** Navigation must be on the TGT waypoint. It moves on along the route by itself; if
         not, pick TGT in *Navigation ▸ By Waypoints*. Watch the calls as the target approaches.
