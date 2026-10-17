@@ -145,7 +145,7 @@
   </header>
 
   <div class="must-do" role="note">
-    <h2>&#9888; First, in every mission: set the Directional Gyro</h2>
+    <h2>&#9888; First, in every flying mission (Parts 1&ndash;3): set the Directional Gyro</h2>
     <p>The Mosquito's <b>Directional Gyro</b> (the dial marked &ldquo;DIRECTION INDICATOR&rdquo; on the
     main panel) is not connected to the compass, so after you enter the aircraft it can show any
     heading. Edward gives every heading as a magnetic heading, so his calls only make sense once the
@@ -208,8 +208,8 @@
         <li>In flight, menu <span class="menu-path">Status &#9656; Logging</span>: set it ON. The log
           checks below need it.</li>
         <li>Menu <span class="menu-path">Settings &#9656; Automations</span>: set everything ON.</li>
-        <li>In the cockpit of every mission: set the Directional Gyro to the magnetic compass (see the
-          box at the top of this page).</li>
+        <li>In the cockpit of every flying mission (Parts 1&ndash;3): set the Directional Gyro to the
+          magnetic compass (see the box at the top of this page).</li>
       </ol>
     </div>
   </section>
@@ -232,11 +232,13 @@
           <td>Part 2</td></tr>
         <tr><td><code>Edward-FuelLow-NoTanks.miz</code><br><code>Edward-FuelLow-Tanks.miz</code></td>
           <td>Both at 5,000 ft with full fuel. You fly until the outer tanks are nearly empty (about
-          40 minutes each). FuelLow-NoTanks has no drop tanks; FuelLow-Tanks has them, full.</td>
+          40 minutes each). FuelLow-NoTanks has no drop tanks; FuelLow-Tanks has them, full. Both start
+          on <b>183&deg; magnetic</b>: set the Directional Gyro to 183.</td>
           <td>Part 3</td></tr>
         <tr><td><code>Edward-DRSurvey-Normandy.miz</code></td>
           <td>Normandy with exactly one aircraft in the whole mission. That is what unlocks editing
-          the landmark points Edward uses for the map.</td>
+          the landmark points Edward uses for the map. You start on the ground; no need to set the
+          Directional Gyro.</td>
           <td>Part 4</td></tr>
       </table>
     </div>
@@ -506,7 +508,9 @@
 
   <section>
     <h2>Part 3 &mdash; Missions FuelLow-NoTanks and FuelLow-Tanks: outer tanks running low</h2>
-    <p class="lead">These two missions test what Edward does when the outer tanks run low. Each is a
+    <p class="lead">Both missions start heading <b>183&deg; magnetic</b>, so first set the
+    Directional Gyro to 183 (see the box at the top). These two missions test what Edward does when
+    the outer tanks run low. Each is a
     long flight, about 40 minutes: fly straight and level at 5,000 ft at cruise power (more power
     burns the fuel faster) and watch the main fuel cocks and the outer tank gauges, or the
     <span class="menu-path">Fuel</span> page.</p>
@@ -562,7 +566,9 @@
 
   <section>
     <h2>Part 4 &mdash; Mission DRSurvey: saving landmark points</h2>
-    <p class="lead">This test saves Edward's Normandy landmark file, so <b>back it up first</b>: copy
+    <p class="lead">You start on the ground and the heading doesn't matter here, so there is no need
+    to set the Directional Gyro. This test saves Edward's Normandy landmark file, so <b>back it up
+    first</b>: copy
     <code>Saved Games\&lt;your DCS folder&gt;\Scripts\Edward\DRPoints\Normandy.lua</code> somewhere
     safe.</p>
 

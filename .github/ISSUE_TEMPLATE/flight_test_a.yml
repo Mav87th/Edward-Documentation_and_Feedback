@@ -16,7 +16,7 @@ body:
         useful as Passed, and a partly filled report is still welcome.
 
         > [!IMPORTANT]
-        > **First, in every mission: set the Directional Gyro.** The Mosquito's Directional Gyro (the
+        > **First, in every flying mission (Parts 1-3): set the Directional Gyro.** The Mosquito's Directional Gyro (the
         > dial marked "DIRECTION INDICATOR" on the main panel) is not connected to the compass, so
         > after you enter the aircraft it can show any heading. Edward's headings are magnetic, so
         > straight after entering the cockpit read the **magnetic compass** (straight and level) and
@@ -53,7 +53,7 @@ body:
         1. Install the test build (Install.bat) and **restart DCS**.
         2. In flight, menu **Status ▸ Logging**: set to ON (the log lines below need it).
         3. Menu **Settings ▸ Automations**: everything ON.
-        4. In the cockpit of every mission: set the Directional Gyro to the magnetic compass (see above).
+        4. In the cockpit of every flying mission (Parts 1-3): set the Directional Gyro to the magnetic compass (see above).
 
   - type: input
     id: build
@@ -461,6 +461,7 @@ body:
         ---
         ## Part 3 — Missions FuelLow-NoTanks and FuelLow-Tanks: outer tanks running low
 
+        Both missions start heading **183° magnetic**, so first set the Directional Gyro to 183.
         Both missions start at 5,000 ft with **full** fuel, and each is a long flight, about 40
         minutes: fly straight and level at cruise power until the outer tanks are nearly empty, and
         watch the main fuel cocks and the outer tank gauges (or the *Fuel* page).
@@ -530,7 +531,9 @@ body:
         ---
         ## Part 4 — Mission DRSurvey: saving landmark points
 
-        A mission with exactly one aircraft lets you edit the landmark points Edward uses for a map.
+        You start on the ground and the heading doesn't matter here, so there is no need to set the
+        Directional Gyro. A mission with exactly one aircraft lets you edit the landmark points
+        Edward uses for a map.
         This test saves the Normandy file, so **back it up first**: copy
         `Saved Games\<your DCS folder>\Scripts\Edward\DRPoints\Normandy.lua` somewhere safe.
 
