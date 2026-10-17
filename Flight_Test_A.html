@@ -183,10 +183,10 @@
 
   <section>
     <h2>The missions</h2>
-    <p class="lead">Four missions come with the test build. All start in the air.</p>
+    <p class="lead">Five missions come with the test build, each with one pilot slot. All start in the air.</p>
     <div class="table-wrap">
       <table>
-        <tr><th>Mission and slot</th><th>What it is</th><th>Used in</th></tr>
+        <tr><th>Mission</th><th>What it is</th><th>Used in</th></tr>
         <tr><td><code>Edward-FlightA-Low.miz</code></td>
           <td>Normandy. You start 20&ndash;25 NM before the IP at 2,000 ft with two 500 lb bombs in the
           bay and drop tanks on the wings. Route: IP &rarr; TGT (a few trucks) &rarr; HOME.</td>
@@ -196,9 +196,9 @@
           inland Normandy, past towns, rivers and railways, before the same IP and TGT. About 45
           minutes in all.</td>
           <td>Part 2</td></tr>
-        <tr><td><code>Edward-FuelLow.miz</code><br>slots <b>B-NoTanks</b> and <b>B-Tanks</b></td>
+        <tr><td><code>Edward-FuelLow-NoTanks.miz</code><br><code>Edward-FuelLow-Tanks.miz</code></td>
           <td>Both at 5,000 ft with very little fuel left in the outer tanks, so they run low within
-          minutes. B-NoTanks has no drop tanks; B-Tanks has them.</td>
+          minutes. FuelLow-NoTanks has no drop tanks; FuelLow-Tanks has them.</td>
           <td>Part 3</td></tr>
         <tr><td><code>Edward-DRSurvey-Normandy.miz</code></td>
           <td>Normandy with exactly one aircraft in the whole mission. That is what unlocks editing
@@ -416,14 +416,14 @@
   </section>
 
   <section>
-    <h2>Part 3 &mdash; Mission FuelLow: outer tanks running low</h2>
+    <h2>Part 3 &mdash; Missions FuelLow-NoTanks and FuelLow-Tanks: outer tanks running low</h2>
     <p class="lead">Turn Hold ON and touch nothing; Edward handles the fuel cocks. Watch the main
     fuel cocks and the outer tank gauges (or the <span class="menu-path">Fuel</span> page).</p>
 
     <div class="step"><h3><span class="num">3.1</span> No drop tanks: one clean change to MAIN at 8 gal</h3>
       <p><span class="label">What</span> The Mosquito Pilot's Notes say to use the outer tanks first
       and change to the main tanks when they are nearly empty. Edward does that at 8 gal.</p>
-      <p><span class="label">Do</span> Slot <b>B-NoTanks</b>. Fly until the outer tanks are below 8 gal.</p>
+      <p><span class="label">Do</span> Mission <b>FuelLow-NoTanks</b>. Fly until the outer tanks are below 8 gal.</p>
       <p><span class="label pass">Pass</span> The main fuel cocks move from OUTER to MAIN <b>once</b>,
       at about 8 gal, and never flip back; both engines keep running. dcs.log has
       <code>outer tanks low</code>.</p>
@@ -432,13 +432,13 @@
     <div class="step"><h3><span class="num">3.2</span> With drop tanks: stay on MAIN and start the transfer</h3>
       <p><span class="label">What</span> With drop tanks fitted and the outer tanks low, Edward feeds
       from the main tanks and refills the outer tanks from the drop tanks.</p>
-      <p><span class="label">Do</span> Slot <b>B-Tanks</b>, then watch the cocks.</p>
+      <p><span class="label">Do</span> Mission <b>FuelLow-Tanks</b>, then watch the cocks.</p>
       <p><span class="label pass">Pass</span> The main fuel cocks go to MAIN and stay there, and the
       transfer cock and venting cock go ON, 1&ndash;2 s apart.</p>
     </div>
 
     <div class="step"><h3><span class="num">3.3</span> Refilled: back to the outer tanks</h3>
-      <p><span class="label">Do</span> Keep flying until the outer tanks have refilled above 25 gal (a
+      <p><span class="label">Do</span> In FuelLow-Tanks, keep flying until the outer tanks have refilled above 25 gal (a
       few minutes).</p>
       <p><span class="label pass">Pass</span> The main fuel cocks go back to OUTER, and dcs.log has
       <code>low-outer latch released</code>.</p>

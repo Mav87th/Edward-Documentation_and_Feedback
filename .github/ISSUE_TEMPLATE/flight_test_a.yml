@@ -37,7 +37,7 @@ body:
           it for a line of text after the flight (open it in a text editor and use Find).
 
         **Missions** (supplied with the test build): `Edward-FlightA-Low.miz` (Part 1),
-        `Edward-FlightA-High.miz` (Part 2), `Edward-FuelLow.miz` (slots *B-NoTanks* and *B-Tanks*) and
+        `Edward-FlightA-High.miz` (Part 2), `Edward-FuelLow-NoTanks.miz` and `Edward-FuelLow-Tanks.miz` (Part 3) and
         `Edward-DRSurvey-Normandy.miz`.
 
         **Before you start**
@@ -383,9 +383,9 @@ body:
     attributes:
       value: |
         ---
-        ## Part 3 — Mission FuelLow: outer tanks running low
+        ## Part 3 — Missions FuelLow-NoTanks and FuelLow-Tanks: outer tanks running low
 
-        Both slots start at 5,000 ft with little fuel, so the outer tanks run low within minutes.
+        Both missions start at 5,000 ft with little fuel, so the outer tanks run low within minutes.
         Turn Hold ON and touch nothing; Edward handles the fuel cocks. Watch the main fuel cocks
         and the outer tank gauges (or the *Fuel* page).
 
@@ -396,7 +396,7 @@ body:
       description: |
         **What:** the Pilot's Notes say to use the outer tanks first and change to the main tanks
         when they are nearly empty. Edward does that at 8 gal.
-        **Do:** slot *B-NoTanks*. Fly until the outer tanks are below 8 gal.
+        **Do:** mission *FuelLow-NoTanks*. Fly until the outer tanks are below 8 gal.
         **Pass:** the main fuel cocks move from OUTER to MAIN **once**, at about 8 gal, never flip
         back, and both engines keep running. dcs.log has `outer tanks low`.
       options: [Not tested, Passed, Not passed]
@@ -409,7 +409,7 @@ body:
       description: |
         **What:** with drop tanks fitted and the outer tanks low, Edward feeds from the main tanks
         and refills the outer tanks from the drop tanks.
-        **Do:** slot *B-Tanks*, then watch the cocks.
+        **Do:** mission *FuelLow-Tanks*, then watch the cocks.
         **Pass:** the main fuel cocks go to MAIN and stay there, and the transfer cock and venting
         cock go ON, 1-2 s apart.
       options: [Not tested, Passed, Not passed]
@@ -420,7 +420,7 @@ body:
     attributes:
       label: 3.3 — Refilled — back to the outer tanks
       description: |
-        **Do:** keep flying until the outer tanks have refilled above 25 gal (a few minutes).
+        **Do:** in FuelLow-Tanks, keep flying until the outer tanks have refilled above 25 gal (a few minutes).
         **Pass:** the main fuel cocks go back to OUTER, and dcs.log has `low-outer latch released`.
       options: [Not tested, Passed, Not passed]
       default: 0
