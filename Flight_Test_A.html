@@ -112,6 +112,9 @@
   table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
   th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
   th { background: var(--surface-2); }
+  /* Missions table: keep each file name and "Part n" on one line; the middle column wraps instead. */
+  table.missions td:first-child code { white-space: nowrap; overflow-wrap: normal; }
+  table.missions td:last-child, table.missions th:last-child { white-space: nowrap; }
   footer {
     margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line);
     font-size: 0.78rem; color: var(--ink-faint);
@@ -215,7 +218,7 @@
     <h2>The missions</h2>
     <p class="lead">Five missions come with the test build, each with one pilot slot. All start in the air.</p>
     <div class="table-wrap">
-      <table>
+      <table class="missions">
         <tr><th>Mission</th><th>What it is</th><th>Used in</th></tr>
         <tr><td><code>Edward-FlightA-Low.miz</code></td>
           <td>Normandy. You start 20&ndash;25 NM before the IP at 2,000 ft with two 500 lb bombs in the
