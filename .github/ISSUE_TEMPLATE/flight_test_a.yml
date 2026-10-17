@@ -36,8 +36,8 @@ body:
         - **dcs.log** — `Saved Games\<your DCS folder>\Logs\dcs.log`. Some points ask you to search
           it for a line of text after the flight (open it in a text editor and use Find).
 
-        **Missions** (supplied with the test build): `Edward-FlightA.miz` (slots *A-Run* and
-        *A-Long*), `Edward-FuelLow.miz` (slots *B-NoTanks* and *B-Tanks*) and
+        **Missions** (supplied with the test build): `Edward-FlightA-Low.miz` (Part 1),
+        `Edward-FlightA-High.miz` (Part 2), `Edward-FuelLow.miz` (slots *B-NoTanks* and *B-Tanks*) and
         `Edward-DRSurvey-Normandy.miz`.
 
         **Before you start**
@@ -77,11 +77,11 @@ body:
     attributes:
       value: |
         ---
-        ## Part 1 — Mission A, slot A-Run: a bomb run before any wind measurement
+        ## Part 1 — Mission FlightA-Low: a bomb run before any wind measurement
 
         You start 20-25 NM before the IP with bombs in the bay and drop tanks on the wings. This part
         checks the bomb run while Edward still only knows the forecast wind, so **do not use Check
-        Drift in this slot**. Turn Hold ON (*Hold My Aircraft*) and let Edward's steer calls take you
+        Drift in this mission**. Turn Hold ON (*Hold My Aircraft*) and let Edward's steer calls take you
         to the IP and on to the target.
 
   - type: dropdown
@@ -189,7 +189,7 @@ body:
     attributes:
       value: |
         ---
-        ## Part 2 — Mission A, slot A-Long: the long flight (about 45 minutes)
+        ## Part 2 — Mission FlightA-High: the long flight (about 45 minutes)
 
         A route of three 40 NM legs at 6,000 ft, then a climb, then the same bomb run as Part 1.
         Several points need a watch or the in-game clock: note the time of your first Check Drift.
@@ -479,7 +479,7 @@ body:
 
         Edward now calls each turn before the waypoint, so a 30° bank turn rolls out on the line to
         the next waypoint; the turn onto the run-in at the IP is figured for 45°. Hold banks the
-        same. Check 5.1-5.4 at WP1, WP2 and WP3 of slot A-Long, and 5.5 at the IP.
+        same. Check 5.1-5.4 at WP1, WP2 and WP3 of FlightA-High, and 5.5 at the IP.
 
   - type: dropdown
     id: p5-1
@@ -536,7 +536,7 @@ body:
         **What:** at the IP the turn also starts early, so you roll out on the line from the IP to the
         target (e.g. along a road leading to it). This one turn is figured for 45° of bank, and Hold
         banks 45° for it.
-        **Do:** in the bomb run (slot A-Run, and 2.13), set the course on Hold on the "Turn … now"
+        **Do:** in the bomb run (FlightA-Low, and 2.13), set the course on Hold on the "Turn … now"
         call before the IP, as in 5.2-5.3.
         **Pass:** "Turn … now for …" the target waypoint comes before the IP; Hold banks to about
         45°; Edward still says the IP is reached ("IP. Starting the run…") during the turn; you roll
