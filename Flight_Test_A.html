@@ -148,8 +148,8 @@
     <div class="step">
       <ul>
         <li><b>Hold</b> (menu <span class="menu-path">Hold My Aircraft</span>): Edward flies the
-          aircraft on a set course and altitude. Every test is flown on Hold; no hand flying is
-          needed.</li>
+          aircraft on a set course and altitude. You fly the aircraft yourself in this test; use
+          Hold only where a test point asks for it.</li>
         <li><b>Steer call</b>: Edward's on-screen line telling you the course to fly, for example
           &ldquo;Two minutes to WP2. Steer 095&deg;M, range 8.1 NM.&rdquo;</li>
         <li><b>Check Drift</b> (menu <span class="menu-path">Navigation &#9656; Drift Recorder</span>):
@@ -211,8 +211,7 @@
   <section>
     <h2>Part 1 &mdash; Mission FlightA-Low: a bomb run before any wind measurement</h2>
     <p class="lead">This part checks the bomb run while Edward still only knows the forecast wind,
-    so <b>do not use Check Drift in this mission</b>. Turn Hold ON and let the steer calls take you to
-    the IP and on to the target.</p>
+    so <b>do not use Check Drift in this mission</b>. Fly the steer calls to the IP and on to the target.</p>
 
     <div class="step"><h3><span class="num">1.1</span> IP and target found from the waypoint names</h3>
       <p><span class="label">What</span> Edward picks the IP and target himself from waypoints named
@@ -283,13 +282,27 @@
       <p><span class="label pass">Pass</span> &ldquo;Bombs away.&rdquo; and &ldquo;Closing the bomb
       bay.&rdquo; come, and afterwards the normal steer calls to the next waypoint (HOME) resume.</p>
     </div>
+
+    <div class="step"><h3><span class="num">1.8</span> The turn at the IP rolls out on the run-in</h3>
+      <p><span class="label">What</span> Edward calls the turn onto the run-in <b>before</b> the IP,
+      worked out for a 45&deg; bank turn at your present speed, so you roll out on the line from the
+      IP to the target, for example a road leading to it. The countdown before it says &ldquo;&hellip;to
+      the turn at&rdquo; the IP waypoint.</p>
+      <p><span class="label">Do</span> On the &ldquo;Turn &hellip; now&rdquo; call before the IP, roll
+      into a 45&deg; bank, hold your height, and roll out on the heading Edward gave.</p>
+      <p><span class="label pass">Pass</span> The call comes before you reach the IP, and Edward still
+      says the IP is reached (&ldquo;IP. Starting the run&hellip;&rdquo;) during the turn. After the
+      roll-out the steer on the Navigation page is within about 3&deg; of your heading. In the
+      notes, write that steer and your heading.</p>
+    </div>
   </section>
 
   <section>
     <h2>Part 2 &mdash; Mission FlightA-High: the long flight</h2>
     <p class="lead">Three 40 NM legs at 6,000 ft, then a climb, then the same bomb run as Part 1.
     Several points need a watch or the in-game clock: <b>note the time of your first Check
-    Drift</b>. The turn checks in Part 5 are flown on this flight too, at WP1, WP2 and WP3.</p>
+    Drift</b>. The turn checks 2.15&ndash;2.18 are flown at WP1, WP2, WP3 and the target, so keep them in
+    mind from the start.</p>
 
     <div class="step"><h3><span class="num">2.1</span> Dead Reckoning menu right after loading</h3>
       <p><span class="label">What</span> Using the menu in the first seconds after loading, before
@@ -303,7 +316,7 @@
     <div class="step"><h3><span class="num">2.2</span> Forecast wind is marked as such</h3>
       <p><span class="label">What</span> Before any Check Drift, Edward's wind correction comes from
       the forecast, and he should say so.</p>
-      <p><span class="label">Do</span> Turn Hold ON towards WP1 and read the steer calls, then open the
+      <p><span class="label">Do</span> Fly towards WP1 and read the steer calls, then open the
       <span class="menu-path">Navigation</span> page.</p>
       <p><span class="label pass">Pass</span> The steer calls end with &ldquo;(met forecast
       wind)&rdquo;, and the centre of the Navigation page shows &ldquo;Met forecast&rdquo;.</p>
@@ -346,7 +359,7 @@
       <p><span class="label">What</span> Edward knows towns, river crossings and railway features along
       your route (&ldquo;DR landmarks&rdquo;). As you pass one he warns you, then tells you where you
       are against your planned track: early or late, and left or right of track.</p>
-      <p><span class="label">Do</span> Fly legs 1 and 2 on Hold and watch the calls.</p>
+      <p><span class="label">Do</span> Fly legs 1 and 2 and watch the calls.</p>
       <p><span class="label pass">Pass</span> You get a heads-up before a landmark and a fix call at
       it. In the notes, say whether the distances and the early/late and left/right figures seemed
       believable.</p>
@@ -375,8 +388,7 @@
       <p><span class="label">What</span> The wind changes with height, so after a big climb a wind
       measured lower down no longer applies.</p>
       <p><span class="label">Do</span> Check Drift once more, then on leg 3
-      <span class="menu-path">Hold My Aircraft &#9656; Set Altitude</span> <b>20000</b> and let it
-      climb.</p>
+      climb to <b>20,000 ft</b>.</p>
       <p><span class="label pass">Pass</span> During or after the climb the steer calls end with
       &ldquo;(drift estimate stale - check drift again)&rdquo;.</p>
     </div>
@@ -405,7 +417,7 @@
       Part 1.</p>
       <p><span class="label pass">Pass</span> In dcs.log, this run's <code>IP course to target</code>
       line does <b>not</b> end with &ldquo;(met forecast wind)&rdquo;, because a measured wind now
-      exists. Points 1.3&ndash;1.7 behave as before.</p>
+      exists. Points 1.3&ndash;1.8 behave as before.</p>
     </div>
 
     <div class="step"><h3><span class="num">2.14</span> Restarting the mission resets Edward (log check)</h3>
@@ -413,11 +425,50 @@
       <p><span class="label pass">Pass</span> dcs.log contains a line with <code>mission reload</code>
       ending in <code>fuel figures and pending cock clicks reset</code>.</p>
     </div>
+
+    <div class="step"><h3><span class="num">2.15</span> The countdown is to the turn, not the waypoint</h3>
+      <p><span class="label">What</span> Edward now calls each turn before the waypoint, worked out for
+      a 30&deg; bank turn (the first mark on the bank indicator) at your present speed, so you roll
+      out on the line to the next waypoint instead of overshooting it. The two-minute, one-minute,
+      30-second and 10-second calls count down to the point where the turn has to start.</p>
+      <p><span class="label">Do</span> Watch the calls before WP1.</p>
+      <p><span class="label pass">Pass</span> &ldquo;Two minutes to the turn at WP1&hellip;&rdquo;,
+      &ldquo;One minute to the turn at WP1&hellip;&rdquo;, &ldquo;30 seconds.&rdquo; and &ldquo;10
+      seconds to the turn at WP1. Turn starboard for WP2 heading &hellip;&rdquo; (or port), in that
+      order.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">2.16</span> &ldquo;Turn now&rdquo; comes before the waypoint</h3>
+      <p><span class="label">Do</span> Watch the range to WP1 on the Navigation page as the turn call
+      comes.</p>
+      <p><span class="label pass">Pass</span> &ldquo;Turn starboard now for WP2, heading &hellip;
+      New track &hellip;&rdquo; comes <b>before</b> WP1: about half a mile out for a gentle turn,
+      a little over a mile for a right-angle turn, more for a sharper one. After the flight, dcs.log
+      has one line <code>turn point for WP1</code> (and the same for WP2 and WP3).</p>
+    </div>
+
+    <div class="step"><h3><span class="num">2.17</span> A 30&deg; turn on the call rolls out on the new track</h3>
+      <p><span class="label">Do</span> At WP1, WP2 and WP3: on the &ldquo;Turn &hellip; now&rdquo;
+      call, roll into a 30&deg; bank (the first mark on the bank indicator), hold your height, and
+      roll out on the heading Edward gave. Then open the Navigation page.</p>
+      <p><span class="label pass">Pass</span> After each roll-out the steer on the Navigation page is
+      within about 3&deg; of your heading, and the first mark call on the new leg (about 5 minutes
+      later) says &ldquo;On track&rdquo;. In the notes, write the steer and your heading for each
+      turn: the difference shows how far off the turn was.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">2.18</span> The target is still flown over</h3>
+      <p><span class="label">What</span> A bomb run's target must be flown over, so it keeps the old
+      calls.</p>
+      <p><span class="label">Do</span> Watch the calls before the target in the bomb run (2.13).</p>
+      <p><span class="label pass">Pass</span> The countdown is to the target itself (no &ldquo;the
+      turn at&rdquo;), and Edward moves on to the next waypoint only once you are over the target.</p>
+    </div>
   </section>
 
   <section>
     <h2>Part 3 &mdash; Missions FuelLow-NoTanks and FuelLow-Tanks: outer tanks running low</h2>
-    <p class="lead">Turn Hold ON and touch nothing; Edward handles the fuel cocks. Watch the main
+    <p class="lead">Fly straight and level at 5,000 ft and leave the fuel cocks alone; Edward handles them. Watch the main
     fuel cocks and the outer tank gauges (or the <span class="menu-path">Fuel</span> page).</p>
 
     <div class="step"><h3><span class="num">3.1</span> No drop tanks: one clean change to MAIN at 8 gal</h3>
@@ -465,66 +516,6 @@
     <p class="lead">There is no 4.1 in this test: that number is a check done by the developer.</p>
   </section>
 
-  <section>
-    <h2>Part 5 &mdash; Early turns at the waypoints (fly during Part 2)</h2>
-    <p class="lead">Edward now calls each turn <b>before</b> the waypoint, so that a 30&deg; bank turn
-    (the first mark on the bank indicator) at your present speed rolls out on the line to the next
-    waypoint instead of overshooting it. The turn onto the run-in at the IP is figured for 45&deg;,
-    so it stays close to the IP. Hold banks the same: 30&deg;, and 45&deg; for the IP turn. Check
-    5.1&ndash;5.4 at WP1, WP2 and WP3 of the FlightA-High flight and 5.5 at the IP; it needs no extra
-    flight.</p>
-
-    <div class="step"><h3><span class="num">5.1</span> The countdown is to the turn, not the waypoint</h3>
-      <p><span class="label">What</span> The two-minute, one-minute, 30-second and 10-second calls
-      count down to the point where the turn has to start.</p>
-      <p><span class="label">Do</span> With Hold ON, watch the calls before WP1.</p>
-      <p><span class="label pass">Pass</span> &ldquo;Two minutes to the turn at WP1&hellip;&rdquo;,
-      &ldquo;One minute to the turn at WP1&hellip;&rdquo;, &ldquo;30 seconds.&rdquo; and &ldquo;10
-      seconds to the turn at WP1. Turn starboard for WP2 heading &hellip;&rdquo; (or port), in that
-      order.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">5.2</span> &ldquo;Turn now&rdquo; comes before the waypoint</h3>
-      <p><span class="label">Do</span> As soon as the 10-second call gives the new heading, open
-      <span class="menu-path">Hold My Aircraft &#9656; Set Course</span> and type it in, but don't
-      click the centre yet. Watch the range to WP1 on the Navigation page.</p>
-      <p><span class="label pass">Pass</span> &ldquo;Turn starboard now for WP2, heading &hellip;
-      New track &hellip;&rdquo; comes <b>before</b> WP1: about half a mile out for a gentle turn,
-      a little over a mile for a right-angle turn, more for a sharper one. After the flight, dcs.log has one
-      line <code>turn point for WP1</code> (and the same for WP2 and WP3).</p>
-    </div>
-
-    <div class="step"><h3><span class="num">5.3</span> Hold flies the turn onto the new track</h3>
-      <p><span class="label">Do</span> On the &ldquo;Turn &hellip; now&rdquo; call, click the centre to
-      set the course. Once the wings are level, open the Navigation page.</p>
-      <p><span class="label pass">Pass</span> Hold banks to about 30&deg; and rolls out on the called
-      heading. The steer on the Navigation page is within about 3&deg; of the course being flown, and
-      the first mark call on the new leg (about 5 minutes later) says &ldquo;On track&rdquo;. In the
-      notes, write the steer shown and the course flown for each turn: the difference shows how
-      wide the turn was.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">5.4</span> The target is still flown over</h3>
-      <p><span class="label">What</span> A bomb run's target must be flown over, so it keeps the old
-      calls.</p>
-      <p><span class="label">Do</span> Watch the calls before the target in the bomb run at the end of
-      the flight (2.13).</p>
-      <p><span class="label pass">Pass</span> The countdown is to the target itself (no &ldquo;the
-      turn at&rdquo;), and Edward moves on to the next waypoint only once you are over the target.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">5.5</span> The turn at the IP rolls out on the run-in</h3>
-      <p><span class="label">What</span> At the IP the turn also starts early, so you roll out on the
-      line from the IP to the target, for example along a road leading to it. Edward figures this one
-      turn for 45&deg; of bank, and Hold banks 45&deg; for it.</p>
-      <p><span class="label">Do</span> In the bomb run (FlightA-Low in Part 1, and 2.13), set the
-      course on Hold on the &ldquo;Turn &hellip; now&rdquo; call before the IP, as in 5.2&ndash;5.3.</p>
-      <p><span class="label pass">Pass</span> &ldquo;Turn &hellip; now for &hellip;&rdquo; the target waypoint
-      comes before the IP; Hold banks to about 45&deg;; Edward still says the IP is reached (&ldquo;IP. Starting the
-      run&hellip;&rdquo;) during the turn; you roll out on the IP-to-target line (Navigation page
-      steer within about 3&deg; of the course flown).</p>
-    </div>
-  </section>
 
   <section>
     <h2>Sending the report</h2>
