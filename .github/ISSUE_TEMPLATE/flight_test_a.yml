@@ -139,9 +139,10 @@ body:
     attributes:
       label: 1.5 — No steering in the last minute before the target
       description: |
-        **What:** real Mosquito crews flew the last part of a bomb run by eye. So inside the last
-        minute before the target, Edward only gives the time and no longer tells you where to
-        steer.
+        **What:** real Mosquito crews flew the last part of a bomb run by eye, and inside the last
+        minute it is too late for course or speed corrections. So from one minute out Edward stops
+        steering. He only counts down to the target and calls the bomb bay; later builds add
+        altitude calls there too.
         **Do:** Navigation must be on the TGT waypoint. It moves on along the route by itself; if
         not, pick TGT in *Navigation ▸ By Waypoints*. Watch the calls as the target approaches.
         **Pass:** up to about two minutes out the calls include "Steer …". From one minute out you
