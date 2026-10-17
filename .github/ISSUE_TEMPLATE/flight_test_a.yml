@@ -1,0 +1,480 @@
+name: Flight test report — Flight A
+description: Fly the Flight A test missions and mark each test point Passed or Not passed
+title: "Flight test A — "
+labels: ["test report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Flight test A
+
+        Thank you for flying this. The full test plan, with the missions described, is on
+        **[Flight Test A](https://mav87th.github.io/Edward-Documentation_and_Feedback/Flight_Test_A.html)**;
+        keep it open while you fly. Each test point below says the same: what the feature is, what
+        to do and what counts as a pass. Set each one to **Passed**, **Not passed** or leave it at
+        **Not tested**, and write what you saw in the notes box after each part. Not passed is as
+        useful as Passed, and a partly filled report is still welcome.
+
+        **What Edward is.** Edward is the navigator in the right-hand seat of the DCS Mosquito
+        FB Mk VI. He calls out headings and times, keeps the fuel cocks right, arms the bombs and
+        works the bomb bay on a bomb run, and can hold the aircraft on a course and altitude for
+        you. You talk to him through a ring menu: press **e** in flight. Every menu wedge is
+        explained in [The Edward Menu — Notes](https://mav87th.github.io/Edward-Documentation_and_Feedback/Edward_Menu_Overview.html).
+
+        **Words used below**
+        - **Hold** (menu: *Hold My Aircraft*) — Edward flies the aircraft on a set course and
+          altitude. All tests are flown on Hold; you don't need to hand-fly.
+        - **Steer call** — Edward's on-screen line telling you the course to fly, e.g.
+          "Two minutes to WP2. Steer 095°M, range 8.1 NM."
+        - **Check Drift** (menu: *Navigation ▸ Drift Recorder*) — Edward measures the real wind
+          over about a minute. Before that he uses the weather forecast from the mission.
+        - **IP / TGT** — the Initial Point where the bomb run starts, and the Target. Edward finds
+          them by the waypoint names "IP" and "TGT".
+        - **Outer / main tanks** — the Mosquito's wing tanks. Edward uses the outer tanks first and
+          changes the main fuel cocks to MAIN (the inner tanks) when the outer ones are nearly
+          empty. With drop tanks, the transfer cock pumps drop-tank fuel into the outer tanks.
+        - **dcs.log** — `Saved Games\<your DCS folder>\Logs\dcs.log`. Some points ask you to search
+          it for a line of text after the flight (open it in a text editor and use Find).
+
+        **Missions** (supplied with the test build): `Edward-FlightA.miz` (slots *A-Run* and
+        *A-Long*), `Edward-FuelLow.miz` (slots *B-NoTanks* and *B-Tanks*) and
+        `Edward-DRSurvey-Normandy.miz`.
+
+        **Before you start**
+        1. Install the test build (Install.bat) and **restart DCS**.
+        2. In flight, menu **Status ▸ Logging**: set to ON (the log lines below need it).
+        3. Menu **Settings ▸ Automations**: everything ON.
+
+  - type: input
+    id: build
+    attributes:
+      label: Edward test build
+      description: The name or date of the zip you installed.
+      placeholder: Edward_Mod_Files, 2026-10-17
+    validations:
+      required: false
+
+  - type: input
+    id: dcs-version
+    attributes:
+      label: DCS version
+      placeholder: 2.9.30.xxxxx
+    validations:
+      required: false
+
+  - type: dropdown
+    id: display
+    attributes:
+      label: Flown in
+      options:
+        - 2D (monitor)
+        - VR
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------------------------------------
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Part 1 — Mission A, slot A-Run: a bomb run before any wind measurement
+
+        You start 20-25 NM before the IP with bombs in the bay and drop tanks on the wings. This part
+        checks the bomb run while Edward still only knows the forecast wind, so **do not use Check
+        Drift in this slot**. Turn Hold ON (*Hold My Aircraft*) and let Edward's steer calls take you
+        to the IP and on to the target.
+
+  - type: dropdown
+    id: p1-1
+    attributes:
+      label: 1.1 — IP and target found from the waypoint names
+      description: |
+        **What:** Edward picks the IP and target himself from waypoints named "IP" and "TGT".
+        Nothing else in the mission marks the target.
+        **Do:** open the menu (e) and look at the centre of the *Weapons and Bombing* page.
+        **Pass:** it shows the two waypoints, e.g. `WP4 >> WP5`, with a planned time on target below.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p1-2
+    attributes:
+      label: 1.2 — A list with only one point still draws a full ring
+      description: |
+        **What:** the ring menu can't draw fewer than three wedges as a full circle. A list with one
+        point used to leave a gap; now a *Refresh* wedge fills it.
+        **Do:** *Weapons and Bombing ▸ TGT ▸ TGT Waypoint*, then the same for *IP*.
+        **Pass:** each shows the one waypoint, *Refresh* and *Go Back*, as a full ring with no empty
+        sector.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p1-3
+    attributes:
+      label: 1.3 — Only the stations carrying bombs are armed
+      description: |
+        **What:** at the IP Edward arms the bombs. He should select only the stations that carry
+        bombs (the two in the bomb bay), not the wing stations, which carry drop tanks.
+        **Do:** fly through the IP; Edward says "Bombs armed". Look at the bomb station switches
+        (or *Weapons and Bombing ▸ Arm Weapons ▸ Select Bombs*).
+        **Pass:** the two bomb-bay stations are selected, the two wing stations are not.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p1-4
+    attributes:
+      label: 1.4 — IP course uses the forecast wind (log check)
+      description: |
+        **What:** at the IP Edward works out the course to the target, corrected for wind. With no
+        wind measured yet, he uses the mission's forecast wind and says so.
+        **Do:** after the flight, search dcs.log for `IP course to target`.
+        **Pass:** the line is there and ends with `(met forecast wind)`.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p1-5
+    attributes:
+      label: 1.5 — No steering in the last minute before the target
+      description: |
+        **What:** real Mosquito crews flew the last part of a bomb run by eye. So inside the last
+        minute before the target, Edward only gives the time and no longer tells you where to
+        steer.
+        **Do:** Navigation must be on the TGT waypoint. It moves on along the route by itself; if
+        not, pick TGT in *Navigation ▸ By Waypoints*. Watch the calls as the target approaches.
+        **Pass:** up to about two minutes out the calls include "Steer …". From one minute out you
+        see only "One minute to TGT.", "30 seconds." and "10 seconds to TGT.". There's no
+        "Off track" call and no "Turn … for WP6" heading in that last minute.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p1-6
+    attributes:
+      label: 1.6 — Bomb bay opens about 4 NM before the target
+      description: |
+        **What:** Edward opens the bomb bay doors about one minute (4 NM) before the target.
+        **Pass:** "Opening the bomb bay." about 4 NM out (the range is on the steer calls and the
+        Navigation page).
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p1-7
+    attributes:
+      label: 1.7 — Bombs away ends the run, navigation carries on
+      description: |
+        **What:** when the bombs are gone Edward closes the bay and ends the run.
+        **Do:** release the bombs over the target (the bomb release key).
+        **Pass:** "Bombs away." and "Closing the bomb bay." come, and afterwards normal steer calls
+        to the next waypoint (HOME) resume.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: textarea
+    id: notes-1
+    attributes:
+      label: Notes on Part 1
+      description: Anything that did not pass, or looked odd. The exact on-screen text helps most.
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------------------------------------
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Part 2 — Mission A, slot A-Long: the long flight (about 45 minutes)
+
+        A route of three 40 NM legs at 6,000 ft, then a climb, then the same bomb run as Part 1.
+        Several points need a watch or the in-game clock: note the time of your first Check Drift.
+
+  - type: dropdown
+    id: p2-1
+    attributes:
+      label: 2.1 — Dead Reckoning menu right after loading
+      description: |
+        **What:** a menu used in the first seconds after loading, before Edward's mission side is
+        ready, must not cause an error.
+        **Do:** within 2-3 seconds of the mission starting, open the menu and click
+        *Navigation ▸ DR Landmarks*.
+        **Pass:** no Lua error box. A short "not ready yet" message or nothing at all is fine. Note
+        what you saw.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-2
+    attributes:
+      label: 2.2 — Forecast wind is marked as such
+      description: |
+        **What:** before any Check Drift, Edward's wind correction comes from the forecast, and he
+        should say so.
+        **Do:** turn Hold ON towards WP1 and read the steer calls, then open the *Navigation* page.
+        **Pass:** the steer calls end with "(met forecast wind)" and the centre of the Navigation
+        page shows "Met forecast".
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-3
+    attributes:
+      label: 2.3 — Fuel economy wedge text
+      description: |
+        **Do:** open the *Fuel* page.
+        **Pass:** the wedge reads "AMPG at this setting?" on one line, not broken over two.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-4
+    attributes:
+      label: 2.4 — One map point still draws a full ring
+      description: |
+        **What:** same as 1.2, for map points.
+        **Do:** place **one** mark on the F10 map and name it `NAV`. Then open
+        *Navigation ▸ By Map Points* and *Fuel ▸ Fuel to Point ▸ To Map Point*.
+        **Pass:** both show NAV and *Refresh* (and *Go Back*) as a full ring with no empty sector.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-5
+    attributes:
+      label: 2.5 — Radio tuning across wavebands, no false warning
+      description: |
+        **What:** Edward tunes the R1155 receiver and switches its waveband when needed. Some
+        wavebands overlap, and there he used to log a false "band switch did not take" warning.
+        **Do:** *Radio ▸ Manually Tune*, one after the other: **12.0, 4.0, 7.5, 0.2, 1.0** MHz
+        (wait for each to finish).
+        **Pass:** each one tunes, and after the flight dcs.log contains neither `did not take` nor
+        `FAILED` for these tunes.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-6
+    attributes:
+      label: 2.6 — After a wind measurement, the forecast note goes
+      description: |
+        **Do:** on leg 1, *Navigation ▸ Drift Recorder ▸ Check Drift*, and hold straight for about a
+        minute until the result shows. **Write down the time.**
+        **Pass:** the following steer calls no longer end with "(met forecast wind)", and the
+        Navigation page no longer shows "Met forecast".
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-7
+    attributes:
+      label: 2.7 — Landmark position fixes (first test ever)
+      description: |
+        **What:** Edward knows towns, river crossings and railway features along your route ("DR
+        landmarks"). As you pass one he warns you, then tells you where you are against your
+        planned track: early or late, and left or right of track.
+        **Do:** fly legs 1 and 2 on Hold and watch the calls.
+        **Pass:** you get a heads-up before a landmark and a fix call at it. In the notes, say
+        whether the distances and the early/late and left/right figures seemed believable.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-8
+    attributes:
+      label: 2.8 — Ten minutes of steady Hold
+      description: |
+        **What:** a long straight leg on Hold, to see how steadily it holds height and wings level.
+        **Do:** on leg 2, leave the aircraft on Hold, hands off, for about 10 minutes.
+        **Pass:** no height dips or slow roll-offs you would notice from the cockpit. In the notes,
+        describe any you saw (how big, roughly when); that is the main thing this point is after.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-9
+    attributes:
+      label: 2.9 — An old wind measurement is flagged
+      description: |
+        **What:** a wind measured more than 30 minutes ago may no longer be right, and Edward should
+        say so.
+        **Do:** fly on without another Check Drift until 30 minutes after the time you wrote down
+        at 2.6.
+        **Pass:** the steer calls then end with "(drift estimate stale - check drift again)".
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-10
+    attributes:
+      label: 2.10 — A big height change makes the wind measurement stale
+      description: |
+        **What:** the wind changes with height. After a big climb, a wind measured lower down no
+        longer applies.
+        **Do:** Check Drift once more, then on leg 3 *Hold My Aircraft ▸ Set Altitude* **20000** and
+        let it climb.
+        **Pass:** during or after the climb the steer calls end with "(drift estimate stale - check
+        drift again)".
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-11
+    attributes:
+      label: 2.11 — Fuel cocks change with height
+      description: |
+        **What:** above 10,000 ft Edward pressurises the tanks (venting cock ON) and feeds from the
+        main tanks; back below 7,500 ft the venting cock goes OFF again.
+        **Do:** watch the venting cock and the main fuel cocks (or the *Fuel* page) during the climb
+        and the later descent.
+        **Pass:** above 10,000 ft venting ON and main cocks on MAIN; below 7,500 ft venting OFF.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-12
+    attributes:
+      label: 2.12 — Drop-tank transfer starts together with the venting cock
+      description: |
+        **What:** when the outer tanks are down to 25 gal Edward turns on the transfer cock to refill
+        them from the drop tanks, and the venting cock with it, 1-2 seconds apart.
+        **Do:** this happens by itself whenever the outer tanks reach 25 gal. It may not happen on
+        this flight; then leave it at Not tested (Part 3 covers it too).
+        **Pass:** transfer and venting cocks go ON one after the other, 1-2 s apart.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-13
+    attributes:
+      label: 2.13 — Second bomb run uses the measured wind (log check)
+      description: |
+        **Do:** descend to 2,000 ft before the IP and fly the bomb run as in Part 1.
+        **Pass:** in dcs.log, this run's `IP course to target` line does **not** end with
+        "(met forecast wind)", because a measured wind now exists. Points 1.3-1.7 behave as before.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p2-14
+    attributes:
+      label: 2.14 — Restarting the mission resets Edward (log check)
+      description: |
+        **Do:** at the very end, press **Shift-R** to restart the mission.
+        **Pass:** dcs.log contains a line with `mission reload` ending in `fuel figures and pending
+        cock clicks reset`.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: textarea
+    id: notes-2
+    attributes:
+      label: Notes on Part 2
+      description: Anything that did not pass, or looked odd, with the time if you have it.
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------------------------------------
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Part 3 — Mission FuelLow: outer tanks running low
+
+        Both slots start at 5,000 ft with little fuel, so the outer tanks run low within minutes.
+        Turn Hold ON and touch nothing; Edward handles the fuel cocks. Watch the main fuel cocks
+        and the outer tank gauges (or the *Fuel* page).
+
+  - type: dropdown
+    id: p3-1
+    attributes:
+      label: 3.1 — No drop tanks — one clean change to MAIN at 8 gal
+      description: |
+        **What:** the Pilot's Notes say to use the outer tanks first and change to the main tanks
+        when they are nearly empty. Edward does that at 8 gal.
+        **Do:** slot *B-NoTanks*. Fly until the outer tanks are below 8 gal.
+        **Pass:** the main fuel cocks move from OUTER to MAIN **once**, at about 8 gal, never flip
+        back, and both engines keep running. dcs.log has `outer tanks low`.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p3-2
+    attributes:
+      label: 3.2 — With drop tanks — stay on MAIN and start the transfer
+      description: |
+        **What:** with drop tanks fitted and the outer tanks low, Edward feeds from the main tanks
+        and refills the outer tanks from the drop tanks.
+        **Do:** slot *B-Tanks*, then watch the cocks.
+        **Pass:** the main fuel cocks go to MAIN and stay there, and the transfer cock and venting
+        cock go ON, 1-2 s apart.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p3-3
+    attributes:
+      label: 3.3 — Refilled — back to the outer tanks
+      description: |
+        **Do:** keep flying until the outer tanks have refilled above 25 gal (a few minutes).
+        **Pass:** the main fuel cocks go back to OUTER, and dcs.log has `low-outer latch released`.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: textarea
+    id: notes-3
+    attributes:
+      label: Notes on Part 3
+      description: The outer-tank gal reading when the cocks moved helps.
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------------------------------------
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Part 4 — Mission DRSurvey: saving landmark points
+
+        A mission with exactly one aircraft lets you edit the landmark points Edward uses for a map.
+        This test saves the Normandy file, so **back it up first**: copy
+        `Saved Games\<your DCS folder>\Scripts\Edward\DRPoints\Normandy.lua` somewhere safe.
+
+  - type: dropdown
+    id: p4-2
+    attributes:
+      label: 4.2 — Saving shows a result on the menu
+      description: |
+        **Do:** open *Navigation ▸ DR Landmarks*. Delete one point (or use *Re-survey Theatre*), then
+        *Save*.
+        **Pass:** the centre of the page shows `SAVED n + n YOURS` (two numbers).
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p4-3
+    attributes:
+      label: 4.3 — Backup put back
+      description: Copy your backed-up `Normandy.lua` back into `DRPoints`, so normal missions use the original points again.
+      options: [Not tested, Done, Not done]
+      default: 0
+
+  - type: textarea
+    id: notes-4
+    attributes:
+      label: Notes on Part 4
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------------------------------------
+  - type: textarea
+    id: log
+    attributes:
+      label: dcs.log
+      description: |
+        Please attach `Saved Games\<your DCS folder>\Logs\dcs.log` from the flight: drag the file
+        into this box. DCS starts a new log every time it starts, so attach it before starting DCS
+        again.
+    validations:
+      required: false

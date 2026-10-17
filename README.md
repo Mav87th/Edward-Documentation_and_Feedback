@@ -22,6 +22,13 @@ source code lives elsewhere and is not public.
 Both are written in the manner of a wartime Air Publication, which felt like the right register for
 an aeroplane of this vintage.
 
+## Flight testing
+
+- **[Flight Test A](Flight_Test_A.html)** — the missions to fly and the points to check for the
+  current test build, each with what to do and what counts as a pass.
+- **[Send a Flight Test A report](https://github.com/Mav87th/Edward-Documentation_and_Feedback/issues/new?template=flight_test_a.yml)** —
+  the form with the same numbered points, each marked Passed, Not passed or Not tested.
+
 ## Reporting a bug or asking for something
 
 There are two forms (a free GitHub account is needed to send either):
