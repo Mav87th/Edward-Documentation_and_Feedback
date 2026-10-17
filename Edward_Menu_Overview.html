@@ -397,22 +397,42 @@ Settings &mdash; Automations &mdash;
       VI, and not in the Mission Editor or the main menu. It is fitted with seven root wedges,
       described below at 4.1&ndash;4.7. Stepping back &mdash; by right-click, or by a wedge marked
       <span class="menu-label">Go Back</span> where one is fitted &mdash; rebuilds the parent ring
-      afresh from current data, exactly as drilling into it does. Where a ring calls for a number
-      &mdash; Manually Tune under Radio, or Set Track and Set Altitude under Hold My Aircraft &mdash;
-      digits are to be clicked to build it, and the centre hub clicked to confirm; confirming always
-      closes the menu outright, never re-showing any ring.</p>
-      <p>Wedge wording is stamped in placard capitals, a full stop being drawn as a middle dot and a
-      hyphen held unbroken, so that no marking is broken across a line. The centre hub reads
-      <span class="menu-label">Edward</span>; where a ring has a figure of its own to report &mdash;
-      the survey under <span class="menu-label">By DR Landmarks</span>, or the A.M.P.G. measurement
-      under Fuel &mdash; it is given in the hub rather than upon a wedge. Lists longer than a ring
-      will carry are paged: route waypoints five to a ring, from
-      <span class="menu-label">WP0</span> to <span class="menu-label">WP14</span>, and radio preset
-      letters eight to a ring, the letters I and O being passed over so that they are not mistaken
-      for the figures 1 and 0. A digit ring is composed of
+      afresh from current data, exactly as drilling into a wedge that opens a further ring does. A
+      ring is never drawn of fewer than three wedges: where a list only has one listing, its ring is
+      filled out with a <span class="menu-label">Refresh</span> wedge and
+      <span class="menu-label">Go Back</span>. A ring listing waypoints or map points redraws
+      itself in place when a fresher list arrives while it is open, so that a route still being
+      loaded &mdash; on first taking a slot, or after changing one &mdash; appears without the ring
+      having to be reopened. Where a ring calls for a number
+      &mdash; <span class="menu-label">Manually Tune</span> under
+      <span class="menu-label">Radio</span>, or <span class="menu-label">Set Course</span> and
+      <span class="menu-label">Set Altitude</span> under <span class="menu-label">Hold My
+      Aircraft</span> &mdash; digits are to be clicked to build it, and the centre hub clicked to
+      confirm. Confirming an action ordinarily closes the menu outright; certain wedges, given to a
+      quick action that may reasonably be followed by another of the same kind, instead return the
+      dial to the ring it was opened from, so that a further click may be made at once without the
+      menu having to be reopened.</p>
+      <p>Wedge wording is stamped in placard capitals, a decimal point being drawn as a middle dot,
+      as in a frequency of <span class="menu-label">8&middot;000 MC</span>.</p>
+      <p>A list too long for one ring is paged: route waypoints eight to a ring, split three ways or
+      further where there are more than eight, each split kept as even as it may be made so that no
+      ring is left holding one or two waypoints only; and radio preset letters eight to a ring, one
+      ring to a range, the letters I and O being passed over so that they are not mistaken for the
+      figures 1 and 0. A digit ring is composed of
       <span class="menu-label">0</span>&ndash;<span class="menu-label">9</span> and
       <span class="menu-label">DEL</span>, a decimal point being added where a frequency or a run-in
       figure calls for one.</p>
+      <p>The centre hub reads <span class="menu-label">Edward</span> by default; where the ring itself
+      has some current reading of its own to give &mdash; <span class="menu-label">Navigation</span>'s
+      nav picture, <span class="menu-label">Drift-Recorder</span>'s reading, <span class="menu-label">By
+      DR Landmarks</span>' survey count, <span class="menu-label">Radio</span>'s frequency, and
+      <span class="menu-label">Fuel</span>'s AMPG &mdash; that reading is shown in the hub instead of
+      upon a wedge. Such a reading is kept current while its ring stands open: a waypoint selection,
+      a drift reading or a tuning completed a moment after the ring was entered appears in place,
+      as does a change in a ring's own wedges, such as the target and IP first selected on the
+      mission starting. The AMPG is the exception, being worked out afresh only when its wedge is
+      tapped; below 120 m.p.h. indicated it reads <span class="menu-label">No AMPG &middot; Below 120 Mph</span>,
+      the figure having no meaning on the ground or in the circuit.</p>
       <p><i>Note.&mdash;</i> In the markings given at 4.1&ndash;4.7 below, wording set in capitals is
       the wedge's own; <i>wording set thus</i> stands for a figure or a name filled in by EDWARD as
       the wedge is drawn.</p>
@@ -442,9 +462,16 @@ Settings &mdash; Automations &mdash;
       Arming Management, which gates the run controller as a whole. Nav Updates governs whether
       EDWARD calls out navigation information at all; it is already turned on the moment a waypoint
       or map point is selected under Navigation, so this switch chiefly serves to turn it off again.
-      Choosing a unit, or any automation switch, is to be understood as resetting the menu to its
-      root and leaving it open, Bombbay Automation excepted, which re-shows the Automations ring
-      itself instead.</p>
+      Messages chooses where EDWARD's messages appear: in his own message box at the lower left of
+      the screen (the default, and the one that also shows in VR), or in DCS's own message window,
+      which keeps them in the game's message history. The choice is kept between flights. In
+      multiplayer, a player who joins someone else's game always gets the message box. Move
+      Message Box closes the menu and shows the box with a bar along its top: drag it by that bar
+      to wherever suits, then click Done. The new place is kept between flights. Reset Message Box
+      puts it back at the lower left.
+      Choosing a unit, the Messages choice, or any automation switch, is to be understood as
+      resetting the menu to its root and leaving it open, Bombbay Automation excepted, which
+      re-shows the Automations ring itself instead.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">Distance &mdash; <i>unit</i></span> &mdash;
@@ -457,6 +484,10 @@ Settings &mdash; Automations &mdash;
             <span class="menu-label">KPH</span></li>
           <li><span class="menu-label">Altitude &mdash; <i>unit</i></span> &mdash;
             <span class="menu-label">Feet</span>, <span class="menu-label">Meters</span></li>
+          <li><span class="menu-label">Messages: Edward Box</span> /
+            <span class="menu-label">Messages: DCS Window</span></li>
+          <li><span class="menu-label">Move Message Box</span></li>
+          <li><span class="menu-label">Reset Message Box</span></li>
           <li><span class="menu-label">Automations</span>, each wedge a sentence giving the state it
             stands in:
             <ul>
@@ -482,12 +513,17 @@ Settings &mdash; Automations &mdash;
 
     <div class="step"><h3><span class="num">4.3</span> Fuel</h3>
       <p>Time Left gives the remaining flight time and gallons for All, Outer, or Mains, the overall
-      burn rate being used regardless of which tank the engines are actually drawing from. A.M.P.G.
-      measures true fuel efficiency: it is clicked, a timed reading of about fifteen seconds is
-      taken, and it is clicked again for the result. Both rings remain open after a reading, as
-      at 4.1 above. Fuel to Point gives the gallons and time required to reach the Waypoint,
+      burn rate being used regardless of which tank the engines are actually drawing from. That
+      burn rate is taken, as a navigator took it, from the Pilot's Notes consumption table for the
+      boost and mixture the engines are set to, and the fuel gauges are watched against it over
+      the longer run: should the fuel go more than about fifteen per cent faster or slower than the
+      book over ten minutes or more, EDWARD says so. A.M.P.G. gives the air miles per gallon at
+      once, upon a single click: true airspeed over that same book burn rate. Both rings remain
+      open after a reading, as at 4.1 above. Fuel to Point gives the gallons and time required to reach the Waypoint,
       Homebase, or Map Point selected, calculated the moment the ring is opened and re-checked upon
-      a further click. Homebase is EDWARD's own determination of the flight's starting airfield,
+      a further click. Being worked from the present speed and fuel burn, it is only given in
+      flight: below 120 mph, on the ground or in the take-off run, each wedge reads "when airborne"
+      instead. Homebase is EDWARD's own determination of the flight's starting airfield,
       found by a fourfold test &mdash; the nearest field to a cold or hot start; failing that, the
       first or last waypoint if authored as a ground point; failing that, the nearest friendly field
       there is.</p>
@@ -498,13 +534,15 @@ Settings &mdash; Automations &mdash;
           <li><span class="menu-label">Time Left</span> &mdash; <span class="menu-label">All</span>,
             <span class="menu-label">Outer</span>, <span class="menu-label">Mains</span>, each
             giving its reading upon the wedge once clicked</li>
-          <li><span class="menu-label">Calculate AMPG</span>, which reads
-            <span class="menu-label">Recalculate AMPG</span> once a measurement has been taken</li>
+          <li><span class="menu-label">AMPG at this setting?</span> &mdash; the result is shown in the hub,
+            with the speed and the mixture and boost it was worked from; each click works it out
+            afresh</li>
           <li><span class="menu-label">Fuel to Point</span> &mdash;
             <ul>
               <li><span class="menu-label">To Waypoint</span> &mdash;
                 <span class="menu-label">WP0</span>&ndash;<span class="menu-label">WP14</span>, five
-                to a ring, with <span class="menu-label">Refresh</span></li>
+                to a ring, each with its name where it has one (<span class="menu-label">WP5 TGT</span>),
+                with <span class="menu-label">Refresh</span></li>
               <li><span class="menu-label">To Homebase</span>, reading
                 <span class="menu-label">Homebase not detected</span> where the field is yet to be
                 determined</li>
@@ -550,15 +588,20 @@ Settings &mdash; Automations &mdash;
 
     <div class="step"><h3><span class="num">4.5</span> Navigation</h3>
       <p>By Waypoints and By Map Points list the route and the map markers presently held, each
-      refreshed automatically upon being opened. Selecting one begins navigation to it and turns on
+      refreshed automatically upon being opened and redrawn should the fresh list arrive a moment
+      later. Selecting one begins navigation to it and turns on
       navigation callouts if they were not already on, then resets the menu to its root and leaves
       it open. While the ring itself is open, its centre hub shows the target's tag and steering
       heading, and, for a route waypoint, the speed required; a map point carries no planned leg
       time, so its speed is left out.</p>
       <p>Drift Recorder is a single wedge, Check Drift. Clicking it closes the menu outright, and
       the check proceeds in the background:&mdash;</p>
-      <p>(a) a mantle of about ten seconds is followed by a measuring window of about forty seconds,
-      with a &ldquo;Steady&rdquo; callout given at intervals;</p>
+      <p>(a) on the first check in an aircraft the navigator mantles the recorder, which takes about
+      thirty seconds, and thereafter leaves it mounted; each check then takes a measuring window of
+      fifteen to twenty-five seconds, varying from one check to the next, with a &ldquo;Steady&rdquo;
+      callout given at intervals. A check interrupted during the mantle leaves the recorder unmounted,
+      and the next check mantles afresh; a new aircraft or a reloaded mission likewise requires a
+      fresh mantle;</p>
       <p>(b) Drift, Groundspeed, and Estimated Wind are then reported in turn, a few seconds apart,
       each by toast;</p>
       <p>(c) should any other action be taken elsewhere in the menu while the check is running, it
@@ -574,7 +617,8 @@ Settings &mdash; Automations &mdash;
         <ul>
           <li><span class="menu-label">By Waypoints</span> &mdash;
             <span class="menu-label">WP0</span>&ndash;<span class="menu-label">WP14</span>, five to a
-            ring, with <span class="menu-label">Refresh</span></li>
+            ring, each with its name where it has one (<span class="menu-label">WP5 TGT</span>),
+            with <span class="menu-label">Refresh</span></li>
           <li><span class="menu-label">By Map Points</span> &mdash; <span class="menu-label">IP</span>,
             <span class="menu-label">TGT</span>, <span class="menu-label">NAV</span>,
             <span class="menu-label">HOME</span>, <span class="menu-label">NEAREST</span></li>
@@ -588,20 +632,39 @@ Settings &mdash; Automations &mdash;
             <span class="menu-label">Save DR Points</span> or
             <span class="menu-label">Save (<i>n</i> unsaved)</span> &rarr;
             <span class="menu-label">View on Map (<i>n</i>)</span>, with
-            <span class="menu-label">Clear Marks</span></li>
+            <span class="menu-label">Clear DR Marks</span>. The hub carries both numbers, because they
+            are different things: <i>n</i> points is the list, <i>n</i> on map (or
+            <span class="menu-label">map clear</span>) is what is drawn. Clear empties the map and
+            leaves the list alone, and says <span class="menu-label">No DR marks on the map</span>
+            when there is nothing to remove. A theatre that has been surveyed once also carries
+            <span class="menu-label">Re-survey Theatre</span>, which surveys it again from the
+            cockpit; it asks first &mdash; the wedge reads
+            <span class="menu-label">Confirm Re-survey</span> for fifteen seconds, and the second
+            click starts the survey. Nothing on disk is touched until you Save. Create and Save are
+            offered only in a survey
+            mission &mdash; exactly one unit, a Mosquito. In any other mission Edward places the DR
+            points along your planned route by itself a few seconds after you take the slot, and the
+            wedge reads <span class="menu-label">View Mission DR Points on Map (<i>n</i>)</span>
+            (or <span class="menu-label">Add DR Landmarks to Mission</span> when none are placed),
+            which puts them back on the map as picked. Once used, the same wedge reads
+            <span class="menu-label">Click to Re-pick for Current Route</span> and picks again for
+            your route as it is now; <span class="menu-label">Clear DR Marks</span> turns it back into
+            View</li>
         </ul>
       </div>
     </div>
 
     <div class="step"><h3><span class="num">4.6</span> Hold My Aircraft</h3>
-      <p>Hold turns EDWARD's holding of a fixed heading and altitude on or off. Set Track and Set
-      Altitude are digit rings, worked as at 4.4 above. Set Track accepts 0&deg; to 359&deg; only;
+      <p>Hold turns EDWARD's holding of a fixed heading and altitude on or off. Set Course and Set
+      Altitude are digit rings, worked as at 4.4 above. Set Course accepts 0&deg; to 359&deg; only;
       Set Altitude accepts 0 to 60,000 (feet or metres, according to the unit chosen); a value
-      outside these is not accepted.</p>
+      outside these is not accepted. The course is the one to steer: the nose is held upon it, and
+      no allowance is made for wind. To make good a track, the course given by EDWARD's steer calls
+      or the centre hub is to be set.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">Hold is ON</span> / <span class="menu-label">is OFF</span></li>
-          <li><span class="menu-label">Set Track (<i>ref</i>)</span> &mdash; digit ring, the heading
+          <li><span class="menu-label">Set Course (<i>ref</i>)</span> &mdash; digit ring, the heading
             reference in force being carried upon the wedge</li>
           <li><span class="menu-label">Set Altitude (<i>unit</i>)</span> &mdash; digit ring, the
             altitude unit in force being carried upon the wedge</li>
@@ -613,16 +676,20 @@ Settings &mdash; Automations &mdash;
       <p>TGT and IP are each chosen from a route Waypoint or a Map Point. Where the mission carries
       a waypoint named TGT or IP, EDWARD chooses it of his own accord as soon as the mission's route
       is known to him &mdash; once only in a mission, and only where none has already been chosen by
-      hand, which always overrides it. He announces the pair upon the screen as he does so, together
-      with the planned time on target where the Mission Editor supplies one, so that no visit to this
-      page is needed to learn of it; a Map Point must always be placed and chosen by hand. TGT's
-      list of waypoints includes both those matched by name and any carrying a DCS Bombing task, the
-      latter marked with a trailing asterisk; IP is matched by name only, a Bombing task marking the
-      point of attack, not of run-in. In choosing of his own accord he takes the route in order of
-      authority: a waypoint named exactly TGT or IP; failing that, one whose name merely begins with
-      those letters; failing that, and for TGT alone, the first waypoint carrying a Bombing task.
+      hand, which always overrides it. He chooses them without announcement; the pair and the
+      planned time on target stand upon this page's centre hub. A Map Point must always be placed
+      and chosen by hand. Both lists of waypoints are matched by name alone, so the mission's
+      waypoints must be named for them; a DCS Bombing task is not read, the target being the TGT
+      waypoint itself and its altitude the height to which it is set. In choosing of his own accord
+      he takes the route in order of authority: a waypoint named exactly TGT or IP; failing that,
+      one whose name merely begins with those letters.
       The point at which the aircraft begins its flight is not offered upon this page at all, being
       neither a target nor a point of run-in.</p>
+      <p>Upon this page the centre hub shows the run at a glance: the IP and the target by number,
+      as <span class="menu-label">WP12 &gt;&gt; WP13</span>, with the planned time on target beneath
+      where the route supplies one. The TGT and IP wedges give the waypoint by number alone where
+      its name merely repeats TGT or IP; a name saying more than that is kept, and the lists from
+      which a point is chosen always give the name in full.</p>
       <p>Arm Weapons governs the physical setup: Select Bombs toggles each of the four bomb
       stations, and Select Fuzes toggles Nose and Tail fuzing, both reading the actual cockpit
       switches, so that a switch worked by hand in the cockpit is shown here too. A final wedge
@@ -632,6 +699,9 @@ Settings &mdash; Automations &mdash;
       and come upon it again. Choosing a TGT or IP lands upon the Weapons and Bombing root; toggling
       a station or fuze lands upon Select Bombs or Select Fuzes itself, so that the freshly altered
       marking is seen at once.</p>
+      <p>From the IP EDWARD gives the course to the target, and steers by it as on any leg. In the
+      last minute before the target he gives the time only &mdash; one minute, thirty seconds, ten
+      seconds &mdash; and no further steering, the final run being made by eye.</p>
       <p>Run In Altitude and Run In Speed are fitted under the map-point branches, a map point
       carrying no authored run-in figures of its own; each is a digit ring, and once a figure is
       given the wedge carries it thereafter. Where the route or the map holds nothing matching the
@@ -901,12 +971,16 @@ Settings &mdash; Automations &mdash;
     // Hooks/EdwardMenuPoints/Settings.lua's automation.bombBay.
     automation: { master: true, fuel: true, arming: true, pitotHeat: true, radiator: true, bombBay: true },
     navActive: true,
+    // Hooks/EdwardMenuPoints/Settings.lua's edward-message-settings.txt (Messages_Plan.md phase 3).
+    messageMode: 'box',
     holdEnabled: false,
     fuel: { timeLeft: {}, ampg: null },
     fuelToPoint: {},
     t1154PowerOn: false,
     driftChecking: false,
-    driftResults: 'No reading yet',
+    // Before any check the real hub shows the met-forecast triangle (DriftRecorder.lua, 2026-10-08);
+    // "No reading yet" only when the mission has no forecast (Dynamic weather).
+    driftResults: 'Course 090°M | Drift 4° Stbd | Track 094°M | Met forecast',
     navPicture: null, // null, or {tag, source:'waypoint'|'marker', steerDeg, speed} - set on selection, read by navPictureText()
     weapons: {
       selectedTarget: null, selectedIP: null, // null, or a demo label string like 'WP5'
@@ -936,16 +1010,16 @@ Settings &mdash; Automations &mdash;
   function weatherWedges() {
     return [
       { text: 'Go Back', back: true },
-      { text: 'Wind', keepOpenHere: true, action: function () { toast('Wind: From 240° / 18 kts (demo)'); } },
-      { text: 'Temp', keepOpenHere: true, action: function () { toast('OAT: 4°C (demo)'); } },
-      { text: 'QNH', keepOpenHere: true, action: function () { toast('QNH: 1013 hPa (demo)'); } }
+      { text: 'Wind', keepOpenHere: true, action: function () { toast('Edward Wind: From 240° / 18 kts (demo)'); } },
+      { text: 'Temp', keepOpenHere: true, action: function () { toast('Edward TEMP: 4°C (demo)'); } },
+      { text: 'QNH', keepOpenHere: true, action: function () { toast('Edward QNH: 1013 hPa (demo)'); } }
     ];
   }
   function aircraftWedges() {
     return [
       { text: 'Go Back', back: true },
-      { text: 'Ammo', keepOpenHere: true, action: function () { toast('20mm: 480 rds · .303: 3600 rds (demo)'); } },
-      { text: 'Damage', keepOpenHere: true, action: function () { toast('Airframe: 100% (demo)'); } }
+      { text: 'Ammo', keepOpenHere: true, action: function () { toast('Edward Weapons: 20mm: 480 rds · .303: 3600 rds (demo)'); } },
+      { text: 'Damage', keepOpenHere: true, action: function () { toast('Edward Damage: Airframe: 100% (demo)'); } }
     ];
   }
   function statusWedges() {
@@ -976,14 +1050,14 @@ Settings &mdash; Automations &mdash;
       return {
         text: (a[key] ? label + ' is ON' : label + ' is OFF'),
         keepOpen: true,
-        action: function () { a[key] = !a[key]; toast(label + ' automation: ' + (a[key] ? 'ON' : 'OFF')); }
+        action: function () { a[key] = !a[key]; toast('EDMod: ' + label + ' automation: ' + (a[key] ? 'ON' : 'OFF')); }
       };
     }
     // No 'Go Back' wedge here (2026-09-10, Martin's ask) - right-click still steps back; this ring
     // is dense enough (7 toggles) that the redundant on-ring button wasn't worth keeping.
     return [
       { text: a.master ? 'All Automatics are ON' : 'All Automatics are OFF', keepOpen: true,
-        action: function () { a.master = !a.master; toast('Automatic Navigator Actions: ' + (a.master ? 'ON' : 'OFF')); } },
+        action: function () { a.master = !a.master; toast('EDMod: Automatic Navigator Actions: ' + (a.master ? 'ON' : 'OFF')); } },
       toggleWedge('fuel', 'Fuel Management'),
       toggleWedge('arming', 'Arming Management'),
       toggleWedge('pitotHeat', 'Pitot Heat'),
@@ -995,9 +1069,9 @@ Settings &mdash; Automations &mdash;
       { text: a.bombBay ? 'Bombbay Automation is ON' : 'Bombbay Automation is OFF',
         action: function () {
           a.bombBay = !a.bombBay;
-          toast(a.bombBay
+          toast('EDMod: ' + (a.bombBay
             ? 'Bomb bay automation ON - I will open it on the run in and close it after. (demo)'
-            : 'Bomb bay automation OFF - the bomb bay is yours. (demo)', 5);
+            : 'Bomb bay automation OFF - the bomb bay is yours. (demo)'), 5);
         },
         gotoLevel: automationWedges, gotoLevelLabel: ['Settings', 'Automations'] },
       // Moved here from Navigation (2026-09-10). Plain keepOpen like the toggles above, not
@@ -1013,6 +1087,18 @@ Settings &mdash; Automations &mdash;
     var wedges = UNIT_GROUPS.map(function (g) {
       return { text: g.label + ' — ' + shortFor(g), submenu: function () { return groupWedges(g); } };
     });
+    wedges.push({ text: state.messageMode === 'dcs' ? 'Messages: DCS Window' : 'Messages: Edward Box',
+      keepOpen: true,
+      action: function () {
+        state.messageMode = state.messageMode === 'dcs' ? 'box' : 'dcs';
+        toast('EDMod: Messages now show in ' + (state.messageMode === 'dcs'
+          ? "DCS's message window" : "Edward's message box"), 4);
+      } });
+    // Move mode itself (drag bar + Done) is the real box's, not shown in this demo.
+    wedges.push({ text: 'Move Message Box',
+      action: function () { toast('EDMod: Drag the bar above to move me, then click Done', 4); } });
+    wedges.push({ text: 'Reset Message Box', keepOpen: true,
+      action: function () { toast('EDMod: Message box back at its default spot, lower left', 4); } });
     wedges.push({ text: 'Automations', submenu: automationWedges });
     return wedges;
   }
@@ -1054,27 +1140,10 @@ Settings &mdash; Automations &mdash;
     ];
   }
 
-  // AMPG (2026-08-31, revised same day): collapsed from three per-tank wedges to one - efficiency
-  // doesn't meaningfully change with which tank the engines draw from, only with power/altitude/
-  // speed - and turned into a genuine timed measurement (press, wait, press again for the result),
-  // not an instant read, mirroring Hooks/EdwardMenuPoints/Fuel.lua's own AMPG_MEASURE_S design.
-  // Uses the page's real clock (Date.now()), so this one demo action genuinely takes ~15s, unlike
-  // every other instant-resolving demo action on this page.
-  var AMPG_MEASURE_S = 15;
-  var ampgMeasureStart = null;
+  // AMPG: one wedge - efficiency doesn't meaningfully change with which tank the engines draw
+  // from, only with power/altitude/speed. Instant since 2026-10-01, like
+  // Hooks/EdwardMenuPoints/Fuel.lua: true airspeed over the book burn rate, no timed measurement.
   function tapFuelAMPG() {
-    var now = Date.now() / 1000;
-    if (!ampgMeasureStart) {
-      ampgMeasureStart = now;
-      state.fuel.ampg = 'AMPG — measuring (' + AMPG_MEASURE_S + 's)…';
-      return;
-    }
-    var elapsed = now - ampgMeasureStart;
-    if (elapsed < AMPG_MEASURE_S) {
-      state.fuel.ampg = 'AMPG — measuring (' + Math.ceil(AMPG_MEASURE_S - elapsed) + 's left)…';
-      return;
-    }
-    ampgMeasureStart = null;
     state.fuel.ampg = 'AMPG ' + (FUEL_DEMO_TAS_MPH / FUEL_DEMO_RATES.all).toFixed(1)
       + ' (' + FUEL_DEMO_TAS_MPH.toFixed(0) + ' Mph)';
   }
@@ -1099,7 +1168,7 @@ Settings &mdash; Automations &mdash;
     var w = [];
     for (var i = start; i <= end; i++) {
       (function (n) {
-        var key = 'WP' + n;
+        var key = demoWpLabel(n);
         if (!state.fuelToPoint[key]) state.fuelToPoint[key] = fuelToPointResult(key);
         w.push({ text: state.fuelToPoint[key], keepOpenHere: true,
           action: function () { state.fuelToPoint[key] = fuelToPointResult(key); } });
@@ -1152,7 +1221,7 @@ Settings &mdash; Automations &mdash;
   function fuelWedges() {
     return [
       { text: 'Time Left', submenu: fuelTimeLeftWedges },
-      { text: state.fuel.ampg || 'AMPG — tap to measure', keepOpenHere: true, action: tapFuelAMPG },
+      { text: state.fuel.ampg || 'AMPG at this setting?', keepOpenHere: true, action: tapFuelAMPG },
       { text: 'Fuel to Point', submenu: fuelToPointWedges }
     ];
   }
@@ -1220,7 +1289,7 @@ Settings &mdash; Automations &mdash;
   function manualTuneWedgesR1155() {
     var w = digitWedges(true);
     w.interpretBuffer = interpretManualTune;
-    w.onConfirm = function (hz) { toast('R-1155 tune request: ' + hz + ' Hz (demo)'); };
+    w.onConfirm = function (hz) { toast('Edward: R-1155 tune request: ' + hz + ' Hz (demo)'); };
     return w;
   }
   function manualTuneWedgesT1154() {
@@ -1233,8 +1302,8 @@ Settings &mdash; Automations &mdash;
     w.interpretBuffer = interpretManualTune;
     w.onConfirm = function (hz) {
       var preset = findT1154Preset(hz);
-      if (preset) toast('T-1154 tuning to preset ' + preset.letter + ' (' + formatPresetFreq(preset.mhz) + ') (demo)', 6);
-      else toast('T.1154N: not one of the transmitter\'s fixed preset letters, cannot auto-select (demo)', 6);
+      if (preset) toast('Edward: T-1154 tuning to preset ' + preset.letter + ' (' + formatPresetFreq(preset.mhz) + ') (demo)', 6);
+      else toast('EDMod: T.1154N: not one of the transmitter\'s fixed preset letters, cannot auto-select (demo)', 6);
     };
     return w;
   }
@@ -1244,7 +1313,7 @@ Settings &mdash; Automations &mdash;
       { text: 'Manually Tune', submenu: manualTuneWedgesT1154 },
       { text: 'Predefined Frequencies', submenu: function () {
         return buildPresetFrequencyWedges(function (letter, mhz) {
-          toast('T-1154 tuning to preset ' + letter + ' (' + formatPresetFreq(mhz) + ') (demo)', 6);
+          toast('Edward: T-1154 tuning to preset ' + letter + ' (' + formatPresetFreq(mhz) + ') (demo)', 6);
         });
       } }
     ];
@@ -1255,7 +1324,7 @@ Settings &mdash; Automations &mdash;
       { text: 'Manually Tune', submenu: manualTuneWedgesR1155 },
       { text: 'Predefined Frequencies', submenu: function () {
         return buildPresetFrequencyWedges(function (letter, mhz) {
-          toast('R-1155 tune request: ' + Math.round(mhz * 1e6) + ' Hz (demo)');
+          toast('Edward: R-1155 tune request: ' + Math.round(mhz * 1e6) + ' Hz (demo)');
         });
       } }
     ];
@@ -1265,23 +1334,27 @@ Settings &mdash; Automations &mdash;
       { text: state.t1154PowerOn ? 'T-1154 Transmitter is ON' : 'T-1154 Transmitter is OFF', keepOpen: true,
         action: function () {
           state.t1154PowerOn = !state.t1154PowerOn;
-          toast('T.1154 Transmitter: requesting power ' + (state.t1154PowerOn ? 'ON' : 'OFF'), 4);
+          toast('Edward: T.1154 Transmitter: requesting power ' + (state.t1154PowerOn ? 'ON' : 'OFF'), 4);
         } },
       { text: 'Tune T-1154 Transmitter', submenu: t1154Wedges },
       { text: 'Tune R-1155 Receiver', submenu: r1155Wedges },
       // No keepOpen - closes the menu outright, same as the real wedge (the player is about to be
       // relocated to the navigator's seat for manual tuning).
-      { text: 'Manual Radio Tuning', action: function () { toast('Manual Radio Tuning: seat-swapping to the navigator (demo)', 4); } }
+      { text: 'Manual Radio Tuning', action: function () { toast('EDMod: Manual Radio Tuning: seat-swapping to the navigator (demo)', 4); } }
     ];
   }
 
   var DEMO_WAYPOINTS = 13; // demo route length, enough to show chunking
+  // Demo waypoint names. Real wedges show "WPn" plus the ME name (cut to 12 characters) when the
+  // waypoint has one, e.g. "WP5 TGT"; unnamed ones stay "WPn" (GitHub #19).
+  var DEMO_WP_NAMES = { 4: 'IP', 5: 'TGT', 12: 'Landing' };
+  function demoWpLabel(n) { return 'WP' + n + (DEMO_WP_NAMES[n] ? ' ' + DEMO_WP_NAMES[n] : ''); }
   var DEMO_MARKERS = ['TGT', 'HOME', 'IP'];
   function chunkWedges(start, end) {
     var w = [{ text: 'Go Back', back: true }];
     for (var i = start; i <= end; i++) {
       (function (n) {
-        w.push({ text: 'WP' + n, keepOpen: true, action: function () {
+        w.push({ text: demoWpLabel(n), keepOpen: true, action: function () {
           // Mirrors WaypointMarkerMenu.lua's selectWaypointFunc: auto-activates Nav Updates on
           // selection (idempotent - only announces "ACTIVE" on the false->true transition).
           var justActivated = !state.navActive;
@@ -1291,7 +1364,7 @@ Settings &mdash; Automations &mdash;
           // just picks a plausible heading and reuses the demo cruise speed already used by Fuel).
           state.navPicture = { tag: 'WP' + n, source: 'waypoint',
             steerDeg: Math.round(Math.random() * 359), speed: FUEL_DEMO_TAS_MPH };
-          toast('Selected WP' + n + (justActivated ? ' - BRG/RNG ACTIVE (demo)' : ' — navigating (demo)'));
+          toast('Edward: Selected WP' + n + (justActivated ? ' - BRG/RNG ACTIVE (demo)' : ' — navigating (demo)'));
         } });
       })(i);
     }
@@ -1319,7 +1392,7 @@ Settings &mdash; Automations &mdash;
         // case buildNavPictureText's own comment calls out ("TGT3 / 164°M", no speed part).
         state.navPicture = { tag: tag, source: 'marker',
           steerDeg: Math.round(Math.random() * 359), speed: null };
-        toast('Selected marker ' + tag + (justActivated ? ' - BRG/RNG ACTIVE (demo)' : ' — navigating (demo)'));
+        toast('Edward: Selected marker ' + tag + (justActivated ? ' - BRG/RNG ACTIVE (demo)' : ' — navigating (demo)'));
       } });
     });
     return w;
@@ -1328,10 +1401,11 @@ Settings &mdash; Automations &mdash;
   // the reading itself lives in the centre hub, not a second wedge (2026-09-14, Martin's call -
   // it was briefly a 2-wedge submenu from 2026-09-03 until the reading grew Heading/Track and
   // overflowed the ring, at which point it moved to the hub via the generic centreText mechanism
-  // instead). The wedge still runs the real ~65s mantle/measure/report timing (unchanged below)
+  // instead). The wedge runs the real timing - 30s mantle on the first check only, then a random
+  // 15-25s measure, then the ~15s report sequence (2026-09-25)
   // and closes the menu outright on click; the hub mirrors DriftRecorder.lua's own
-  // formatResultsText() - kt->mph, real uncapped drift degrees, "No reading yet" until the first
-  // completed check. driftCheckTimers holds the pending setTimeout ids so interruptDriftCheck()
+  // formatResultsText() - kt->mph, real uncapped drift degrees, the met-forecast triangle until the
+  // first completed check. driftCheckTimers holds the pending setTimeout ids so interruptDriftCheck()
   // can cancel them outright - JS timers are natively cancellable, unlike DCS's
   // timer.scheduleFunction (which has no cancel call and needs the real code's generation-counter
   // workaround instead; not needed here). ------------------------------------------------------
@@ -1339,7 +1413,7 @@ Settings &mdash; Automations &mdash;
   var KTS_TO_MPH_DEMO = 1.15078; // same conversion Radio-side already uses via MPS_TO_MPH/MPS_TO_KTS
   var DEMO_DRIFT = { driftPart: null, gsPart: null, windPart: null };
   function composeDriftResults() {
-    if (!DEMO_DRIFT.driftPart) return 'No reading yet';
+    if (!DEMO_DRIFT.driftPart) return 'Course 090°M | Drift 4° Stbd | Track 094°M | Met forecast';
     return DEMO_DRIFT.driftPart + ' | ' + (DEMO_DRIFT.gsPart || 'GS --') + ' | ' + (DEMO_DRIFT.windPart || 'Wind --');
   }
   function clearDriftCheckTimers() {
@@ -1353,19 +1427,31 @@ Settings &mdash; Automations &mdash;
     if (driftCheckTimers.length) {
       clearDriftCheckTimers();
       state.driftChecking = false;
-      toast('Navigator: Drift check interrupted', 3);
+      toast('Edward: Drift check interrupted', 3);
     }
   }
+  var driftMountedDemo = false; // mirrors DriftRecorder.lua's state.mountedUnitId (demo: one aircraft)
   function startDriftCheckDemo() {
-    if (driftCheckTimers.length) { toast('Navigator: Drift recorder already mantled', 3); return; }
+    if (driftCheckTimers.length) { toast('Edward: Drift recorder already mantled', 3); return; }
     function schedule(delayMs, fn) { driftCheckTimers.push(setTimeout(fn, delayMs)); }
     state.driftChecking = true;
-    toast('Navigator: Mantling drift recorder...', 10);
-    schedule(10000, function () { toast('Navigator: Recorder mantled, measuring drift - steady please', 10); });
-    schedule(20000, function () { toast('Navigator: Steady...', 10); });
-    schedule(30000, function () { toast('Navigator: Steady...', 10); });
-    schedule(40000, function () { toast('Navigator: Steady...', 10); });
-    schedule(50000, function () {
+    var t = 0;
+    if (!driftMountedDemo) {
+      toast('Edward: Mantling drift recorder...', 30);
+      t = 30000;
+      schedule(t, function () {
+        driftMountedDemo = true;
+        toast('Edward: Recorder mantled, measuring drift - steady please', 10);
+      });
+    } else {
+      toast('Edward: Measuring drift - steady please', 10);
+    }
+    var measureMs = (15 + Math.floor(Math.random() * 11)) * 1000;
+    for (var c = 10000; c < measureMs; c += 10000) {
+      schedule(t + c, function () { toast('Edward: Steady...', 10); });
+    }
+    t += measureMs;
+    schedule(t, function () {
       // Spoken toast keeps the demo's original +/-8deg range; the results wedge below uses the
       // same uncapped value (real code shows the true figure there, not the spoken report's
       // "More than 30 degrees" cap - simplified to this narrower demo range either way).
@@ -1373,19 +1459,26 @@ Settings &mdash; Automations &mdash;
       var side = drift > 0 ? 'Port' : 'Starboard';
       DEMO_DRIFT = { driftPart: 'Drift ' + Math.abs(drift) + '° ' + side, gsPart: null, windPart: null };
       state.driftResults = composeDriftResults();
-      toast('Navigator: Drift - ' + Math.abs(drift) + ' degrees to ' + side.toLowerCase() + ' (demo)', 8);
+      toast('Edward: Drift - ' + Math.abs(drift) + ' degrees to ' + side.toLowerCase() + ' (demo)', 8);
     });
-    schedule(55000, function () {
+    schedule(t + 5000, function () {
       var gsKts = 170 + Math.round(Math.random() * 40);
       DEMO_DRIFT.gsPart = 'GS ' + Math.round(gsKts * KTS_TO_MPH_DEMO) + ' Mph';
       state.driftResults = composeDriftResults();
-      toast('Navigator: Groundspeed - ' + gsKts + ' kts (demo)', 8);
+      toast('Edward: Groundspeed - ' + gsKts + ' kts (demo)', 8);
     });
-    schedule(65000, function () {
+    schedule(t + 15000, function () {
       DEMO_DRIFT.windPart = 'Wind 240°/' + Math.round(18 * KTS_TO_MPH_DEMO) + ' Mph';
-      state.driftResults = composeDriftResults();
+      // With a measured wind the real hub turns live (DriftRecorder.lua's liveTriangle, 2026-10-06):
+      // Course (nose now) / Drift / Track (course + drift) / measured wind. Demo: course 090°M.
+      var m = /Drift (\d+)° (Port|Starboard)/.exec(DEMO_DRIFT.driftPart) || [0, '0', 'Port'];
+      var d = parseInt(m[1], 10), stbd = m[2] === 'Starboard';
+      var trk = (90 + (stbd ? d : -d) + 360) % 360;
+      var pad = function (n) { return ('00' + n).slice(-3); };
+      state.driftResults = ['Course 090°M', 'Drift ' + d + '° ' + (d === 0 ? 'None' : (stbd ? 'Stbd' : 'Port')),
+        'Track ' + pad(trk) + '°M', DEMO_DRIFT.windPart].join(' | ');
       state.driftChecking = false;
-      toast('Navigator: Estimated wind - From 240° / 18 kt (demo)', 10);
+      toast('Edward: Estimated wind - From 240° / 18 kt (demo)', 10);
       driftCheckTimers = [];
     });
   }
@@ -1412,11 +1505,26 @@ Settings &mdash; Automations &mdash;
   // map to click on. Theatre name and point/anchor counts are illustrative placeholders, not the real
   // Normandy survey's live-tested figures (1,427 points as of 2026-09-16).
   var drSurveyTimers = [];
-  state.drLandmarks = { theatre: 'Normandy', points: 0, unsavedCount: 0, dirty: false, surveying: false, surveyDone: 0, surveyTotal: 46 };
+  // realMission / missionPlaced model Phase 2 step B2 (2026-09-21): outside a survey mission the
+  // mission side picks the points along the player's route automatically, and the wedge reads
+  // "View Mission DR Points on Map (n)" - or "Add DR Landmarks to Mission" when nothing is placed.
+  // missionPlaced: -1 = not run yet, 0 = none near the route. Illustrative count.
+  // `drawn` is marks on the F10 map, which is a different number from `points` and moves
+  // independently of it - Clear DR Marks empties it and leaves the point list alone. Modelled here
+  // because without it the demo could not show what the real page could not show either: that Clear
+  // had done anything (2026-09-23).
+  state.drLandmarks = { theatre: 'Normandy', points: 0, drawn: 0, unsavedCount: 0, dirty: false, surveying: false, surveyDone: 0, surveyTotal: 46, realMission: false, missionPlaced: -1 };
+  // Re-survey's two-step confirm, in real seconds, exactly as Navigation.lua's resurveyArmedAt.
+  var drResurveyArmedAt = 0;
+  function drResurveyArmed() { return (Date.now() - drResurveyArmedAt) < 15000; }
 
   function drStatusLabel() {
     var d = state.drLandmarks;
     if (d.surveying) return 'Surveying ' + Math.floor(d.surveyDone / d.surveyTotal * 100) + '%';
+    if (d.realMission) {
+      if (d.missionPlaced > 0 && d.missionViewed) return 'Click to Re-pick for\nCurrent Route';
+      return d.missionPlaced > 0 ? ('View Mission DR\nPoints on Map (' + d.missionPlaced + ')') : 'Add DR Landmarks\nto Mission';
+    }
     if (d.points === 0) return 'Create DR Points';
     if (d.dirty) return d.unsavedCount > 0 ? ('Save (' + d.unsavedCount + ' unsaved)') : 'Save DR Points';
     return 'View on Map (' + d.points + ')';
@@ -1425,18 +1533,22 @@ Settings &mdash; Automations &mdash;
     var d = state.drLandmarks;
     if (d.surveying) return 'DR LANDMARKS\nSurveying ' + d.theatre + '\n' + d.surveyDone + ' of ' + d.surveyTotal;
     if (d.points === 0) return 'DR LANDMARKS\nNo points yet for\n' + d.theatre;
-    if (d.dirty) return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points\n' + d.unsavedCount + ' UNSAVED';
-    return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points';
+    if (d.realMission && d.missionPlaced >= 0) return 'DR LANDMARKS\n' + d.theatre + '\n' + (d.missionPlaced > 0 ? d.missionPlaced + ' on your route' : 'None near your route');
+    var marks = d.drawn > 0 ? ('\n' + d.drawn + ' on map') : '\nmap clear';
+    if (d.dirty) return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points' + marks + '\n' + d.unsavedCount + ' UNSAVED';
+    return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points' + marks;
   }
   function runDrSurveyDemo() {
     var d = state.drLandmarks;
     d.surveying = true; d.surveyDone = 0;
-    toast('Navigator: Surveying this theatre for landmarks - this takes a minute for real (sped up here).', 4);
+    toast('EDMod: Surveying this theatre for landmarks - this takes a minute for real (sped up here).', 4);
     function tick() {
       d.surveyDone = Math.min(d.surveyTotal, d.surveyDone + Math.ceil(d.surveyTotal / 6));
       if (d.surveyDone >= d.surveyTotal) {
-        d.surveying = false; d.points = 62; d.dirty = false; d.unsavedCount = 0;
-        toast('Navigator: Survey done - ' + d.points + ' points found (demo)', 5);
+        // beginSurvey() clears the marks before it builds a new list, so nothing is on the map
+        // when a survey finishes - the real hub reads "map clear" here too.
+        d.surveying = false; d.points = 62; d.drawn = 0; d.dirty = false; d.unsavedCount = 0;
+        toast('EDMod: Survey done - ' + d.points + ' points found (demo)', 5);
         return;
       }
       drSurveyTimers.push(setTimeout(tick, 450));
@@ -1450,22 +1562,69 @@ Settings &mdash; Automations &mdash;
       text: drStatusLabel(),
       action: function () {
         if (d.surveying) {
-          toast('Navigator: Survey in progress - ' + Math.floor(d.surveyDone / d.surveyTotal * 100) + '% done.', 3);
+          toast('EDMod: Survey in progress - ' + Math.floor(d.surveyDone / d.surveyTotal * 100) + '% done.', 3);
+        } else if (d.realMission && d.points === 0) {
+          toast('EDMod: No DR points for this theatre. Survey it first, in a mission with a single Mosquito.', 5);
+        } else if (d.realMission) {
+          if (d.missionPlaced > 0 && !d.missionViewed) {
+            toast('EDMod: Placing this mission\'s DR points on the map.', 3);
+            d.missionViewed = true;
+          } else {
+            toast('EDMod: Picking DR points along your current route.', 3);
+            d.missionPlaced = d.missionPlaced > 0 ? 11 : 9;
+          }
         } else if (d.points === 0) {
           runDrSurveyDemo();
         } else if (d.dirty) {
-          toast('Navigator: Saving ' + d.points + ' DR points for ' + d.theatre + ' (keeps a .bak backup of the old file) (demo)', 4);
-          d.dirty = false; d.unsavedCount = 0;
+          toast('EDMod: Saving ' + d.points + ' DR points for ' + d.theatre + ' (keeps a .bak backup of the old file) (demo)', 4);
+          // A save redraws, so the map matches the freshly folded-in point list.
+          d.dirty = false; d.unsavedCount = 0; d.drawn = d.points;
         } else {
-          toast('Navigator: Placed ' + d.points + ' DR -/FP - marks on the F10 map (demo)', 4);
+          toast('EDMod: Placed ' + d.points + ' DR -/FP - marks on the F10 map (demo)', 4);
+          d.drawn = d.points;
         }
       }
     });
     w.push({
-      text: 'Clear Marks',
-      action: function () { toast('Navigator: Clearing DR marks from the map (demo) - reopen this ring to put them back.', 4); }
+      text: 'Clear DR Marks',
+      action: function () {
+        // Nothing drawn: say so, rather than a "clearing..." that is indistinguishable from a
+        // failure. This is the exact case that made the real wedge look broken (2026-09-23).
+        if (d.drawn === 0 && !d.realMission) { toast('EDMod: No DR marks on the map.', 3); return; }
+        d.missionViewed = false; d.drawn = 0;
+        toast('EDMod: Clearing DR marks from the map (demo) - reopen this ring to put them back.', 4);
+      }
     });
-    if (!d.surveying && d.points > 0) {
+    // Re-survey (2026-09-23): a second survey of a theatre that already has one, without leaving the
+    // cockpit to rename its file. Survey missions only, and only where Create is not already on
+    // offer. Two-step confirm - the ring closes on click, so confirming is press 'e' and click again.
+    if (!d.surveying && !d.realMission && d.points > 0) {
+      var armed = drResurveyArmed();
+      w.push({
+        text: armed ? 'Confirm\nRe-survey' : 'Re-survey\nTheatre',
+        action: function () {
+          if (drResurveyArmed()) {
+            drResurveyArmedAt = 0;
+            runDrSurveyDemo();
+          } else {
+            drResurveyArmedAt = Date.now();
+            toast('EDMod: Re-survey ' + d.theatre + '? Click Re-survey again to confirm. The points in memory are replaced; the saved file is not touched until you Save.', 8);
+          }
+        }
+      });
+    }
+    if (!d.surveying) {
+      w.push({
+        text: d.realMission ? '(demo) switch to a\nsurvey mission' : '(demo) switch to a\nreal mission',
+        keepOpenHere: true,
+        action: function () {
+          d.realMission = !d.realMission;
+          if (d.realMission && d.points === 0) d.points = 62;
+          d.missionPlaced = d.realMission ? 9 : -1;
+        }
+      });
+    }
+    if (!d.surveying && !d.realMission && d.points > 0) {
       w.push({
         text: '(demo) place a new FP - mark on the map',
         keepOpenHere: true,
@@ -1515,14 +1674,14 @@ Settings &mdash; Automations &mdash;
   function headingRingWedges() {
     var w = digitWedges(false);
     w.interpretBuffer = function (buf) { var v = parseInt(buf, 10); return (!isNaN(v) && v >= 0 && v <= 359) ? [v, '°'] : [null, null]; };
-    w.onConfirm = function (v) { toast('Hold track: ' + v + '° (demo)'); };
+    w.onConfirm = function (v) { toast('Edward: Hold course ' + String(v).padStart(3, '0') + '° (demo)'); };
     return w;
   }
   function altitudeRingWedges() {
     var unit = state.altitudeUnit === 'm' ? 'm' : 'ft';
     var w = digitWedges(false);
     w.interpretBuffer = function (buf) { var v = parseInt(buf, 10); return (!isNaN(v) && v >= 0 && v <= 60000) ? [v, unit] : [null, null]; };
-    w.onConfirm = function (v) { toast('Hold altitude: ' + v + ' ' + unit + ' (demo)'); };
+    w.onConfirm = function (v) { toast('Edward: Hold altitude: ' + v + ' ' + unit + ' (demo)'); };
     return w;
   }
   function holdWedges() {
@@ -1530,8 +1689,8 @@ Settings &mdash; Automations &mdash;
     var altUnit = state.altitudeUnit === 'm' ? 'm' : 'ft';
     return [
       { text: state.holdEnabled ? 'Hold is ON' : 'Hold is OFF', keepOpen: true,
-        action: function () { state.holdEnabled = !state.holdEnabled; toast('Hold My Aircraft: ' + (state.holdEnabled ? 'ON' : 'OFF')); } },
-      { text: 'Set Track (' + headingRef + ')', submenu: headingRingWedges },
+        action: function () { state.holdEnabled = !state.holdEnabled; toast('EDMod: Hold My Aircraft: ' + (state.holdEnabled ? 'ON' : 'OFF')); } },
+      { text: 'Set Course (' + headingRef + ')', submenu: headingRingWedges },
       { text: 'Set Altitude (' + altUnit + ')', submenu: altitudeRingWedges }
     ];
   }
@@ -1544,13 +1703,12 @@ Settings &mdash; Automations &mdash;
   // Demo waypoint/marker data deliberately shows BOTH the matched and the empty-fallback code path
   // across the two pickers, since a real mission only ever shows one or the other depending on
   // what's actually named TGT*/IP* - can't toggle both live without adding a second demo-only
-  // control that doesn't exist in the real menu. TGT Waypoint demos the union-with-Bombing-task
-  // case (WP8 gets the trailing "*" for being task-only, not name-matched); IP Waypoint demos the
-  // empty-match "All Waypoints" fallback instead, since IP never gets the task-union (by design -
-  // see the real file's own header on why). Both MapPoint pickers demo the ordinary matched case.
+  // control that doesn't exist in the real menu. TGT Waypoint demos the name-matched case; IP
+  // Waypoint demos the empty-match "All Waypoints" fallback instead. Both MapPoint pickers demo the
+  // ordinary matched case.
   var DEMO_TGT_WAYPOINTS = [
-    { label: 'WP5', starred: false },
-    { label: 'WP8', starred: true } // task-only match: real label would show "WP8 *"
+    { label: 'WP5 TGT' },
+    { label: 'WP8 TGT2' }
   ];
   var DEMO_IP_WAYPOINTS = []; // empty on purpose - demos the "All Waypoints" fallback below
 
@@ -1565,7 +1723,7 @@ Settings &mdash; Automations &mdash;
     var w = [{ text: 'Go Back', back: true }];
     matched.forEach(function (pt) {
       w.push({
-        text: pt.label + (pt.starred ? ' *' : ''),
+        text: pt.label,
         action: function () { state.weapons[role === 'TGT' ? 'selectedTarget' : 'selectedIP'] = pt.label; },
         // Lands back on the Weapons and Bombing root, not root-of-everything or this same picker -
         // real reason (2026-09-05, Martin's ask): picking a TGT then an IP is the normal flow, and
@@ -1592,14 +1750,14 @@ Settings &mdash; Automations &mdash;
       });
     }
     // MapPoint branch only - a Waypoint pick already carries an authored altitude/speed from the
-    // mission (the Bombing task's own, or the TGT waypoint's own as fallback); a Map Point is just
+    // mission (the TGT waypoint's own); a Map Point is just
     // a pin with no authored data behind it, so these two have to be entered by hand here.
     w.push({
       text: state.weapons.runInAltitude != null ? ('Run In Alt ' + state.weapons.runInAltitude + 'ft') : 'Run In Altitude',
       submenu: function () {
         var rw = digitWedges(true);
         rw.interpretBuffer = function (buf) { var v = parseFloat(buf); return (!isNaN(v) && v >= 0 && v <= 45000) ? [Math.floor(v), 'ft'] : [null, null]; };
-        rw.onConfirm = function (v) { state.weapons.runInAltitude = v; toast('Run-in altitude set: ' + v + ' ft (demo)', 3); };
+        rw.onConfirm = function (v) { state.weapons.runInAltitude = v; toast('Edward: Run-in altitude set: ' + v + ' ft (demo)', 3); };
         return rw;
       }
     });
@@ -1608,7 +1766,7 @@ Settings &mdash; Automations &mdash;
       submenu: function () {
         var rw = digitWedges(true);
         rw.interpretBuffer = function (buf) { var v = parseFloat(buf); return (!isNaN(v) && v >= 0 && v <= 500) ? [Math.floor(v), 'MPH'] : [null, null]; };
-        rw.onConfirm = function (v) { state.weapons.runInSpeed = v; toast('Run-in speed set: ' + v + ' MPH (demo)', 3); };
+        rw.onConfirm = function (v) { state.weapons.runInSpeed = v; toast('Edward: Run-in speed set: ' + v + ' MPH (demo)', 3); };
         return rw;
       }
     });
@@ -1656,7 +1814,7 @@ Settings &mdash; Automations &mdash;
       // jettison args are the same device family as confirmed controls but were never live-tested,
       // and guessing at a write that dumps real stores isn't worth the risk for a convenience wedge).
       { text: 'Jettison', keepOpenHere: true,
-        action: function () { toast('Jettison is not wired up yet - those controls have not been live-tested against the aircraft, so Edward will not guess at them. Use the cockpit levers. (demo)', 6); } }
+        action: function () { toast('EDMod: Jettison is not wired up yet - those controls have not been live-tested against the aircraft, so Edward will not guess at them. Use the cockpit levers. (demo)', 6); } }
     ];
   }
 
@@ -1690,10 +1848,10 @@ Settings &mdash; Automations &mdash;
       { text: 'Arm Weapons', submenu: armWeaponsWedges },
       { text: stopTheRunLabel(), keepOpen: true,
         action: function () {
-          if (!state.weapons.selectedTarget) { toast('No run to stop - pick a target under TGT first. (demo)', 3); return; }
+          if (!state.weapons.selectedTarget) { toast('EDMod: No run to stop - pick a target under TGT first. (demo)', 3); return; }
           var was = state.weapons.selectedTarget;
           state.weapons.selectedTarget = null; state.weapons.selectedIP = null;
-          toast('Bomb run ended (' + was + ') (demo)', 3);
+          toast('Edward: Bomb run ended (' + was + ') (demo)', 3);
         } }
     ];
   }

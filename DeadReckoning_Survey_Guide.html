@@ -145,6 +145,13 @@
     padding: 0.05em 0.4em;
   }
 
+  /* A specimen of what EDWARD says, set off from the surrounding instruction. */
+  p.example {
+    margin: 0.5em 0 0.7em 1.2em;
+    border-left: 2px solid var(--line);
+    padding-left: 0.9em;
+  }
+
   .status-banner {
     display: flex;
     gap: 12px;
@@ -263,10 +270,10 @@
     <div class="status-banner">
       <span class="glyph">&#9997;</span>
       <span>
-        <b>Note.&mdash;</b> This publication describes Phase 1 of the Dead Reckoning facility only:
-        the theatre survey and its curation upon the F10 map (Parts II&ndash;IV below). The automatic
-        selection of Dead Reckoning points during a live sortie has not yet been brought into
-        service; see Operating Data at the end of this publication.
+        <b>Note.&mdash;</b> Parts II&ndash;IV describe the theatre survey and its curation upon the
+        F10 map. Part V describes what happens of its own accord in an ordinary sortie once a
+        theatre has been surveyed: the selection of points along the route, and the navigator's
+        calls upon them. Both are in service.
       </span>
     </div>
   </header>
@@ -313,7 +320,8 @@
     <h2>Check list &mdash; By D.R. Landmarks</h2>
     <pre style="background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,'Cascadia Code',Consolas,monospace;font-size:0.85rem;line-height:1.7;color:var(--ink);white-space:pre;">By D.R. Landmarks &mdash;
     Status/action wedge ....... As marked; see para. 10
-    Clear Marks ................ Clears F10 marks. File unaffected
+    Clear DR Marks ............. Clears F10 marks. Point list and file unaffected
+    Re-survey Theatre .......... Surveys again. Asks once; file unaffected until Save
     Go Back ..................... Returns to Navigation</pre>
   </section>
 
@@ -325,7 +333,10 @@
       stations and depots, rail junctions and yards, water crossings, bunkers and radar stations,
       stadiums, and airfields &mdash; collected for a theatre so that EDWARD may take a fix upon them
       in flight. Each theatre's points are held in a file of its own, one file to a theatre, at
-      <span class="inline-code">Scripts\Edward\DRPoints\&lt;theatre&gt;.lua</span>.</p>
+      <span class="inline-code">Scripts\Edward\DRPoints\&lt;theatre&gt;.lua</span>. Points placed by
+      the player (para. 9) are held apart from these, in
+      <span class="inline-code">&lt;theatre&gt;_user.lua</span> beside it, so that a fresh survey of
+      the theatre never disturbs them.</p>
     </div>
 
     <div class="step"><h3><span class="num">8.</span> Classification</h3>
@@ -356,6 +367,13 @@
       DR POINTS</span>, according to the state of the theatre's survey. Words in capital letters
       indicate the actual wording shown upon the wedge. See Part II for the sequence in which each
       marking is reached.</p>
+      <p>The centre of the ring carries two counts, which are not the same thing. <span
+      class="inline-code">N POINTS</span> is the number held in the theatre's list;
+      <span class="inline-code">N ON MAP</span>, or <span class="inline-code">MAP CLEAR</span>, is
+      the number at present drawn upon the F10 map. <span class="inline-code">CLEAR DR MARKS</span>
+      alters the second only.</p>
+      <p>Where the theatre has already been surveyed, a further wedge is marked
+      <span class="inline-code">RE-SURVEY THEATRE</span> (para. 12(iv)).</p>
     </div>
   </section>
 
@@ -366,8 +384,12 @@
       <p>A theatre is surveyed once only, not on every sortie. Before the survey is begun, a mission
       should be prepared consisting of the Mosquito alone, cold at any airfield on the theatre
       concerned, with no route and no other unit placed.</p>
-      <p><i>Note.&mdash;</i> No safeguard yet prevents the survey facility being invoked in an
-      ordinary mission; the player alone is responsible for choosing a suitable one.</p>
+      <p><i>Note.&mdash;</i> The survey facility is made available only in a mission holding
+      exactly one unit, and that unit a Mosquito. In any other mission the markings
+      <span class="inline-code">CREATE DR POINTS</span> and <span class="inline-code">SAVE</span> are
+      not shown, and the wedge offers <span class="inline-code">VIEW ON MAP</span> alone; the
+      theatre's file cannot then be overwritten by an accidental selection in the course of an
+      ordinary sortie.</p>
     </div>
 
     <div class="step"><h3><span class="num">12.</span> Opening the survey</h3>
@@ -382,9 +404,18 @@
       NN%</span> while this proceeds.</p>
       <p>(iv) If the theatre has already been surveyed, the wedge is marked
       <span class="inline-code">VIEW ON MAP (N)</span>, N being the number of points already held;
-      clicking it places them upon the F10 map without altering the file. There is no separate
-      facility for a further automatic search; further coverage is to be had only by the player's
-      own <span class="inline-code">FP -</span> points (para. 9).</p>
+      clicking it places them upon the F10 map without altering the file. A further automatic search
+      of the same theatre is to be had from the wedge marked
+      <span class="inline-code">RE-SURVEY THEATRE</span>, which is shown alongside it. This wedge
+      asks before it acts: upon the first click it is re-marked
+      <span class="inline-code">CONFIRM RE-SURVEY</span> and the menu is closed; the ring is to be
+      re-opened and the wedge clicked a second time within fifteen seconds, after which the marking
+      reverts and nothing is done.</p>
+      <p><i>Note.&mdash;</i> A re-survey replaces the points held in memory, the player's own
+      <span class="inline-code">FP -</span> points (para. 9) excepted, which are carried across. The
+      theatre's file upon disk is not touched until <span class="inline-code">SAVE</span> is clicked,
+      and the previous file is then preserved as <span class="inline-code">.bak</span>. A re-survey
+      whose result is not wanted is therefore undone by reloading the mission without saving.</p>
     </div>
 
     <div class="step"><h3><span class="num">13.</span> During the survey</h3>
@@ -440,8 +471,9 @@
     </div>
 
     <div class="step"><h3><span class="num">18.</span> One backup only</h3>
-      <p>A single generation of backup only is kept
-      (<span class="inline-code">&lt;theatre&gt;.lua.bak</span>); it is overwritten at every
+      <p>A single generation of backup only is kept for each file
+      (<span class="inline-code">&lt;theatre&gt;.lua.bak</span> and
+      <span class="inline-code">&lt;theatre&gt;_user.lua.bak</span>); each is overwritten at every
       subsequent save and does not accumulate. It is not to be relied upon to recover more than the
       one save immediately before it.</p>
     </div>
@@ -455,8 +487,8 @@
     <div class="step"><h3><span class="num">20.</span> Theatres provided for</h3>
       <p>Theatre boundaries are known in advance for the following theatres only: Afghanistan,
       Caucasus, the Falklands, Germany (Cold War), Iraq, Kola, the Mariana Islands, the Marianas
-      (WWII), Nevada, Normandy, the Persian Gulf, Sinai, Syria, and The Channel. Of these, only
-      Normandy has been surveyed and confirmed in flight.</p>
+      (WWII), Nevada, Normandy, the Persian Gulf, Sinai, Syria, and The Channel. Of these, Normandy
+      and Syria have been surveyed.</p>
     </div>
   </section>
 
@@ -491,43 +523,86 @@
   </section>
 
   <section>
-    <h2>Operating data &mdash; not yet in service</h2>
+    <h2>Part V &mdash; The points in use</h2>
 
     <div class="step"><h3><span class="num">25.</span> General</h3>
-      <p>The following describes the intended use of Dead Reckoning points once brought into
-      service; none of it is presently in effect. It is placed here, and not under Limitations,
-      because it does not yet bind: nothing below happens automatically in a mission today.</p>
+      <p>What follows is in service and requires no action by the player. It applies in an ordinary
+      mission on a surveyed theatre &mdash; that is, in any mission which is not itself a survey.</p>
     </div>
 
-    <div class="step"><h3><span class="num">26.</span> Automatic selection (intended)</h3>
-      <p>It is intended that, upon a mission being loaded on a surveyed theatre, EDWARD will himself
-      examine the theatre's Dead Reckoning Points file for those points lying near the route flown,
-      and mark the useful ones upon the F10 map without the player's intervention. A second wedge is
-      intended for this purpose, additional to that described in the Check List, together with a
-      further picker, <span class="inline-code">By D.R. Points</span>, alongside
-      <span class="inline-code">By Waypoints</span> and <span class="inline-code">By Map
-      Points</span>.</p>
+    <div class="step"><h3><span class="num">26.</span> Automatic selection</h3>
+      <p>Upon a mission being loaded on a surveyed theatre, EDWARD examines the theatre's Dead
+      Reckoning Points file for those points lying near the route to be flown and marks the useful
+      ones upon the F10 map, without the player's intervention. The theatre-wide
+      <span class="inline-code">VIEW ON MAP</span> wedge is withdrawn in a real mission: it is a
+      survey instrument, and the whole theatre is of no use to a crew in the air.</p>
+      <p>The wedge in its place reads <span class="inline-code">VIEW MISSION DR POINTS ON MAP</span>
+      and, once used, <span class="inline-code">CLICK TO RE-PICK FOR CURRENT ROUTE</span>. A re-pick
+      works upon the route <i>as it now stands</i>, so an alteration made in the air is taken
+      up.</p>
     </div>
 
-    <div class="step"><h3><span class="num">27.</span> Selection by height (intended)</h3>
-      <p>It is intended that a point be offered according to the height at which that leg is to be
-      flown:&mdash;</p>
-      <p>(i) Below 3,000 ft. A.G.L., only Low points close to the track are to be offered.</p>
-      <p>(ii) Between 3,000 ft. and 12,000 ft. A.G.L., both Low and High points are to be offered,
-      save that a small feature lying directly beneath the track is set aside in favour of one to a
-      side, a large and unmistakable feature excepted.</p>
-      <p>(iii) Above 12,000 ft. A.G.L., only High points are to be offered.</p>
-      <p>(iv) A point placed by hand without a stated band (para. 9) is to be offered regardless of
-      height; one given a band is to be treated exactly as an automatic point of that band.</p>
-      <p><i>Note.&mdash;</i> This scheme was drafted before the Medium classification (para. 8) was
-      adopted for the survey itself, and how the two are to be reconciled is not yet settled.</p>
+    <div class="step"><h3><span class="num">27.</span> Selection by height</h3>
+      <p>A point is offered according to the height at which that leg is to be flown, taken as the
+      mean height above ground of its two waypoints:&mdash;</p>
+      <p>(i) Below 3,000 ft. A.G.L., points of every band are offered, the nearest to track
+      winning, out to 2&frac12; miles.</p>
+      <p>(ii) Between 3,000 ft. and 12,000 ft. A.G.L., points of every band are offered between a
+      half and three miles of track, an offset of about a mile and a half preferred; a small feature
+      lying directly beneath the track is set aside in favour of one to a side, a large and
+      unmistakable feature excepted.</p>
+      <p>(iii) Above 12,000 ft. A.G.L., Low points are withheld &mdash; a feature without
+      surroundings cannot be read from that height &mdash; and Medium and High points are offered
+      out to five miles.</p>
+      <p>(iv) A point placed by hand is offered regardless of the ordinary spacing, claims its place
+      upon the leg, and sets aside any automatic point within a mile of it in an overlapping
+      band.</p>
+      <p>(v) No point is offered within fifteen miles of the first waypoint or five of the last.</p>
     </div>
+
+    <div class="step"><h3><span class="num">28.</span> The call in the air</h3>
+      <p>EDWARD makes two calls upon each selected point.</p>
+      <p><b>The warning</b>, about a minute before the point comes abeam, so that the crew know what
+      to look for and on which side:&mdash;</p>
+      <p class="example"><span class="inline-code">Edward: Pinpoint in one minute - Rail Yard,
+      starboard side.</span></p>
+      <p><b>The fix</b>, as the point passes, giving the time against the plan and the aircraft's
+      displacement from the intended track:&mdash;</p>
+      <p class="example"><span class="inline-code">Edward: There's Rail Yard, starboard. On time,
+      on track.</span></p>
+      <p class="example"><span class="inline-code">Edward: There's Rail Yard, starboard. 1min 10
+      seconds late, and we passed 1.1 NM port of track.</span></p>
+      <p>The displacement is obtained by comparing where the landmark was <i>planned</i> to pass
+      against where it <i>did</i> pass, and is a fix upon the aircraft's position &mdash; not a
+      comparison of headings. The correction itself is left to the existing off-track and schedule
+      calls, which are not to be duplicated.</p>
+      <p>The name given is the point's own label, exactly as it appears upon its F10 mark, so that
+      call and mark may not be confused.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">29.</span> When no call is made</h3>
+      <p>(i) <b>A landmark passed too wide to have been seen is not called.</b> Low points are
+      called within one mile, Medium within three, High within eight, measured from where the
+      aircraft actually went. The omission is deliberate: if a landmark is not seen, the crew are to
+      stick to their courses and times and wait for the next, not hunt for it.</p>
+      <p>(ii) No call is made while nav updates are switched off, during a bombing run, or while
+      EDWARD is counting down a turn. A call falling in such a moment is held and made when he is
+      free, or abandoned if it has gone stale.</p>
+      <p>(iii) Calls are spaced, and only one is made at a time.</p>
+      <p>(iv) <b>The time is stated only where the mission carries planned times.</b> Where the
+      Mission Editor has set none, the landmark and the displacement are given and nothing is said
+      of the clock &mdash; a time invented from an assumed speed being worse than none.</p>
+      <p>(v) Clearing the D.R. marks from the map does <i>not</i> stop the calls. The marks are a
+      convenience upon the chart; the calls are the navigator's work, and the landmark is to be
+      looked for out of the window.</p>
+    </div>
+
   </section>
 
   <footer>
     Edward &mdash; Dead Reckoning Survey Notes. Complementary to the Edward Menu Notes. See
     <code>Documentation/Plans/DeadReckoning_Plan.md</code> in the source repository for the design
-    and open questions behind Operating Data above.
+    and the open questions behind it.
   </footer>
 </main>
 </body>
