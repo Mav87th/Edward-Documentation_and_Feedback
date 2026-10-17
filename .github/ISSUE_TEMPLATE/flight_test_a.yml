@@ -118,7 +118,8 @@ body:
         bombs (the two in the bomb bay), not the wing stations, which carry drop tanks.
         **Do:** fly through the IP; Edward says "Bombs armed". Look at the bomb station switches
         (or *Weapons and Bombing ▸ Arm Weapons ▸ Select Bombs*).
-        **Pass:** the two bomb-bay stations are selected, the two wing stations are not.
+        **Pass:** the two bomb-bay stations are selected, the two wing stations are not. If you are
+        still turning at the IP, "Bombs armed" waits until the bank is back under 30°; that is intended.
       options: [Not tested, Passed, Not passed]
       default: 0
 
@@ -465,6 +466,71 @@ body:
     id: notes-4
     attributes:
       label: Notes on Part 4
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------------------------------------
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Part 5 — Early turns at the waypoints (fly during Part 2)
+
+        Edward now calls each turn before the waypoint, so a 45° bank turn rolls out on the line to
+        the next waypoint. Hold now banks up to 45° too. Check it at WP1, WP2 and WP3 of slot A-Long.
+
+  - type: dropdown
+    id: p5-1
+    attributes:
+      label: 5.1 — The countdown is to the turn, not the waypoint
+      description: |
+        **Do:** with Hold ON, watch the calls before WP1.
+        **Pass:** "Two minutes to the turn at WP1…", "One minute to the turn at WP1…", "30 seconds."
+        and "10 seconds to the turn at WP1. Turn starboard for WP2 heading …" (or port), in that order.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p5-2
+    attributes:
+      label: 5.2 — "Turn now" comes before the waypoint
+      description: |
+        **Do:** as soon as the 10-second call gives the new heading, type it into *Hold My Aircraft ▸
+        Set Course* but don't click the centre yet. Watch the range to WP1 on the Navigation page.
+        **Pass:** "Turn starboard now for WP2, heading … New track …" comes before WP1: about half a
+        mile out for a gentle turn, about a mile for a right-angle turn. dcs.log has one line
+        `turn point for WP1` (and the same for WP2 and WP3).
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p5-3
+    attributes:
+      label: 5.3 — Hold flies the turn onto the new track
+      description: |
+        **Do:** on the "Turn … now" call, click the centre to set the course. Once the wings are
+        level, open the Navigation page.
+        **Pass:** Hold banks to about 45° and rolls out on the called heading; the steer shown is
+        within about 3° of the course flown; the first mark call on the new leg says "On track".
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p5-4
+    attributes:
+      label: 5.4 — The target is still flown over
+      description: |
+        **Do:** watch the calls before the target in the bomb run at the end of the flight (2.13).
+        **Pass:** the countdown is to the target itself (no "the turn at"), and Edward moves on only
+        once you are over the target.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: textarea
+    id: notes-5
+    attributes:
+      label: Notes on Part 5
+      description: For each turn, the steer shown after the roll-out and the course flown - the difference shows how wide the turn was.
     validations:
       required: false
 

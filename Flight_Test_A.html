@@ -241,7 +241,8 @@
       the bomb station switches, or <span class="menu-path">Weapons and Bombing &#9656; Arm Weapons
       &#9656; Select Bombs</span>.</p>
       <p><span class="label pass">Pass</span> The two bomb-bay stations are selected; the two wing
-      stations are not.</p>
+      stations are not. If you are still turning at the IP, &ldquo;Bombs armed&rdquo; waits until the
+      bank is back under 30&deg;; that is intended.</p>
     </div>
 
     <div class="step"><h3><span class="num">1.4</span> IP course uses the forecast wind (log check)</h3>
@@ -288,7 +289,7 @@
     <h2>Part 2 &mdash; Mission A, slot A-Long: the long flight</h2>
     <p class="lead">Three 40 NM legs at 6,000 ft, then a climb, then the same bomb run as Part 1.
     Several points need a watch or the in-game clock: <b>note the time of your first Check
-    Drift</b>.</p>
+    Drift</b>. The turn checks in Part 5 are flown on this flight too, at WP1, WP2 and WP3.</p>
 
     <div class="step"><h3><span class="num">2.1</span> Dead Reckoning menu right after loading</h3>
       <p><span class="label">What</span> Using the menu in the first seconds after loading, before
@@ -462,6 +463,53 @@
       missions use the original points again.</p>
     </div>
     <p class="lead">There is no 4.1 in this test: that number is a check done by the developer.</p>
+  </section>
+
+  <section>
+    <h2>Part 5 &mdash; Early turns at the waypoints (fly during Part 2)</h2>
+    <p class="lead">Edward now calls each turn <b>before</b> the waypoint, so that a 45&deg; bank turn at
+    your present speed rolls out on the line to the next waypoint instead of overshooting it. Hold
+    now banks up to 45&deg; for the same reason. Check this at WP1, WP2 and WP3 of the slot A-Long
+    flight; it needs no extra flight.</p>
+
+    <div class="step"><h3><span class="num">5.1</span> The countdown is to the turn, not the waypoint</h3>
+      <p><span class="label">What</span> The two-minute, one-minute, 30-second and 10-second calls
+      count down to the point where the turn has to start.</p>
+      <p><span class="label">Do</span> With Hold ON, watch the calls before WP1.</p>
+      <p><span class="label pass">Pass</span> &ldquo;Two minutes to the turn at WP1&hellip;&rdquo;,
+      &ldquo;One minute to the turn at WP1&hellip;&rdquo;, &ldquo;30 seconds.&rdquo; and &ldquo;10
+      seconds to the turn at WP1. Turn starboard for WP2 heading &hellip;&rdquo; (or port), in that
+      order.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">5.2</span> &ldquo;Turn now&rdquo; comes before the waypoint</h3>
+      <p><span class="label">Do</span> As soon as the 10-second call gives the new heading, open
+      <span class="menu-path">Hold My Aircraft &#9656; Set Course</span> and type it in, but don't
+      click the centre yet. Watch the range to WP1 on the Navigation page.</p>
+      <p><span class="label pass">Pass</span> &ldquo;Turn starboard now for WP2, heading &hellip;
+      New track &hellip;&rdquo; comes <b>before</b> WP1: about half a mile out for a gentle turn,
+      about a mile for a right-angle turn, more for a sharper one. After the flight, dcs.log has one
+      line <code>turn point for WP1</code> (and the same for WP2 and WP3).</p>
+    </div>
+
+    <div class="step"><h3><span class="num">5.3</span> Hold flies the turn onto the new track</h3>
+      <p><span class="label">Do</span> On the &ldquo;Turn &hellip; now&rdquo; call, click the centre to
+      set the course. Once the wings are level, open the Navigation page.</p>
+      <p><span class="label pass">Pass</span> Hold banks to about 45&deg; and rolls out on the called
+      heading. The steer on the Navigation page is within about 3&deg; of the course being flown, and
+      the first mark call on the new leg (about 5 minutes later) says &ldquo;On track&rdquo;. In the
+      notes, write the steer shown and the course flown for each turn: the difference shows how
+      wide the turn was.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">5.4</span> The target is still flown over</h3>
+      <p><span class="label">What</span> A bomb run's target must be flown over, so it keeps the old
+      calls.</p>
+      <p><span class="label">Do</span> Watch the calls before the target in the bomb run at the end of
+      the flight (2.13).</p>
+      <p><span class="label pass">Pass</span> The countdown is to the target itself (no &ldquo;the
+      turn at&rdquo;), and Edward moves on to the next waypoint only once you are over the target.</p>
+    </div>
   </section>
 
   <section>
