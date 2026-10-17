@@ -24,8 +24,13 @@ an aeroplane of this vintage.
 
 ## Reporting a bug or asking for something
 
-Open an [issue](../../issues/new/choose). There are two forms — one for something not working, one
-for an idea.
+There are two forms (a free GitHub account is needed to send either):
+
+- **[Report a bug](https://github.com/Mav87th/Edward-Documentation_and_Feedback/issues/new?template=bug_report.yml)** — something not working
+- **[Request a feature](https://github.com/Mav87th/Edward-Documentation_and_Feedback/issues/new?template=feature_request.yml)** — an idea
+
+Or see [all open issues](https://github.com/Mav87th/Edward-Documentation_and_Feedback/issues) first, in
+case it has already been reported.
 
 What helps most in a bug report:
 
