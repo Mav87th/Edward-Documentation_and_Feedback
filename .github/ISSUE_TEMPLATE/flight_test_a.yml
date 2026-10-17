@@ -158,7 +158,7 @@ body:
         **Do:** Navigation must be on the TGT waypoint. It moves on along the route by itself; if
         not, pick TGT in *Navigation ▸ By Waypoints*. Watch the calls as the target approaches.
         **Pass:** up to about two minutes out the calls include "Steer …". From one minute out you
-        see only "One minute to TGT.", "30 seconds." and "10 seconds to TGT.". There's no
+        see only "One minute to target.", "30 seconds." and "10 seconds to target.". There's no
         "Off track" call and no "Turn … for WP6" heading in that last minute.
       options: [Not tested, Passed, Not passed]
       default: 0
