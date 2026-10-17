@@ -89,6 +89,7 @@ body:
         ---
         ## Part 1 — Mission FlightA-Low: a bomb run before any wind measurement
 
+        You start heading **212° magnetic**, so first set the Directional Gyro to 212.
         You start 20-25 NM before the IP with bombs in the bay and drop tanks on the wings. This part
         checks the bomb run while Edward still only knows the forecast wind, so **do not use Check
         Drift in this mission**. Fly Edward's steer calls to the IP and on to the target.
