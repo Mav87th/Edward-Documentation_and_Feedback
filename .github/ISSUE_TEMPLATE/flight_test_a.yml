@@ -394,8 +394,9 @@ body:
         first mark on the bank indicator) at your present speed, so you roll out on the line to the
         next waypoint. The countdown calls count down to the point where the turn has to start.
         **Do:** watch the calls before WP1.
-        **Pass:** "Two minutes to the turn at WP1…", "One minute to the turn at WP1…", "30 seconds."
-        and "10 seconds to the turn at WP1. Turn starboard for WP2 heading …" (or port), in that order.
+        **Pass:** "Two minutes to the turn at WP1…", "On track, one minute to the turn.", "30 seconds."
+        and "10 seconds to the turn starboard for heading …" (or port), in that order. Only the first
+        call names the waypoint.
       options: [Not tested, Passed, Not passed]
       default: 0
 
@@ -405,7 +406,7 @@ body:
       label: 2.16 — "Turn now" comes before the waypoint
       description: |
         **Do:** watch the range to WP1 on the Navigation page as the turn call comes.
-        **Pass:** "Turn starboard now for WP2, heading … New track …" comes before WP1: about half a
+        **Pass:** "Turn starboard now for heading … New track …" comes before WP1: about half a
         mile out for a gentle turn, a little over a mile for a right-angle turn. dcs.log has one line
         `turn point for WP1` (and the same for WP2 and WP3).
       options: [Not tested, Passed, Not passed]
