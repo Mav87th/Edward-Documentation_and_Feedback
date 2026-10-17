@@ -22,7 +22,7 @@ body:
         explained in [The Edward Menu — Notes](https://mav87th.github.io/Edward-Documentation_and_Feedback/Edward_Menu_Overview.html).
 
         **Words used below**
-        - **Hold** (menu: *Hold My Aircraft*) — Edward flies the aircraft on a set course and
+        - **Hold** (menu: *Hold My Aircraft*) — Edward holds the aircraft on a set course and
           altitude. You fly the aircraft yourself in this test; use Hold only where a test point
           asks for it.
         - **Steer call** — Edward's on-screen line telling you the course to fly, e.g.
