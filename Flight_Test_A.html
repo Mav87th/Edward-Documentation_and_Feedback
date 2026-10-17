@@ -77,6 +77,15 @@
     padding: 14px 16px; margin: 22px 0 0; font-size: 0.95rem;
   }
   .status-banner .glyph { font-size: 1.1rem; line-height: 1.3; }
+  .must-do {
+    background: var(--warn-bg); border: 3px solid var(--accent); border-radius: 10px;
+    padding: 16px 20px; margin: 0 0 32px;
+  }
+  .must-do h2 { color: var(--accent-strong); font-size: 1rem; margin: 0 0 8px; }
+  .must-do p, .must-do ol { margin: 8px 0 0; }
+  .must-do ol { padding-left: 22px; }
+  .must-do li { margin: 4px 0; }
+  .must-do-img { display: block; max-width: 100%; height: auto; margin-top: 12px; border-radius: 6px; }
   .report-button {
     display: inline-block; margin-top: 6px; padding: 0.45em 0.9em;
     background: var(--accent); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 700;
@@ -132,6 +141,25 @@
     </div>
   </header>
 
+  <div class="must-do" role="note">
+    <h2>&#9888; First, in every mission: set the Directional Gyro</h2>
+    <p>The Mosquito's <b>Directional Gyro</b> (the dial marked &ldquo;DIRECTION INDICATOR&rdquo; on the
+    main panel) is not connected to the compass, so after you enter the aircraft it can show any
+    heading. Edward gives every heading as a magnetic heading, so his calls only make sense once the
+    gyro agrees with the magnetic compass.</p>
+    <ol>
+      <li>Straight after entering the cockpit, fly straight and level for a few seconds and read the
+        heading on the <b>magnetic compass</b>.</li>
+      <li>Turn the <b>Directional Gyro Adjustment Control Knob</b>, just below the dial, until the
+        Directional Gyro shows the same heading.</li>
+      <li>Check it against the compass again about every 15 minutes; the gyro slowly drifts.</li>
+    </ol>
+    <!-- Picture: enable once images/directional_gyro.png is saved
+    <img class="must-do-img" src="images/directional_gyro.png" width="332" height="190"
+      alt="Mosquito main panel: the Directional Gyro dial marked DIRECTION INDICATOR, with the Directional Gyro Adjustment Control Knob just below it">
+    -->
+  </div>
+
   <section>
     <h2>What Edward is</h2>
     <div class="step">
@@ -177,6 +205,8 @@
         <li>In flight, menu <span class="menu-path">Status &#9656; Logging</span>: set it ON. The log
           checks below need it.</li>
         <li>Menu <span class="menu-path">Settings &#9656; Automations</span>: set everything ON.</li>
+        <li>In the cockpit of every mission: set the Directional Gyro to the magnetic compass (see the
+          box at the top of this page).</li>
       </ol>
     </div>
   </section>
@@ -194,7 +224,7 @@
         <tr><td><code>Edward-FlightA-High.miz</code></td>
           <td>Same aircraft and target. You start at 6,000 ft and fly three legs of about 40 NM over
           inland Normandy, past towns, rivers and railways, before the same IP and TGT. About 45
-          minutes in all.</td>
+          minutes in all. You start on <b>183&deg; magnetic</b>: set the Directional Gyro to 183.</td>
           <td>Part 2</td></tr>
         <tr><td><code>Edward-FuelLow-NoTanks.miz</code><br><code>Edward-FuelLow-Tanks.miz</code></td>
           <td>Both at 5,000 ft with very little fuel left in the outer tanks, so they run low within
@@ -299,7 +329,9 @@
 
   <section>
     <h2>Part 2 &mdash; Mission FlightA-High: the long flight</h2>
-    <p class="lead">Three 40 NM legs at 6,000 ft, then a climb, then the same bomb run as Part 1.
+    <p class="lead">You start heading <b>183&deg; magnetic</b>, so first set the Directional Gyro to
+    183 (see the box at the top). Three 40 NM legs at 6,000 ft, then a climb, then the same bomb run
+    as Part 1.
     Several points need a watch or the in-game clock: <b>note the time of your first Check
     Drift</b>. The turn checks 2.15&ndash;2.18 are flown at WP1, WP2, WP3 and the target, so keep them in
     mind from the start.</p>

@@ -15,6 +15,14 @@ body:
         **Not tested**, and write what you saw in the notes box after each part. Not passed is as
         useful as Passed, and a partly filled report is still welcome.
 
+        > [!IMPORTANT]
+        > **First, in every mission: set the Directional Gyro.** The Mosquito's Directional Gyro (the
+        > dial marked "DIRECTION INDICATOR" on the main panel) is not connected to the compass, so
+        > after you enter the aircraft it can show any heading. Edward's headings are magnetic, so
+        > straight after entering the cockpit read the **magnetic compass** (straight and level) and
+        > turn the **Directional Gyro Adjustment Control Knob**, just below the dial, until the gyro
+        > shows the same heading. Check it again about every 15 minutes; the gyro slowly drifts.
+
         **What Edward is.** Edward is the navigator in the right-hand seat of the DCS Mosquito
         FB Mk VI. He calls out headings and times, keeps the fuel cocks right, arms the bombs and
         works the bomb bay on a bomb run, and can hold the aircraft on a course and altitude for
@@ -45,6 +53,7 @@ body:
         1. Install the test build (Install.bat) and **restart DCS**.
         2. In flight, menu **Status ▸ Logging**: set to ON (the log lines below need it).
         3. Menu **Settings ▸ Automations**: everything ON.
+        4. In the cockpit of every mission: set the Directional Gyro to the magnetic compass (see above).
 
   - type: input
     id: build
@@ -207,6 +216,7 @@ body:
         ---
         ## Part 2 — Mission FlightA-High: the long flight (about 45 minutes)
 
+        You start heading **183° magnetic**, so first set the Directional Gyro to 183.
         A route of three 40 NM legs at 6,000 ft, then a climb, then the same bomb run as Part 1.
         Several points need a watch or the in-game clock: note the time of your first Check Drift.
 
