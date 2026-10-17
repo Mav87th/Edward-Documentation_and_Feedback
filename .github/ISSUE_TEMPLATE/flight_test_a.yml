@@ -119,7 +119,8 @@ body:
         **Do:** fly through the IP; Edward says "Bombs armed". Look at the bomb station switches
         (or *Weapons and Bombing ▸ Arm Weapons ▸ Select Bombs*).
         **Pass:** the two bomb-bay stations are selected, the two wing stations are not. If you are
-        still turning at the IP, "Bombs armed" waits until the bank is back under 30°; that is intended.
+        still turning onto the run-in at the IP, "Bombs armed" waits until the bank is back under
+        30°; that is intended.
       options: [Not tested, Passed, Not passed]
       default: 0
 
@@ -476,8 +477,9 @@ body:
         ---
         ## Part 5 — Early turns at the waypoints (fly during Part 2)
 
-        Edward now calls each turn before the waypoint, so a 45° bank turn rolls out on the line to
-        the next waypoint. Hold now banks up to 45° too. Check it at WP1, WP2 and WP3 of slot A-Long.
+        Edward now calls each turn before the waypoint, so a 30° bank turn rolls out on the line to
+        the next waypoint; the turn onto the run-in at the IP is figured for 45°. Hold banks the
+        same. Check 5.1-5.4 at WP1, WP2 and WP3 of slot A-Long, and 5.5 at the IP.
 
   - type: dropdown
     id: p5-1
@@ -498,7 +500,7 @@ body:
         **Do:** as soon as the 10-second call gives the new heading, type it into *Hold My Aircraft ▸
         Set Course* but don't click the centre yet. Watch the range to WP1 on the Navigation page.
         **Pass:** "Turn starboard now for WP2, heading … New track …" comes before WP1: about half a
-        mile out for a gentle turn, about a mile for a right-angle turn. dcs.log has one line
+        mile out for a gentle turn, a little over a mile for a right-angle turn. dcs.log has one line
         `turn point for WP1` (and the same for WP2 and WP3).
       options: [Not tested, Passed, Not passed]
       default: 0
@@ -510,7 +512,7 @@ body:
       description: |
         **Do:** on the "Turn … now" call, click the centre to set the course. Once the wings are
         level, open the Navigation page.
-        **Pass:** Hold banks to about 45° and rolls out on the called heading; the steer shown is
+        **Pass:** Hold banks to about 30° and rolls out on the called heading; the steer shown is
         within about 3° of the course flown; the first mark call on the new leg says "On track".
       options: [Not tested, Passed, Not passed]
       default: 0
@@ -523,6 +525,22 @@ body:
         **Do:** watch the calls before the target in the bomb run at the end of the flight (2.13).
         **Pass:** the countdown is to the target itself (no "the turn at"), and Edward moves on only
         once you are over the target.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p5-5
+    attributes:
+      label: 5.5 — The turn at the IP rolls out on the run-in
+      description: |
+        **What:** at the IP the turn also starts early, so you roll out on the line from the IP to the
+        target (e.g. along a road leading to it). This one turn is figured for 45° of bank, and Hold
+        banks 45° for it.
+        **Do:** in the bomb run (slot A-Run, and 2.13), set the course on Hold on the "Turn … now"
+        call before the IP, as in 5.2-5.3.
+        **Pass:** "Turn … now for …" the target waypoint comes before the IP; Hold banks to about
+        45°; Edward still says the IP is reached ("IP. Starting the run…") during the turn; you roll
+        out on the IP-to-target line (Navigation page steer within about 3° of the course flown).
       options: [Not tested, Passed, Not passed]
       default: 0
 
