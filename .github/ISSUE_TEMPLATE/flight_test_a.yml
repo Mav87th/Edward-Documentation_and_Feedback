@@ -244,7 +244,7 @@ body:
         should say so.
         **Do:** fly towards WP1 and read the steer calls, then open the *Navigation* page.
         **Pass:** the steer calls end with "(met forecast wind)" and the centre of the Navigation
-        page shows "Met forecast".
+        page shows the forecast wind as its last line, e.g. "Met 180°/48 Mph".
       options: [Not tested, Passed, Not passed]
       default: 0
 
@@ -292,7 +292,7 @@ body:
         **Do:** on leg 1, *Navigation ▸ Drift Recorder ▸ Check Drift*, and hold straight for about a
         minute until the result shows. **Write down the time.**
         **Pass:** the following steer calls no longer end with "(met forecast wind)", and the
-        Navigation page no longer shows "Met forecast".
+        Navigation page shows the measured "Wind ..." line instead of "Met ...".
       options: [Not tested, Passed, Not passed]
       default: 0
 

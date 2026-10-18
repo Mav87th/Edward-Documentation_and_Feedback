@@ -999,7 +999,7 @@ Settings &mdash; Automations &mdash;
     driftChecking: false,
     // Before any check the real hub shows the met-forecast triangle (DriftRecorder.lua, 2026-10-08);
     // "No reading yet" only when the mission has no forecast (Dynamic weather).
-    driftResults: 'Course 090°M | Drift 4° Stbd | Track 094°M | Met forecast',
+    driftResults: 'Course 090°M | Drift 4° Stbd | Track 094°M | Met 000°/17 Mph',
     navPicture: null, // null, or {tag, source:'waypoint'|'marker', steerDeg, speed} - set on selection, read by navPictureText()
     weapons: {
       selectedTarget: null, selectedIP: null, // null, or a demo label string like 'WP5'
@@ -1432,7 +1432,7 @@ Settings &mdash; Automations &mdash;
   var KTS_TO_MPH_DEMO = 1.15078; // same conversion Radio-side already uses via MPS_TO_MPH/MPS_TO_KTS
   var DEMO_DRIFT = { driftPart: null, gsPart: null, windPart: null };
   function composeDriftResults() {
-    if (!DEMO_DRIFT.driftPart) return 'Course 090°M | Drift 4° Stbd | Track 094°M | Met forecast';
+    if (!DEMO_DRIFT.driftPart) return 'Course 090°M | Drift 4° Stbd | Track 094°M | Met 000°/17 Mph';
     return DEMO_DRIFT.driftPart + ' | ' + (DEMO_DRIFT.gsPart || 'GS --') + ' | ' + (DEMO_DRIFT.windPart || 'Wind --');
   }
   function clearDriftCheckTimers() {
