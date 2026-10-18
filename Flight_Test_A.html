@@ -145,7 +145,7 @@
   </header>
 
   <div class="must-do" role="note">
-    <h2>&#9888; First, in every flying mission (Parts 1&ndash;3): set the Directional Gyro</h2>
+    <h2>&#9888; First, in the flying mission (Part 1): set the Directional Gyro</h2>
     <p>The Mosquito's <b>Directional Gyro</b> (the dial marked &ldquo;DIRECTION INDICATOR&rdquo; on the
     main panel) is not connected to the compass, so after you enter the aircraft it can show any
     heading. Edward gives every heading as a magnetic heading, so his calls only make sense once the
@@ -183,15 +183,6 @@
           Hold only where a test point asks for it.</li>
         <li><b>Steer call</b>: Edward's on-screen line telling you the course to fly, for example
           &ldquo;Two minutes to WP2. Steer 095&deg;M, range 8.1 NM.&rdquo;</li>
-        <li><b>Check Drift</b> (menu <span class="menu-path">Navigation &#9656; Drift Recorder</span>):
-          Edward measures the real wind over about a minute. Before that he uses the weather
-          forecast written into the mission.</li>
-        <li><b>IP / TGT</b>: the Initial Point where the bomb run starts, and the Target. Edward finds
-          them by the waypoint names &ldquo;IP&rdquo; and &ldquo;TGT&rdquo;.</li>
-        <li><b>Outer and main tanks</b>: the Mosquito's wing tanks. Edward uses the outer tanks
-          first and changes the main fuel cocks to MAIN (the inner tanks) when the outer ones are
-          nearly empty. With drop tanks fitted, the transfer cock pumps drop-tank fuel into the outer
-          tanks.</li>
         <li><b>dcs.log</b>: DCS's log file, <code>Saved Games\&lt;your DCS folder&gt;\Logs\dcs.log</code>.
           Some points ask you to search it for a line of text after the flight: open it in a text
           editor and use Find. DCS starts a new log each time it starts, so check it (and keep a copy
@@ -208,7 +199,7 @@
         <li>In flight, menu <span class="menu-path">Status &#9656; Logging</span>: set it ON. The log
           checks below need it.</li>
         <li>Menu <span class="menu-path">Settings &#9656; Automations</span>: set everything ON.</li>
-        <li>In the cockpit of every flying mission (Parts 1&ndash;3): set the Directional Gyro to the
+        <li>In the cockpit of the flying mission (Part 1): set the Directional Gyro to the
           magnetic compass (see the box at the top of this page).</li>
       </ol>
     </div>
@@ -216,374 +207,63 @@
 
   <section>
     <h2>The missions</h2>
-    <p class="lead">Five missions come with the test build, each with one pilot slot. All start in the air.</p>
+    <p class="lead">Two missions come with the test build, each with one pilot slot.</p>
     <div class="table-wrap">
       <table class="missions">
         <tr><th>Mission</th><th>What it is</th><th>Used in</th></tr>
-        <tr><td><code>Edward-FlightA-Low.miz</code></td>
-          <td>Normandy. You start 20&ndash;25 NM before the IP at 2,000 ft with two 500 lb bombs in the
-          bay and drop tanks on the wings. Route: IP &rarr; TGT (a few trucks) &rarr; HOME. You start on
-          <b>212&deg; magnetic</b>: set the Directional Gyro to 212.</td>
-          <td>Part 1</td></tr>
         <tr><td><code>Edward-FlightA-High.miz</code></td>
-          <td>Same aircraft and target. You start at 6,000 ft and fly three legs of about 40 NM over
-          inland Normandy, past towns, rivers and railways, before the same IP and TGT. About 45
-          minutes in all. You start on <b>183&deg; magnetic</b>: set the Directional Gyro to 183.</td>
-          <td>Part 2</td></tr>
-        <tr><td><code>Edward-FuelLow-NoTanks.miz</code><br><code>Edward-FuelLow-Tanks.miz</code></td>
-          <td>Both at 5,000 ft with full fuel. You fly until the outer tanks are nearly empty (about
-          40 minutes each). FuelLow-NoTanks has no drop tanks; FuelLow-Tanks has them, full. Both start
-          on <b>183&deg; magnetic</b>: set the Directional Gyro to 183.</td>
-          <td>Part 3</td></tr>
+          <td>Normandy, an air start at 6,000 ft. Three legs of about 40 NM over inland Normandy,
+          with a turn at WP1, WP2 and WP3. You start on <b>183&deg; magnetic</b>: set the
+          Directional Gyro to 183.</td>
+          <td>Part 1</td></tr>
         <tr><td><code>Edward-DRSurvey-Normandy.miz</code></td>
           <td>Normandy with exactly one aircraft in the whole mission. That is what unlocks editing
           the landmark points Edward uses for the map. You start on the ground; no need to set the
           Directional Gyro.</td>
-          <td>Part 4</td></tr>
+          <td>Part 2</td></tr>
       </table>
     </div>
   </section>
 
   <section>
-    <h2>Part 1 &mdash; Mission FlightA-Low: a bomb run before any wind measurement</h2>
-    <p class="lead">You start heading <b>212&deg; magnetic</b>, so first set the Directional Gyro to
-    212 (see the box at the top). This part checks the bomb run while Edward still only knows the
-    forecast wind,
-    so <b>do not use Check Drift in this mission</b>. Fly the steer calls to the IP and on to the target.</p>
-
-    <div class="step"><h3><span class="num">1.1</span> IP and target found from the waypoint names</h3>
-      <p><span class="label">What</span> Edward picks the IP and target himself from waypoints named
-      &ldquo;IP&rdquo; and &ldquo;TGT&rdquo;. Nothing else in the mission marks the target.</p>
-      <p><span class="label">Do</span> Open the menu and look at the centre of the
-      <span class="menu-path">Weapons and Bombing</span> page.</p>
-      <p><span class="label pass">Pass</span> It shows the two waypoints, for example
-      <code>WP4 &gt;&gt; WP5</code>, with a planned time on target below.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">1.2</span> A list with only one point still draws a full ring</h3>
-      <p><span class="label">What</span> The ring menu can't draw fewer than three wedges as a full
-      circle. A list holding one point used to leave an empty gap; now a <i>Refresh</i> wedge fills
-      it.</p>
-      <p><span class="label">Do</span> <span class="menu-path">Weapons and Bombing &#9656; TGT &#9656;
-      TGT Waypoint</span>, then the same under <i>IP</i>.</p>
-      <p><span class="label pass">Pass</span> Each shows the one waypoint, <i>Refresh</i> and
-      <i>Go Back</i> as a full ring with no empty sector.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">1.3</span> Only the stations carrying bombs are armed</h3>
-      <p><span class="label">What</span> At the IP Edward arms the bombs. He should select only the
-      stations that carry bombs (the two in the bomb bay), not the wing stations, which carry drop
-      tanks.</p>
-      <p><span class="label">Do</span> Fly through the IP; Edward says &ldquo;Bombs armed&rdquo;. Look at
-      the bomb station switches, or <span class="menu-path">Weapons and Bombing &#9656; Arm Weapons
-      &#9656; Select Bombs</span>.</p>
-      <p><span class="label pass">Pass</span> The two bomb-bay stations are selected; the two wing
-      stations are not. If you are still turning onto the run-in at the IP, &ldquo;Bombs armed&rdquo;
-      waits until the bank is back under 30&deg;; that is intended.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">1.4</span> IP course uses the forecast wind (log check)</h3>
-      <p><span class="label">What</span> At the IP Edward works out the course to the target,
-      corrected for wind. With no wind measured yet he uses the mission's forecast wind, and says
-      so.</p>
-      <p><span class="label">Do</span> After the flight, search dcs.log for <code>IP course to target</code>.</p>
-      <p><span class="label pass">Pass</span> The line is there and ends with
-      <code>(met forecast wind)</code>.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">1.5</span> No course directions in the last minute before the target</h3>
-      <p><span class="label">What</span> Real Mosquito crews flew the last part of a bomb run by eye,
-      and inside the last minute it is too late for course or speed corrections. So from one minute
-      out Edward gives no more course directions. He only counts down to the target and calls the bomb bay; later
-      builds add altitude calls there too.</p>
-      <p><span class="label">Do</span> Navigation must be on the TGT waypoint. It moves on along the
-      route by itself; if not, pick TGT in <span class="menu-path">Navigation &#9656; By
-      Waypoints</span>. Watch the calls as the target approaches.</p>
-      <p><span class="label pass">Pass</span> Up to about two minutes out the calls include
-      &ldquo;Steer &hellip;&rdquo;. From one minute out you see only &ldquo;One minute to
-      target.&rdquo;, &ldquo;30 seconds.&rdquo; and &ldquo;10 seconds to target.&rdquo;. There's no
-      &ldquo;Off track&rdquo; call and no &ldquo;Turn &hellip; for WP6&rdquo; heading in that last
-      minute.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">1.6</span> Bomb bay opens about 4 NM before the target</h3>
-      <p><span class="label">What</span> Edward opens the bomb bay doors about one minute (4 NM)
-      before the target.</p>
-      <p><span class="label pass">Pass</span> &ldquo;Opening the bomb bay.&rdquo; about 4 NM out (the
-      range is shown on the steer calls and the Navigation page).</p>
-    </div>
-
-    <div class="step"><h3><span class="num">1.7</span> Bombs away ends the run, navigation carries on</h3>
-      <p><span class="label">What</span> When the bombs are gone Edward closes the bay and ends the
-      run.</p>
-      <p><span class="label">Do</span> Release the bombs over the target with the bomb release key.</p>
-      <p><span class="label pass">Pass</span> &ldquo;Bombs away.&rdquo; and &ldquo;Closing the bomb
-      bay.&rdquo; come, and afterwards the normal steer calls to the next waypoint (HOME) resume.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">1.8</span> The turn at the IP rolls out on the run-in</h3>
-      <p><span class="label">What</span> Edward calls the turn onto the run-in <b>before</b> the IP,
-      worked out for a 45&deg; bank turn at your present speed, so you roll out on the line from the
-      IP to the target, for example a road leading to it. The countdown before it says &ldquo;&hellip;to
-      the turn at&rdquo; the IP waypoint.</p>
-      <p><span class="label">Do</span> On the &ldquo;Turn &hellip; now&rdquo; call before the IP, roll
-      into a 45&deg; bank, hold your height, and roll out on the heading Edward gave.</p>
-      <p><span class="label pass">Pass</span> The call comes before you reach the IP, and Edward still
-      says the IP is reached (&ldquo;IP. Starting the run&hellip;&rdquo;) during the turn. After the
-      roll-out the steer on the Navigation page is within about 3&deg; of your heading. In the
-      notes, write that steer and your heading.</p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Part 2 &mdash; Mission FlightA-High: the long flight</h2>
+    <h2>Part 1 &mdash; Mission FlightA-High: the turn calls</h2>
     <p class="lead">You start heading <b>183&deg; magnetic</b>, so first set the Directional Gyro to
-    183 (see the box at the top). Three 40 NM legs at 6,000 ft, then a climb, then the same bomb run
-    as Part 1.
-    Several points need a watch or the in-game clock: <b>note the time of your first Check
-    Drift</b>. The turn checks 2.15&ndash;2.18 are flown at WP1, WP2, WP3 and the target, so keep them in
-    mind from the start.</p>
+    183 (see the box at the top). Fly the route to WP3; the bomb run after it is not part of this
+    test.</p>
 
-    <div class="step"><h3><span class="num">2.1</span> Dead Reckoning menu right after loading</h3>
-      <p><span class="label">What</span> Using the menu in the first seconds after loading, before
-      Edward's mission side is ready, must not cause an error.</p>
-      <p><span class="label">Do</span> Within 2&ndash;3 seconds of the mission starting, open the menu
-      and click <span class="menu-path">Navigation &#9656; DR Landmarks</span>.</p>
-      <p><span class="label pass">Pass</span> No Lua error box. A short &ldquo;not ready&rdquo; message,
-      or nothing at all, is fine. Note what you saw.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.2</span> Forecast wind is marked as such</h3>
-      <p><span class="label">What</span> Before any Check Drift, Edward's wind correction comes from
-      the forecast, and he should say so.</p>
-      <p><span class="label">Do</span> Fly towards WP1 and read the steer calls, then open the
-      <span class="menu-path">Navigation</span> page.</p>
-      <p><span class="label pass">Pass</span> The steer calls end with &ldquo;(met forecast
-      wind)&rdquo;, and the centre of the Navigation page shows the forecast wind as its last line, e.g. &ldquo;Met 180&deg;/48 Mph&rdquo;.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.3</span> Fuel economy wedge text</h3>
-      <p><span class="label">Do</span> Open the <span class="menu-path">Fuel</span> page.</p>
-      <p><span class="label pass">Pass</span> The wedge reads &ldquo;AMPG at this setting?&rdquo; on
-      one line, not broken over two.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.4</span> One map point still draws a full ring</h3>
-      <p><span class="label">What</span> Same as 1.2, for map points.</p>
-      <p><span class="label">Do</span> Place <b>one</b> mark on the F10 map and name it
-      <code>NAV</code>. Then open <span class="menu-path">Navigation &#9656; By Map Points</span> and
-      <span class="menu-path">Fuel &#9656; Fuel to Point &#9656; To Map Point</span>.</p>
-      <p><span class="label pass">Pass</span> Both show NAV and <i>Refresh</i> (and <i>Go Back</i>)
-      as a full ring with no empty sector.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.5</span> Radio tuning across wavebands, no false warning</h3>
-      <p><span class="label">What</span> Edward tunes the R1155 receiver and switches its waveband when
-      needed. Some wavebands overlap, and there he used to log a false &ldquo;band switch did not
-      take&rdquo; warning.</p>
-      <p><span class="label">Do</span> <span class="menu-path">Radio &#9656; Manually Tune</span>, one
-      after the other: <b>12.0, 4.0, 7.5, 0.2, 1.0</b> MHz. Wait for each one to finish.</p>
-      <p><span class="label pass">Pass</span> Each one tunes, and after the flight dcs.log contains
-      neither <code>did not take</code> nor <code>FAILED</code> for these tunes.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.6</span> After a wind measurement, the forecast note goes</h3>
-      <p><span class="label">Do</span> On leg 1, <span class="menu-path">Navigation &#9656; Drift
-      Recorder &#9656; Check Drift</span>, and fly straight for about a minute until the result
-      shows. <b>Write down the time.</b></p>
-      <p><span class="label pass">Pass</span> The following steer calls no longer end with &ldquo;(met
-      forecast wind)&rdquo;, and the Navigation page shows the measured &ldquo;Wind &hellip;&rdquo; line instead of &ldquo;Met &hellip;&rdquo;.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.7</span> Landmark position fixes (their first test)</h3>
-      <p><span class="label">What</span> Edward knows towns, river crossings and railway features along
-      your route (&ldquo;DR landmarks&rdquo;). As you pass one he warns you, then tells you where you
-      are against your planned track: early or late, and left or right of track.</p>
-      <p><span class="label">Do</span> Fly legs 1 and 2 and watch the calls.</p>
-      <p><span class="label pass">Pass</span> You get a heads-up before a landmark and a fix call at
-      it. In the notes, say whether the distances and the early/late and left/right figures seemed
-      believable.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.8</span> Ten minutes of steady Hold</h3>
-      <p><span class="label">What</span> A long straight leg on Hold, to see how steadily it holds
-      height and wings level.</p>
-      <p><span class="label">Do</span> On leg 2, leave the aircraft on Hold, hands off, for about 10
-      minutes.</p>
-      <p><span class="label pass">Pass</span> No height dips or slow roll-offs you would notice from
-      the cockpit. In the notes, describe any you saw (how big, roughly when); that is the main thing
-      this point is after.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.9</span> An old wind measurement is flagged</h3>
-      <p><span class="label">What</span> A wind measured more than 30 minutes ago may no longer be
-      right, and Edward should say so.</p>
-      <p><span class="label">Do</span> Fly on without another Check Drift until 30 minutes after the
-      time you wrote down at 2.6.</p>
-      <p><span class="label pass">Pass</span> The steer calls then end with &ldquo;(drift estimate
-      stale - check drift again)&rdquo;.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.10</span> A big height change makes the wind measurement stale</h3>
-      <p><span class="label">What</span> The wind changes with height, so after a big climb a wind
-      measured lower down no longer applies.</p>
-      <p><span class="label">Do</span> Check Drift once more, then on leg 3
-      climb to <b>20,000 ft</b>.</p>
-      <p><span class="label pass">Pass</span> During or after the climb the steer calls end with
-      &ldquo;(drift estimate stale - check drift again)&rdquo;.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.11</span> Fuel cocks change with height</h3>
-      <p><span class="label">What</span> Above 10,000 ft Edward pressurises the tanks (venting cock ON)
-      and feeds from the main tanks. Back below 7,500 ft the venting cock goes OFF again.</p>
-      <p><span class="label">Do</span> Watch the venting cock and the main fuel cocks (or the
-      <span class="menu-path">Fuel</span> page) during the climb and the later descent.</p>
-      <p><span class="label pass">Pass</span> Above 10,000 ft venting ON and main cocks on MAIN; below
-      7,500 ft venting OFF.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.12</span> Drop-tank transfer starts together with the venting cock</h3>
-      <p><span class="label">What</span> When the outer tanks are down to 25 gal, Edward turns on the
-      transfer cock to refill them from the drop tanks, and the venting cock with it, 1&ndash;2
-      seconds apart.</p>
-      <p><span class="label">Do</span> This happens by itself whenever the outer tanks reach 25 gal.
-      It may not happen on this flight; then leave it at Not tested. Part 3 covers it too.</p>
-      <p><span class="label pass">Pass</span> The transfer and venting cocks go ON one after the
-      other, 1&ndash;2 s apart.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.13</span> Second bomb run uses the measured wind (log check)</h3>
-      <p><span class="label">Do</span> Descend to 2,000 ft before the IP and fly the bomb run as in
-      Part 1.</p>
-      <p><span class="label pass">Pass</span> In dcs.log, this run's <code>IP course to target</code>
-      line does <b>not</b> end with &ldquo;(met forecast wind)&rdquo;, because a measured wind now
-      exists. Points 1.3&ndash;1.8 behave as before.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.14</span> Restarting the mission resets Edward (log check)</h3>
-      <p><span class="label">Do</span> At the very end, press <b>Shift-R</b> to restart the mission.</p>
-      <p><span class="label pass">Pass</span> dcs.log contains a line with <code>mission reload</code>
-      ending in <code>fuel figures and pending cock clicks reset</code>.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.15</span> The countdown is to the turn, not the waypoint</h3>
-      <p><span class="label">What</span> Edward now calls each turn before the waypoint, worked out for
+    <div class="step"><h3><span class="num">1.1</span> &ldquo;Turn now&rdquo; comes before the waypoint</h3>
+      <p><span class="label">What</span> Edward calls each turn before the waypoint, worked out for
       a 30&deg; bank turn (the first mark on the bank indicator) at your present speed, so you roll
-      out on the line to the next waypoint instead of overshooting it. The two-minute, one-minute,
-      30-second and 10-second calls count down to the point where the turn has to start.</p>
-      <p><span class="label">Do</span> Watch the calls before WP1.</p>
-      <p><span class="label pass">Pass</span> &ldquo;Two minutes to the turn at WP1&hellip;&rdquo;,
-      &ldquo;On track, one minute to the turn.&rdquo;, &ldquo;30 seconds.&rdquo; and &ldquo;10
-      seconds to the turn starboard for heading &hellip;&rdquo; (or port), in that order. Only the
-      first call names the waypoint.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.16</span> &ldquo;Turn now&rdquo; comes before the waypoint</h3>
+      out on the line to the next waypoint instead of overshooting it.</p>
       <p><span class="label">Do</span> Watch the range to WP1 on the Navigation page as the turn call
-      comes.</p>
+      comes. Do the same at WP2 and WP3.</p>
       <p><span class="label pass">Pass</span> &ldquo;Turn starboard now for heading &hellip;
-      New track &hellip;&rdquo; comes <b>before</b> WP1: about half a mile out for a gentle turn,
-      a little over a mile for a right-angle turn, more for a sharper one. After the flight, dcs.log
-      has one line <code>turn point for WP1</code> (and the same for WP2 and WP3).</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.17</span> A 30&deg; turn on the call rolls out on the new track</h3>
-      <p><span class="label">Do</span> At WP1, WP2 and WP3: on the &ldquo;Turn &hellip; now&rdquo;
-      call, roll into a 30&deg; bank (the first mark on the bank indicator), hold your height, and
-      roll out on the heading Edward gave. Then open the Navigation page.</p>
-      <p><span class="label pass">Pass</span> After each roll-out the steer on the Navigation page is
-      within about 3&deg; of your heading, and the first mark call on the new leg (about 5 minutes
-      later) says &ldquo;On track&rdquo;. In the notes, write the steer and your heading for each
-      turn: the difference shows how far off the turn was.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">2.18</span> The target is still flown over</h3>
-      <p><span class="label">What</span> A bomb run's target must be flown over, so it keeps the old
-      calls.</p>
-      <p><span class="label">Do</span> Watch the calls before the target in the bomb run (2.13).</p>
-      <p><span class="label pass">Pass</span> The countdown is to the target itself (no &ldquo;the
-      turn at&rdquo;), and Edward moves on to the next waypoint only once you are over the target.</p>
+      New track &hellip;&rdquo; (or port) comes <b>before</b> each waypoint: about half a mile out for
+      a gentle turn, a little over a mile for a right-angle turn, more for a sharper one. After the
+      flight, dcs.log has one line <code>turn point for WP1</code>, and the same for WP2 and WP3.
+      In the notes, write the range shown when each call came.</p>
     </div>
   </section>
 
   <section>
-    <h2>Part 3 &mdash; Missions FuelLow-NoTanks and FuelLow-Tanks: outer tanks running low</h2>
-    <p class="lead">Both missions start heading <b>183&deg; magnetic</b>, so first set the
-    Directional Gyro to 183 (see the box at the top). These two missions test what Edward does when
-    the outer tanks run low. Each is a
-    long flight, about 40 minutes: fly straight and level at 5,000 ft at cruise power (more power
-    burns the fuel faster) and watch the main fuel cocks and the outer tank gauges, or the
-    <span class="menu-path">Fuel</span> page.</p>
-    <div class="step">
-      <p><span class="label">Why so long</span> The mission loadout has only one fuel setting for
-      all internal tanks, and lowering it empties the centre tanks first, then the inner tanks, and the
-      outer tanks last. A mission can't start with low outer tanks and fuel still in the main tanks,
-      so you start full and burn the outer tanks down. Edward feeds the engines from the outer tanks
-      first, so that happens by itself. The drop tanks are always loaded full.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">3.1</span> No drop tanks: one clean change to MAIN at 8 gal</h3>
-      <p><span class="label">What</span> The Mosquito Pilot's Notes say to use the outer tanks first
-      and change to the main tanks when they are nearly empty. Edward does that at 8 gal.</p>
-      <p><span class="label">Do</span> Mission <b>FuelLow-NoTanks</b>, Fuel automation ON (as set in
-      <i>Before you start</i>). Leave the fuel cocks alone and fly until the outer tanks are below
-      8 gal, about 40 minutes.</p>
-      <p><span class="label pass">Pass</span> The main fuel cocks move from OUTER to MAIN <b>once</b>,
-      at about 8 gal, and never flip back; both engines keep running. dcs.log has
-      <code>outer tanks low</code>.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">3.2</span> With drop tanks: stay on MAIN and start the transfer</h3>
-      <p><span class="label">What</span> With drop tanks fitted and the outer tanks low, Edward feeds
-      from the main tanks and refills the outer tanks from the drop tanks. Normally Edward starts
-      that refill much earlier, at 25 gal, so the outer tanks never get this low. To test it,
-      you switch Edward's fuel handling off while you burn the outer tanks down, then on again.</p>
-      <p><span class="label">Do</span> Mission <b>FuelLow-Tanks</b>:</p>
-      <ol>
-        <li>Wait until the main fuel cocks show <b>OUTER</b> (Edward sets them in the first
-          minute).</li>
-        <li>Menu <span class="menu-path">Settings &#9656; Automations &#9656; Fuel</span>: set it
-          <b>OFF</b>. Leave all fuel cocks alone from now on.</li>
-        <li>Fly until both outer tanks are <b>below 8 gal</b>, about 40 minutes.</li>
-        <li>Straight away set <span class="menu-path">Settings &#9656; Automations &#9656;
-          Fuel</span> back <b>ON</b> and fly straight and level. <b>Don't wait:</b> 8 gal a side
-          lasts only about 7 minutes, and with Fuel OFF nothing switches the tanks for you. If the
-          outer tanks get close to empty, switch the main fuel cocks to MAIN yourself.</li>
-      </ol>
-      <p><span class="label pass">Pass</span> Within about a minute of setting Fuel ON, the main fuel
-      cocks go to MAIN and stay there, and the transfer cock and venting cock go ON, 1&ndash;2 s
-      apart.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">3.3</span> Refilled: back to the outer tanks</h3>
-      <p><span class="label">Do</span> In FuelLow-Tanks, keep flying while the drop tanks refill the
-      outer tanks, about 5&ndash;10 minutes. They should end at about 30 gal a side: the DCS
-      Mosquito delivers only half the drop tanks' fuel, a known DCS fault.</p>
-      <p><span class="label pass">Pass</span> Once the outer tanks are above 25 gal, the main fuel
-      cocks go back to OUTER, and dcs.log has <code>low-outer latch released</code>.</p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Part 4 &mdash; Mission DRSurvey: saving landmark points</h2>
+    <h2>Part 2 &mdash; Mission DRSurvey: saving landmark points</h2>
     <p class="lead">You start on the ground and the heading doesn't matter here, so there is no need
     to set the Directional Gyro. This test saves Edward's Normandy landmark file, so <b>back it up
     first</b>: copy
     <code>Saved Games\&lt;your DCS folder&gt;\Scripts\Edward\DRPoints\Normandy.lua</code> somewhere
     safe.</p>
 
-    <div class="step"><h3><span class="num">4.2</span> Saving shows a result on the menu</h3>
+    <div class="step"><h3><span class="num">2.1</span> Saving shows a result on the menu</h3>
       <p><span class="label">Do</span> Open <span class="menu-path">Navigation &#9656; DR
       Landmarks</span>. Delete one point (or use <i>Re-survey Theatre</i>), then <i>Save</i>.</p>
       <p><span class="label pass">Pass</span> The centre of the page shows
       <code>SAVED n + n YOURS</code> (two numbers).</p>
     </div>
 
-    <div class="step"><h3><span class="num">4.3</span> Put the backup back</h3>
+    <div class="step"><h3><span class="num">2.2</span> Put the backup back</h3>
       <p>Copy your backed-up <code>Normandy.lua</code> back into <code>DRPoints</code>, so normal
       missions use the original points again.</p>
     </div>
-    <p class="lead">There is no 4.1 in this test: that number is a check done by the developer.</p>
   </section>
 
 
