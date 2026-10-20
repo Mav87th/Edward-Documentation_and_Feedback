@@ -38,21 +38,22 @@ body:
         - **dcs.log** — `Saved Games\<your DCS folder>\Logs\dcs.log`. Some points ask you to search
           it for a line of text after the flight (open it in a text editor and use Find).
 
-        **Missions** (supplied with the test build): `Edward-FlightA-High.miz` (Part 1) and
-        `Edward-DRSurvey-Normandy.miz` (Part 2).
+        **Missions** (supplied with the test build): `Edward-FlightA-High.miz` (Part 1),
+        `Edward-DRSurvey-Normandy.miz` (Part 2) and `Edward-FlightA-Landmarks.miz` (Part 3).
 
         **Before you start**
         1. Install the test build (Install.bat) and **restart DCS**.
         2. In flight, menu **Status ▸ Logging**: set to ON (the log lines below need it).
         3. Menu **Settings ▸ Automations**: everything ON.
-        4. In the cockpit of the flying mission (Part 1): set the Directional Gyro to the magnetic compass (see above).
+        4. In the cockpit of the flying missions (Parts 1 and 3): set the Directional Gyro to the magnetic compass (see above).
+        5. Fly Part 2 before Part 3: Part 3 uses the landmarks you make in Part 2.
 
   - type: input
     id: build
     attributes:
       label: Edward test build
       description: The name or date of the zip you installed.
-      placeholder: Edward_Mod_Files, 2026-10-17
+      placeholder: Edward_Mod_Files, 2026-10-19
     validations:
       required: false
 
@@ -114,37 +115,98 @@ body:
     attributes:
       value: |
         ---
-        ## Part 2 — Mission DRSurvey: saving landmark points
+        ## Part 2 — Mission DRSurvey: making the landmark points
 
-        You start on the ground and the heading doesn't matter here, so there is no need to set the
-        Directional Gyro. A mission with exactly one aircraft lets you edit the landmark points
-        Edward uses for a map.
-        This test saves the Normandy file, so **back it up first**: copy
-        `Saved Games\<your DCS folder>\Scripts\Edward\DRPoints\Normandy.lua` somewhere safe.
+        Edward calls out landmarks (towns, churches, bridges…) as you pass them. He finds them in a
+        one-time survey of the map, which you make here. You start on the ground and the heading
+        doesn't matter, so there is no need to set the Directional Gyro.
 
   - type: dropdown
     id: p2-1
     attributes:
-      label: 2.1 — Saving shows a result on the menu
+      label: 2.1 — Making the survey: saving shows a result on the menu
       description: |
-        **Do:** open *Navigation ▸ DR Landmarks*. Delete one point (or use *Re-survey Theatre*), then
-        *Save*.
-        **Pass:** the centre of the page shows `SAVED n + n YOURS` (two numbers).
+        **Do:** open *Navigation ▸ DR Landmarks* and click *Create DR Points*. Wait about a minute
+        until the survey is done, then click *Save*.
+        **Pass:** the centre of the page shows `SAVED n + 0 YOURS` (n is the number of landmarks found).
       options: [Not tested, Passed, Not passed]
-      default: 0
-
-  - type: dropdown
-    id: p2-2
-    attributes:
-      label: 2.2 — Backup put back
-      description: Copy your backed-up `Normandy.lua` back into `DRPoints`, so normal missions use the original points again.
-      options: [Not tested, Done, Not done]
       default: 0
 
   - type: textarea
     id: notes-2
     attributes:
       label: Notes on Part 2
+    validations:
+      required: false
+
+  # ---------------------------------------------------------------------------------------------
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Part 3 — Mission FlightA-Landmarks: landmarks saved with the mission
+
+        Needs Part 2 first. Each time you load a mission in single player, Edward picks landmarks
+        along the route of every Mosquito flight in it and saves them into a copy of the mission,
+        named `<mission>_navpoints.miz`, in the same folder. In that copy the landmarks are ordinary
+        navigation points, which is how they reach every player in multiplayer. Set the Directional
+        Gyro first.
+
+  - type: dropdown
+    id: p3-1
+    attributes:
+      label: 3.1 — Landmarks saved with the mission
+      description: |
+        **Do:** load `Edward-FlightA-Landmarks.miz` and take the slot.
+        **Pass:** once you are in the cockpit (not hidden behind the loading screen): "EDMod: DR
+        landmarks for 2 flights saved to Edward-FlightA-Landmarks_navpoints.miz - host that file in
+        multiplayer." That file is now in the same folder as the mission. Leave the mission.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p3-2
+    attributes:
+      label: 3.2 — Landmarks show as nav points
+      description: |
+        **Do:** load `Edward-FlightA-Landmarks_navpoints.miz` and take the slot. Look at the F10
+        map, then open *Navigation ▸ DR Landmarks*.
+        **Pass:** the landmarks show on the map with plain names, along your route and along the
+        other flight's route, with no second Edward mark on top of them. The DR Landmarks page shows
+        *Landmarks on Your Route (n)*.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p3-3
+    attributes:
+      label: 3.3 — Landmark calls along the route
+      description: |
+        **Do:** fly the route in this `_navpoints` mission.
+        **Pass:** about a minute before each landmark on your route, a heads-up call ("Pinpoint in
+        one minute - …"), then a fix call as it passes ("There is …", with how early or late you are
+        and which side of the track). About one landmark every 20 NM, roughly every 5 minutes. In the
+        notes: could you see each one, and did early/late and the side of track match what you saw?
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: dropdown
+    id: p3-4
+    attributes:
+      label: 3.4 — A landmark of your own
+      description: |
+        **Do:** on the F10 map, place a mark a few minutes ahead, no more than 2 NM from your route
+        line, with the text `FP - Test`. Don't touch the menu.
+        **Pass:** about a minute before you reach it, a heads-up call for "Test", then a fix call as
+        you pass, each once. Edward draws no mark of his own over yours.
+      options: [Not tested, Passed, Not passed]
+      default: 0
+
+  - type: textarea
+    id: notes-3
+    attributes:
+      label: Notes on Part 3
+      description: Whether you could see each landmark, and anything that looked odd.
     validations:
       required: false
 

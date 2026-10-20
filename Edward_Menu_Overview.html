@@ -645,13 +645,18 @@ Settings &mdash; Automations &mdash;
             click starts the survey. Nothing on disk is touched until you Save. Create and Save are
             offered only in a survey
             mission &mdash; exactly one unit, a Mosquito. In any other mission Edward places the DR
-            points along your planned route by itself a few seconds after you take the slot, and the
+            points along your planned route by itself a few seconds after you take the slot (about one every 20 NM, the easiest to see first; an F10 mark you place reading <i>FP - name</i> joins them within a few seconds), and the
             wedge reads <span class="menu-label">View Mission DR Points on Map (<i>n</i>)</span>
             (or <span class="menu-label">Add DR Landmarks to Mission</span> when none are placed),
             which puts them back on the map as picked. Once used, the same wedge reads
             <span class="menu-label">Click to Re-pick for Current Route</span> and picks again for
             your route as it is now; <span class="menu-label">Clear DR Marks</span> turns it back into
-            View</li>
+            View. When the mission itself carries DR landmarks for your flight (a
+            <i>mission</i>_navpoints.miz, which Edward saves beside a mission each time you load it
+            in single player), and always on a multiplayer client, the page reads
+            <span class="menu-label">Landmarks on Your Route (<i>n</i>)</span> and
+            <span class="menu-label">Where Do They Come From?</span> instead: those landmarks are
+            already on the F10 map as nav points, so there is nothing to view, re-pick or clear</li>
         </ul>
       </div>
     </div>
@@ -1577,6 +1582,27 @@ Settings &mdash; Automations &mdash;
   function drLandmarksWedges() {
     var d = state.drLandmarks;
     var w = [];
+    // DR landmarks that came with the mission as nav points (a <mission>_navpoints.miz, 2026-10-19),
+    // and every multiplayer client: Navigation.lua's buildDRFromMissionWedges(). No marks to view,
+    // re-pick or clear - DCS draws nav points on the F10 map itself.
+    if (d.fromMission) {
+      w.push({
+        text: 'Landmarks on\nYour Route (' + d.missionPlaced + ')',
+        action: function () { toast('EDMod: ' + d.missionPlaced + ' DR landmarks on your route came with this mission. Edward calls each one as you pass it.', 6); }
+      });
+      w.push({
+        text: 'Where Do They\nCome From?',
+        action: function () { toast('EDMod: DR landmarks travel in the mission file. Load the mission once in single player (any slot) and Edward saves <mission>_navpoints.miz beside it - host that file. They show on the F10 map as nav points.', 12); }
+      });
+      w.push({
+        text: '(demo) back to a\nnormal mission',
+        keepOpenHere: true,
+        action: function () { d.fromMission = false; }
+      });
+      w.push({ text: 'Go Back', back: true });
+      w.centreText = 'DR LANDMARKS\nFrom the mission\n' + d.missionPlaced + ' on your route';
+      return w;
+    }
     w.push({
       text: drStatusLabel(),
       action: function () {
@@ -1641,6 +1667,13 @@ Settings &mdash; Automations &mdash;
           if (d.realMission && d.points === 0) d.points = 62;
           d.missionPlaced = d.realMission ? 9 : -1;
         }
+      });
+    }
+    if (!d.surveying && d.realMission) {
+      w.push({
+        text: '(demo) mission carries\nDR nav points',
+        keepOpenHere: true,
+        action: function () { d.fromMission = true; d.missionPlaced = 9; }
       });
     }
     if (!d.surveying && !d.realMission && d.points > 0) {

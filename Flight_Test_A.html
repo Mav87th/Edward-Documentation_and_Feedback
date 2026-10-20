@@ -199,15 +199,16 @@
         <li>In flight, menu <span class="menu-path">Status &#9656; Logging</span>: set it ON. The log
           checks below need it.</li>
         <li>Menu <span class="menu-path">Settings &#9656; Automations</span>: set everything ON.</li>
-        <li>In the cockpit of the flying mission (Part 1): set the Directional Gyro to the
+        <li>In the cockpit of the flying missions (Parts 1 and 3): set the Directional Gyro to the
           magnetic compass (see the box at the top of this page).</li>
+        <li>Fly Part 2 before Part 3: Part 3 uses the landmarks you make in Part 2.</li>
       </ol>
     </div>
   </section>
 
   <section>
     <h2>The missions</h2>
-    <p class="lead">Two missions come with the test build, each with one pilot slot.</p>
+    <p class="lead">Three missions come with the test build, each with one pilot slot.</p>
     <div class="table-wrap">
       <table class="missions">
         <tr><th>Mission</th><th>What it is</th><th>Used in</th></tr>
@@ -217,10 +218,15 @@
           Directional Gyro to 183.</td>
           <td>Part 1</td></tr>
         <tr><td><code>Edward-DRSurvey-Normandy.miz</code></td>
-          <td>Normandy with exactly one aircraft in the whole mission. That is what unlocks editing
+          <td>Normandy with exactly one aircraft in the whole mission. That is what unlocks making
           the landmark points Edward uses for the map. You start on the ground; no need to set the
           Directional Gyro.</td>
           <td>Part 2</td></tr>
+        <tr><td><code>Edward-FlightA-Landmarks.miz</code></td>
+          <td>Normandy, an air start at 5,000 ft. About 120 NM over inland Normandy. A second
+          Mosquito flight sits in the mission without flying; it is only there so the mission has
+          two flights.</td>
+          <td>Part 3</td></tr>
       </table>
     </div>
   </section>
@@ -246,23 +252,62 @@
   </section>
 
   <section>
-    <h2>Part 2 &mdash; Mission DRSurvey: saving landmark points</h2>
-    <p class="lead">You start on the ground and the heading doesn't matter here, so there is no need
-    to set the Directional Gyro. This test saves Edward's Normandy landmark file, so <b>back it up
-    first</b>: copy
-    <code>Saved Games\&lt;your DCS folder&gt;\Scripts\Edward\DRPoints\Normandy.lua</code> somewhere
-    safe.</p>
+    <h2>Part 2 &mdash; Mission DRSurvey: making the landmark points</h2>
+    <p class="lead">Edward calls out landmarks (towns, churches, bridges&hellip;) as you pass them.
+    He finds them in a one-time survey of the map, which you make here. You start on the ground
+    and the heading doesn't matter, so there is no need to set the Directional Gyro.</p>
 
-    <div class="step"><h3><span class="num">2.1</span> Saving shows a result on the menu</h3>
+    <div class="step"><h3><span class="num">2.1</span> Making the survey: saving shows a result on the menu</h3>
       <p><span class="label">Do</span> Open <span class="menu-path">Navigation &#9656; DR
-      Landmarks</span>. Delete one point (or use <i>Re-survey Theatre</i>), then <i>Save</i>.</p>
+      Landmarks</span> and click <i>Create DR Points</i>. Wait about a minute until the survey is
+      done, then click <i>Save</i>.</p>
       <p><span class="label pass">Pass</span> The centre of the page shows
-      <code>SAVED n + n YOURS</code> (two numbers).</p>
+      <code>SAVED n + 0 YOURS</code> (n is the number of landmarks found).</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Part 3 &mdash; Mission FlightA-Landmarks: landmarks saved with the mission</h2>
+    <p class="lead">Needs Part 2 first. Each time you load a mission in single player, Edward picks
+    landmarks along the route of every Mosquito flight in it and saves them into a copy of the
+    mission, named <code><i>mission</i>_navpoints.miz</code>, in the same folder. In that copy the
+    landmarks are ordinary navigation points, which is how they reach every player in multiplayer.
+    Set the Directional Gyro first (see the box at the top).</p>
+
+    <div class="step"><h3><span class="num">3.1</span> Landmarks saved with the mission</h3>
+      <p><span class="label">Do</span> Load <code>Edward-FlightA-Landmarks.miz</code> and take the
+      slot.</p>
+      <p><span class="label pass">Pass</span> Once you are in the cockpit (not hidden behind the
+      loading screen): &ldquo;EDMod: DR landmarks for 2 flights saved to
+      Edward-FlightA-Landmarks_navpoints.miz - host that file in multiplayer.&rdquo; That file is
+      now in the same folder as the mission. Leave the mission.</p>
     </div>
 
-    <div class="step"><h3><span class="num">2.2</span> Put the backup back</h3>
-      <p>Copy your backed-up <code>Normandy.lua</code> back into <code>DRPoints</code>, so normal
-      missions use the original points again.</p>
+    <div class="step"><h3><span class="num">3.2</span> Landmarks show as nav points</h3>
+      <p><span class="label">Do</span> Load <code>Edward-FlightA-Landmarks_navpoints.miz</code> and
+      take the slot. Look at the F10 map, then open <span class="menu-path">Navigation &#9656; DR
+      Landmarks</span>.</p>
+      <p><span class="label pass">Pass</span> The landmarks show on the map with plain names, along
+      your route and along the other flight's route, with no second Edward mark on top of them.
+      The DR Landmarks page shows <i>Landmarks on Your Route (n)</i>.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">3.3</span> Landmark calls along the route</h3>
+      <p><span class="label">Do</span> Fly the route in this <code>_navpoints</code> mission.</p>
+      <p><span class="label pass">Pass</span> About a minute before each landmark on your route,
+      a heads-up call (&ldquo;Pinpoint in one minute - &hellip;&rdquo;), then a fix call as it
+      passes (&ldquo;There is &hellip;&rdquo;, with how early or late you are and which side of
+      the track). About one landmark every 20&nbsp;NM, roughly every 5 minutes. In the notes:
+      could you see each one, and did early/late and the side of track match what you saw?</p>
+    </div>
+
+    <div class="step"><h3><span class="num">3.4</span> A landmark of your own</h3>
+      <p><span class="label">Do</span> On the F10 map, place a mark a few minutes ahead, no more
+      than 2&nbsp;NM from your route line, with the text <code>FP - Test</code>. Don't touch the
+      menu.</p>
+      <p><span class="label pass">Pass</span> About a minute before you reach it, a heads-up call
+      for &ldquo;Test&rdquo;, then a fix call as you pass, each once. Edward draws no mark of his
+      own over yours.</p>
     </div>
   </section>
 
@@ -277,7 +322,7 @@
     </div>
   </section>
 
-  <footer>Edward &middot; Flight Test A &middot; test build of 17 October 2026 &middot;
+  <footer>Edward &middot; Flight Test A &middot; test build of 19 October 2026 &middot;
     <a href="https://github.com/Mav87th/Edward-Documentation_and_Feedback">Documentation and feedback</a></footer>
 </main>
 </body>

@@ -383,9 +383,12 @@
     <div class="step"><h3><span class="num">11.</span> Preparing the mission</h3>
       <p>A theatre is surveyed once only, not on every sortie. Before the survey is begun, a mission
       should be prepared consisting of the Mosquito alone, cold at any airfield on the theatre
-      concerned, with no route and no other unit placed.</p>
-      <p><i>Note.&mdash;</i> The survey facility is made available only in a mission holding
-      exactly one unit, and that unit a Mosquito. In any other mission the markings
+      concerned, with no route and no other unit placed. The Mosquito's skill is to be set to
+      <span class="inline-code">PLAYER</span>, not <span class="inline-code">CLIENT</span>: a mission
+      with only Client slots is run by DCS as a multiplayer session, even when flown alone, and the
+      survey is a single-player facility.</p>
+      <p><i>Note.&mdash;</i> The survey facility is made available only in a single-player mission
+      holding exactly one unit, and that unit a Mosquito. In any other mission the markings
       <span class="inline-code">CREATE DR POINTS</span> and <span class="inline-code">SAVE</span> are
       not shown, and the wedge offers <span class="inline-code">VIEW ON MAP</span> alone; the
       theatre's file cannot then be overwritten by an accidental selection in the course of an
@@ -540,6 +543,13 @@
       and, once used, <span class="inline-code">CLICK TO RE-PICK FOR CURRENT ROUTE</span>. A re-pick
       works upon the route <i>as it now stands</i>, so an alteration made in the air is taken
       up.</p>
+      <p>A landmark of the crew's own may be added in the air: an F10 map mark whose text begins
+      <span class="inline-code">FP - </span>, as in the survey (for example
+      <span class="inline-code">FP - Water Mill - LOW</span>). EDWARD takes it up within a few
+      seconds, without any wedge being pressed, and calls it as he would any other point; a
+      landmark already called is not called again. Such a mark serves for that mission only
+      &mdash; to keep it for every flight, place it in a survey mission and Save. In multiplayer
+      this serves the host's machine; a joining player's machine does not yet read it.</p>
     </div>
 
     <div class="step"><h3><span class="num">27.</span> Selection by height</h3>
@@ -558,6 +568,14 @@
       upon the leg, and sets aside any automatic point within a mile of it in an overlapping
       band.</p>
       <p>(v) No point is offered within fifteen miles of the first waypoint or five of the last.</p>
+      <p>(vi) At most one point is offered in each twenty miles of a leg. Where two churches, or two
+      bridges, compete for the same stretch, the larger is preferred &mdash; a large church before a
+      medium one, a medium before the smallest; a long bridge before a short one &mdash; unless it
+      lies appreciably further from the ideal distance from track (half a mile for each step in
+      size). A railway yard counts for more the larger it is: a yard of several footbridges over
+      the lines is preferred to a church or a mill unless it lies well over a mile further off.
+      Yards are named <span class="inline-code">RAILWAY STATION</span> or, when large,
+      <span class="inline-code">RAIL YARD</span>.</p>
     </div>
 
     <div class="step"><h3><span class="num">28.</span> The call in the air</h3>
@@ -599,6 +617,29 @@
       <p>(v) Clearing the D.R. marks from the map does <i>not</i> stop the calls. The marks are a
       convenience upon the chart; the calls are the navigator's work, and the landmark is to be
       looked for out of the window.</p>
+    </div>
+
+    <div class="step"><h3><span class="num">30.</span> In multiplayer</h3>
+      <p>In multiplayer only the host's machine can choose points, and a joining player's machine
+      can read no F10 marks at all. The points therefore travel in the mission file itself, as nav
+      points (the Mission Editor's &ldquo;Initial Nav Point&rdquo;), which every machine receives
+      with the mission.</p>
+      <p>(i) <b>Before hosting, load the mission once in single player.</b> Any slot serves &mdash;
+      a Mosquito, another aircraft, or a spectator. About ten seconds in, EDWARD chooses the points for
+      every Mosquito flight in the mission and saves them beside it as
+      <span class="inline-code"><i>mission</i>_navpoints.miz</span>, reporting the file name. The
+      mission may then be left.</p>
+      <p>(ii) <b>Host that file.</b> Every player sees all flights' points upon the F10 map, by their plain
+      names &mdash; <span class="inline-code">Rail Yard</span>, <span class="inline-code">Church</span>
+      and so on; which flight a point belongs to is kept out of sight. EDWARD calls only those of
+      the player's own flight.</p>
+      <p>(iii) Where a mission carries its own points, EDWARD draws no marks of his own &mdash; the
+      nav points already stand upon the map &mdash; and the D.R. Landmarks page reads
+      <span class="inline-code">LANDMARKS ON YOUR ROUTE</span> in place of View, Re-pick and Clear.</p>
+      <p>(iv) The file is made afresh at each single-player load of the original mission. A route
+      altered in the Mission Editor afterwards needs that load repeated. A flight whose points are
+      already in the file is left as it is.</p>
+      <p>(v) The file is saved by whichever machine runs the mission <p>(v) Nothing is chosen or saved while hosting, nor upon a theatre not yet surveyed.</p>mdash; in single player, or by the host when hosting the original mission <p>(v) Nothing is chosen or saved while hosting, nor upon a theatre not yet surveyed.</p>mdash; never by a joining player; and never upon a theatre not yet surveyed.</p>
     </div>
 
   </section>
