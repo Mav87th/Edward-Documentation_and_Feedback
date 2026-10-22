@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dead Reckoning Survey Notes</title>
+<title>Dead Reckoning Landmark Notes</title>
 <style>
   /* League Spartan Bold (700), latin subset, embedded as a data URI (2026-09-15) - headings
      only, matches edward-docs.css's own treatment (see that file's fuller comment and
@@ -259,21 +259,20 @@
 <body>
 <main>
   <header class="page-head">
-    <span class="eyebrow">Dead Reckoning Survey Notes &middot; complementary to the Edward Menu Notes</span>
-    <h1>Dead Reckoning &mdash; Survey Notes</h1>
+    <span class="eyebrow">Dead Reckoning Landmark Notes &middot; complementary to the Edward Menu Notes</span>
+    <h1>Dead Reckoning &mdash; Landmark Notes</h1>
     <p class="dek">
-      These notes describe the Dead Reckoning survey facility of EDWARD, a DCS World simulator
-      modification for the De Havilland Mosquito F.B. Mk. VI. They are complementary to the Edward
-      Menu Notes and assume a thorough knowledge of its contents. They are prepared for the guidance
-      of the player only, and create no obligation beyond the simulator itself.
+      These notes describe the Dead Reckoning landmarks of EDWARD, a DCS World simulator
+      modification for the De Havilland Mosquito F.B. Mk. VI: the points supplied with EDWARD, the
+      player's own points, and the navigator's calls upon them in flight. They are complementary to
+      the Edward Menu Notes and assume a thorough knowledge of its contents.
     </p>
     <div class="status-banner">
       <span class="glyph">&#9997;</span>
       <span>
-        <b>Note.&mdash;</b> Parts II&ndash;IV describe the theatre survey and its curation upon the
-        F10 map. Part V describes what happens of its own accord in an ordinary sortie once a
-        theatre has been surveyed: the selection of points along the route, and the navigator's
-        calls upon them. Both are in service.
+        <b>Note.&mdash;</b> The landmarks of each theatre are surveyed once, by the author of EDWARD,
+        and supplied with it. The player does not survey a theatre; he may add landmarks of his own
+        (Part II). Part V describes what happens of its own accord in an ordinary sortie.
       </span>
     </div>
   </header>
@@ -305,13 +304,7 @@
       be&rdquo; are also mandatory.</p>
     </div>
 
-    <div class="step"><h3><span class="num">5.</span> Phase 1 only</h3>
-      <p>This publication describes Phase 1 of the Dead Reckoning facility only. The automatic
-      selection of Dead Reckoning points during a live sortie (Phase 2) has not yet been brought
-      into service; see Operating Data.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">6.</span> The player</h3>
+    <div class="step"><h3><span class="num">5.</span> The player</h3>
       <p>Throughout, &ldquo;the player&rdquo; denotes the person at the controls.</p>
     </div>
   </section>
@@ -319,240 +312,151 @@
   <section>
     <h2>Check list &mdash; By D.R. Landmarks</h2>
     <pre style="background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:ui-monospace,SFMono-Regular,'Cascadia Code',Consolas,monospace;font-size:0.85rem;line-height:1.7;color:var(--ink);white-space:pre;">By D.R. Landmarks &mdash;
-    Status/action wedge ....... As marked; see para. 10
-    Clear DR Marks ............. Clears F10 marks. Point list and file unaffected
-    Re-survey Theatre .......... Surveys again. Asks once; file unaffected until Save
+    Status/action wedge ....... As marked; see para. 9
+    Clear DR Marks ............. Clears F10 marks. Calls and points unaffected
+    Save My Landmarks (N) ..... Keeps your FP - marks for every flight; see para. 11
     Go Back ..................... Returns to Navigation</pre>
   </section>
 
   <section>
     <h2>Part I &mdash; Descriptive</h2>
 
-    <div class="step"><h3><span class="num">7.</span> Dead Reckoning points</h3>
+    <div class="step"><h3><span class="num">6.</span> Dead Reckoning points</h3>
       <p>Dead Reckoning points (D.R. points) are landmarks &mdash; churches, bridges, railway
-      stations and depots, rail junctions and yards, water crossings, bunkers and radar stations,
-      stadiums, and airfields &mdash; collected for a theatre so that EDWARD may take a fix upon them
-      in flight. Each theatre's points are held in a file of its own, one file to a theatre, at
-      <span class="inline-code">Scripts\Edward\DRPoints\&lt;theatre&gt;.lua</span>. Points placed by
-      the player (para. 9) are held apart from these, in
-      <span class="inline-code">&lt;theatre&gt;_user.lua</span> beside it, so that a fresh survey of
-      the theatre never disturbs them.</p>
+      stations and yards, lakes, islands and peaks, bunkers and radar stations, stadiums, and
+      airfields &mdash; collected for a theatre so that EDWARD may take a fix upon them in flight.
+      They come from two files, both in
+      <span class="inline-code">Scripts\Edward\DRPoints\</span>:&mdash;</p>
+      <p>(i) <span class="inline-code">&lt;theatre&gt;.lua</span>, the theatre's landmarks as
+      supplied with EDWARD. A theatre for which no such file is supplied has no automatic
+      landmarks; the player's own (para. 8) are used there all the same.</p>
+      <p>(ii) <span class="inline-code">&lt;theatre&gt;_user.lua</span>, the player's own points. It
+      is written only by <span class="inline-code">SAVE MY LANDMARKS</span> (para. 11), and an
+      update of EDWARD never touches it.</p>
     </div>
 
-    <div class="step"><h3><span class="num">8.</span> Classification</h3>
-      <p>Each point is classified Low, Medium, or High, according to how close a landmark must be
-      approached before it can be trusted as a fix. Medium is given automatically unless a point is
-      placed by hand with the band stated; a hand-placed point left unmarked for band is also
-      Medium. See Operating Data for how this classification is intended to be used once brought
-      into service.</p>
+    <div class="step"><h3><span class="num">7.</span> Classification</h3>
+      <p>Each point is classified Low, Medium, or High, according to the height at which it can be
+      used (para. 20). Medium is given unless a point is placed by hand with the band stated.</p>
     </div>
 
-    <div class="step"><h3><span class="num">9.</span> Points placed by hand</h3>
-      <p>A landmark may also be added directly by the player: an ordinary F10 map mark whose text
-      begins <span class="inline-code">FP -</span>, e.g. <span class="inline-code">FP -
-      Church</span>. Such a point is accepted without question; EDWARD does not verify what is on
-      the ground there. If the player states a band &mdash; <span class="inline-code">FP - Church -
-      Low</span> &mdash; the point is intended to be treated exactly as an automatic point of that
-      band once Operating Data is brought into service; if no band is stated, Medium is given as for
-      any other point. In a mission, such a point loses its <span class="inline-code">FP -</span>
-      prefix and any band, and is shown simply as, e.g., <span class="inline-code">DR -
-      Church</span>, exactly as an automatically found point.</p>
+    <div class="step"><h3><span class="num">8.</span> Points placed by hand</h3>
+      <p>A landmark may be added by the player: an ordinary F10 map mark whose text begins
+      <span class="inline-code">FP -</span>, e.g. <span class="inline-code">FP - Church</span>. Such a
+      point is accepted without question; EDWARD does not verify what is on the ground there. If
+      the player states a band &mdash; <span class="inline-code">FP - Church - Low</span> &mdash; the
+      point is treated exactly as a supplied point of that band; if no band is stated, Medium is
+      given.</p>
     </div>
 
-    <div class="step"><h3><span class="num">10.</span> The status/action wedge</h3>
+    <div class="step"><h3><span class="num">9.</span> The status/action wedge</h3>
       <p>The status/action wedge under <span class="menu-path">Navigation &rsaquo; By D.R.
-      Landmarks</span> is marked <span class="inline-code">CREATE DR POINTS</span>,
-      <span class="inline-code">SURVEYING NN%</span>, <span class="inline-code">VIEW ON MAP
-      (N)</span>, <span class="inline-code">SAVE (N UNSAVED)</span>, or <span class="inline-code">SAVE
-      DR POINTS</span>, according to the state of the theatre's survey. Words in capital letters
-      indicate the actual wording shown upon the wedge. See Part II for the sequence in which each
-      marking is reached.</p>
-      <p>The centre of the ring carries two counts, which are not the same thing. <span
-      class="inline-code">N POINTS</span> is the number held in the theatre's list;
-      <span class="inline-code">N ON MAP</span>, or <span class="inline-code">MAP CLEAR</span>, is
-      the number at present drawn upon the F10 map. <span class="inline-code">CLEAR DR MARKS</span>
-      alters the second only.</p>
-      <p>Where the theatre has already been surveyed, a further wedge is marked
-      <span class="inline-code">RE-SURVEY THEATRE</span> (para. 12(iv)).</p>
+      Landmarks</span> is marked <span class="inline-code">VIEW MISSION DR POINTS ON MAP (N)</span>,
+      <span class="inline-code">CLICK TO RE-PICK FOR CURRENT ROUTE</span>, or
+      <span class="inline-code">ADD DR LANDMARKS TO MISSION</span>, according to whether a choice of
+      points has yet been made for the route (para. 19). The centre of the ring gives the number
+      chosen for the route, and the result of the last <span class="inline-code">SAVE MY
+      LANDMARKS</span>.</p>
     </div>
   </section>
 
   <section>
-    <h2>Part II &mdash; Handling</h2>
+    <h2>Part II &mdash; Handling: the player's own landmarks</h2>
 
-    <div class="step"><h3><span class="num">11.</span> Preparing the mission</h3>
-      <p>A theatre is surveyed once only, not on every sortie. Before the survey is begun, a mission
-      should be prepared consisting of the Mosquito alone, cold at any airfield on the theatre
-      concerned, with no route and no other unit placed. The Mosquito's skill is to be set to
-      <span class="inline-code">PLAYER</span>, not <span class="inline-code">CLIENT</span>: a mission
-      with only Client slots is run by DCS as a multiplayer session, even when flown alone, and the
-      survey is a single-player facility.</p>
-      <p><i>Note.&mdash;</i> The survey facility is made available only in a single-player mission
-      holding exactly one unit, and that unit a Mosquito. In any other mission the markings
-      <span class="inline-code">CREATE DR POINTS</span> and <span class="inline-code">SAVE</span> are
-      not shown, and the wedge offers <span class="inline-code">VIEW ON MAP</span> alone; the
-      theatre's file cannot then be overwritten by an accidental selection in the course of an
-      ordinary sortie.</p>
+    <div class="step"><h3><span class="num">10.</span> Marking a landmark</h3>
+      <p>(i) In any single-player mission, on the ground or in the air, an F10 map mark is to be
+      placed upon the landmark and given the text <span class="inline-code">FP - </span> followed by
+      its name, e.g. <span class="inline-code">FP - Arlington Reservoir</span>; a band may be added
+      as in para. 8.</p>
+      <p>(ii) EDWARD takes the mark up within a few seconds, without any wedge being pressed, and
+      calls it in that mission as he would any other point. A landmark already called is not called
+      again.</p>
     </div>
 
-    <div class="step"><h3><span class="num">12.</span> Opening the survey</h3>
-      <p>(i) Fly is to be clicked to enter the cockpit, as for any mission; there is no need to take
-      off.</p>
-      <p>(ii) The Edward Menu (not DCS's own radio menu) is to be opened and
-      <span class="menu-path">Navigation &rsaquo; By D.R. Landmarks</span> selected.</p>
-      <p>(iii) If the theatre has not before been surveyed, the wedge is marked
-      <span class="inline-code">CREATE DR POINTS</span>. It should be clicked once only: EDWARD then
-      tiles the whole theatre with an anchor approximately every 5 n.m. and searches about each of
-      these automatically, and the wedge marking changes to <span class="inline-code">SURVEYING
-      NN%</span> while this proceeds.</p>
-      <p>(iv) If the theatre has already been surveyed, the wedge is marked
-      <span class="inline-code">VIEW ON MAP (N)</span>, N being the number of points already held;
-      clicking it places them upon the F10 map without altering the file. A further automatic search
-      of the same theatre is to be had from the wedge marked
-      <span class="inline-code">RE-SURVEY THEATRE</span>, which is shown alongside it. This wedge
-      asks before it acts: upon the first click it is re-marked
-      <span class="inline-code">CONFIRM RE-SURVEY</span> and the menu is closed; the ring is to be
-      re-opened and the wedge clicked a second time within fifteen seconds, after which the marking
-      reverts and nothing is done.</p>
-      <p><i>Note.&mdash;</i> A re-survey replaces the points held in memory, the player's own
-      <span class="inline-code">FP -</span> points (para. 9) excepted, which are carried across. The
-      theatre's file upon disk is not touched until <span class="inline-code">SAVE</span> is clicked,
-      and the previous file is then preserved as <span class="inline-code">.bak</span>. A re-survey
-      whose result is not wanted is therefore undone by reloading the mission without saving.</p>
+    <div class="step"><h3><span class="num">11.</span> Keeping it for every flight</h3>
+      <p>(i) While any <span class="inline-code">FP -</span> mark stands upon the map, the D.R.
+      Landmarks ring carries a wedge marked <span class="inline-code">SAVE MY LANDMARKS (N)</span>,
+      N being the number of such marks.</p>
+      <p>(ii) Clicking it adds those marks to
+      <span class="inline-code">&lt;theatre&gt;_user.lua</span> and removes them from the map; the
+      centre of the ring then reads <span class="inline-code">SAVED N OF YOURS</span>. A mark already
+      saved under the same name in the same place is not added twice.</p>
+      <p>(iii) From then on the point is one of the theatre's landmarks in every mission, chosen and
+      called like any other. It is no longer an F10 mark of the player's; when chosen for a route it
+      is drawn as a <span class="inline-code">DR -</span> mark.</p>
     </div>
 
-    <div class="step"><h3><span class="num">13.</span> During the survey</h3>
-      <p>(i) Nothing further need be done; the search proceeds of itself while EDWARD works through
-      the theatre, and results appear upon the F10 map as they are found.</p>
-      <p>(ii) A large theatre may take some while, EDWARD working through it methodically rather
-      than by following anything the player does.</p>
-      <p>(iii) Curation (para. 14) may be begun upon points already found without waiting for the
-      whole theatre to be finished.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">14.</span> Curating the map</h3>
-      <p>Once points appear, the F10 map is the working copy, and is to be edited directly before
-      saving:</p>
-      <p>(i) A point wrongly placed is to be deleted like any other F10 mark.</p>
-      <p>(ii) A landmark missed by the automatic search may be added by hand, as an
-      <span class="inline-code">FP -</span> mark (para. 9).</p>
-      <p>(iii) A badly placed automatic point is corrected by combining (i) and (ii): the bad mark
-      deleted, a fresh <span class="inline-code">FP -</span> mark added in its place.</p>
-      <p>(iv) There is no facility to discard curation directly; leaving the mission without saving
-      has the same effect (Part IV).</p>
-    </div>
-
-    <div class="step"><h3><span class="num">15.</span> Saving</h3>
-      <p>The wedge, once any point has been added or deleted, is marked <span class="inline-code">SAVE
-      (N UNSAVED)</span> &mdash; N being the number of changes pending, not the total held &mdash; or
-      <span class="inline-code">SAVE DR POINTS</span> where the changes pending net to none. Clicking
-      it writes the F10 map's present state to the theatre's file. This is to be understood as a
-      replacement of the whole file, not a merger of it with what is on the map (Part III). A single
-      backup of the previous file is kept, as <span class="inline-code">&lt;theatre&gt;.lua.bak</span>;
-      it should not be relied upon for more than the one save immediately before it (Part III).
-      Saving at intervals during a long survey, rather than only at the end, is recommended.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">16.</span> Ending the survey</h3>
-      <p>Once saved, nothing further need be done; the mission may be left. The same sequence,
-      beginning again at <span class="inline-code">VIEW ON MAP</span>, may be returned to at any time
-      to curate the theatre further.</p>
+    <div class="step"><h3><span class="num">12.</span> Altering or removing a saved landmark</h3>
+      <p>There is no wedge for this. <span class="inline-code">&lt;theatre&gt;_user.lua</span> is a
+      plain text file, one landmark to a line, and may be edited by hand with DCS closed: a line
+      deleted removes the landmark, and the label or band of a line may be altered.</p>
     </div>
   </section>
 
   <section>
     <h2>Part III &mdash; Limitations</h2>
-    <p class="dek" style="margin-bottom:14px;">The following limitations are to be observed during
-    all conditions of use of the Dead Reckoning survey facility:&mdash;</p>
+    <p class="dek" style="margin-bottom:14px;">The following limitations are to be observed in the
+    use of the player's own landmarks:&mdash;</p>
 
-    <div class="step"><h3><span class="num">17.</span> Saving replaces, it does not merge</h3>
-      <p>Saving is to be understood as replacing the whole of a theatre's Dead Reckoning Points file
-      with exactly what stands upon the F10 map at the moment <span class="inline-code">SAVE</span>
-      is clicked; there is no facility for merging old and new. The player is to satisfy himself
-      that the map is correct &mdash; points wrongly placed removed, points missed added &mdash;
-      before saving, not after.</p>
+    <div class="step"><h3><span class="num">13.</span> Single player only</h3>
+      <p><span class="inline-code">SAVE MY LANDMARKS</span> is not offered in multiplayer, as host
+      or as joining player: a host's map carries every player's marks.</p>
     </div>
 
-    <div class="step"><h3><span class="num">18.</span> One backup only</h3>
-      <p>A single generation of backup only is kept for each file
-      (<span class="inline-code">&lt;theatre&gt;.lua.bak</span> and
-      <span class="inline-code">&lt;theatre&gt;_user.lua.bak</span>); each is overwritten at every
-      subsequent save and does not accumulate. It is not to be relied upon to recover more than the
-      one save immediately before it.</p>
+    <div class="step"><h3><span class="num">14.</span> One backup only</h3>
+      <p>A single generation of backup is kept,
+      <span class="inline-code">&lt;theatre&gt;_user.lua.bak</span>, overwritten at every save. It is
+      not to be relied upon to recover more than the one save immediately before it.</p>
     </div>
 
-    <div class="step"><h3><span class="num">19.</span> Theatre-wide, not route-specific</h3>
-      <p>A survey covers the whole of the theatre in a single pass, not merely the neighbourhood of
-      any one route. The Dead Reckoning Points file is common to every mission flown afterward upon
-      that theatre, and is not to be confused with data belonging to any one mission.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">20.</span> Theatres provided for</h3>
-      <p>Theatre boundaries are known in advance for the following theatres only: Afghanistan,
-      Caucasus, the Falklands, Germany (Cold War), Iraq, Kola, the Mariana Islands, the Marianas
-      (WWII), Nevada, Normandy, the Persian Gulf, Sinai, Syria, and The Channel. Of these, Normandy
-      and Syria have been surveyed.</p>
+    <div class="step"><h3><span class="num">15.</span> Theatre-wide, not route-specific</h3>
+      <p>A saved landmark belongs to the theatre, not to the mission in which it was marked, and is
+      offered on every route flown afterward upon that theatre.</p>
     </div>
   </section>
 
   <section>
     <h2>Part IV &mdash; Emergencies</h2>
 
-    <div class="step"><h3><span class="num">21.</span> Interruption of the search</h3>
-      <p>Should the player click the status/action wedge while <span class="inline-code">SURVEYING
-      NN%</span> is shown, no further action is taken beyond a report of the percentage completed;
-      the search is not to be started twice, and cannot be hastened by repeated clicking.</p>
+    <div class="step"><h3><span class="num">16.</span> Leaving before saving</h3>
+      <p>An <span class="inline-code">FP -</span> mark not saved serves only the mission in which it
+      was placed, and is lost with it.</p>
     </div>
 
-    <div class="step"><h3><span class="num">22.</span> Leaving before saving</h3>
-      <p>Should the mission be left, or DCS closed, before <span class="inline-code">SAVE</span> has
-      been clicked, the theatre's file on disk remains exactly as it stood before the survey was
-      begun; no curation done in that session is lost from the file, because none of it was ever
-      written to it. Nor can it be recovered for a later session: a mission left unsaved must be
-      curated afresh from what the map then shows.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">23.</span> Recovery from a wrong deletion</h3>
-      <p>A point deleted in error is not restored automatically. It is to be replaced by hand, as a
-      fresh <span class="inline-code">FP -</span> mark placed in the same position (para. 9); it
-      will then be treated as any other player-placed point once saved.</p>
-    </div>
-
-    <div class="step"><h3><span class="num">24.</span> Recovery from a bad save</h3>
-      <p>Should a save prove to have been made in error, the single backup described in para. 18 is
-      the only recourse, and only for the save immediately preceding it. Beyond that, there is no
-      facility for recovery, and a fresh survey (para. 12) is the only remedy.</p>
+    <div class="step"><h3><span class="num">17.</span> Recovery from a bad save</h3>
+      <p>A landmark saved in error is removed by hand from
+      <span class="inline-code">&lt;theatre&gt;_user.lua</span> (para. 12). Should the file itself be
+      damaged, the backup of para. 14 is to be renamed in its place, DCS being closed.</p>
     </div>
   </section>
 
   <section>
     <h2>Part V &mdash; The points in use</h2>
 
-    <div class="step"><h3><span class="num">25.</span> General</h3>
+    <div class="step"><h3><span class="num">18.</span> General</h3>
       <p>What follows is in service and requires no action by the player. It applies in an ordinary
-      mission on a surveyed theatre &mdash; that is, in any mission which is not itself a survey.</p>
+      mission on a theatre that has landmarks (para. 6).</p>
     </div>
 
-    <div class="step"><h3><span class="num">26.</span> Automatic selection</h3>
-      <p>Upon a mission being loaded on a surveyed theatre, EDWARD examines the theatre's Dead
+    <div class="step"><h3><span class="num">19.</span> Automatic selection</h3>
+      <p>Upon a mission being loaded, EDWARD examines the theatre's Dead
       Reckoning Points file for those points lying near the route to be flown and marks the useful
-      ones upon the F10 map, without the player's intervention. The theatre-wide
-      <span class="inline-code">VIEW ON MAP</span> wedge is withdrawn in a real mission: it is a
-      survey instrument, and the whole theatre is of no use to a crew in the air.</p>
+      ones upon the F10 map, without the player's intervention.</p>
       <p>The wedge in its place reads <span class="inline-code">VIEW MISSION DR POINTS ON MAP</span>
       and, once used, <span class="inline-code">CLICK TO RE-PICK FOR CURRENT ROUTE</span>. A re-pick
       works upon the route <i>as it now stands</i>, so an alteration made in the air is taken
       up.</p>
       <p>A landmark of the crew's own may be added in the air: an F10 map mark whose text begins
-      <span class="inline-code">FP - </span>, as in the survey (for example
+      <span class="inline-code">FP - </span> (para. 10; for example
       <span class="inline-code">FP - Water Mill - LOW</span>). EDWARD takes it up within a few
       seconds, without any wedge being pressed, and calls it as he would any other point; a
       landmark already called is not called again. Such a mark serves for that mission only
-      &mdash; to keep it for every flight, place it in a survey mission and Save. In multiplayer
+      &mdash; to keep it for every flight, use <span class="inline-code">SAVE MY LANDMARKS</span>
+      (para. 11). In multiplayer
       this serves the host's machine; a joining player's machine does not yet read it.</p>
     </div>
 
-    <div class="step"><h3><span class="num">27.</span> Selection by height</h3>
+    <div class="step"><h3><span class="num">20.</span> Selection by height</h3>
       <p>A point is offered according to the height at which that leg is to be flown, taken as the
       mean height above ground of its two waypoints:&mdash;</p>
       <p>(i) Below 3,000 ft. A.G.L., points of every band are offered, the nearest to track
@@ -572,13 +476,21 @@
       bridges, compete for the same stretch, the larger is preferred &mdash; a large church before a
       medium one, a medium before the smallest; a long bridge before a short one &mdash; unless it
       lies appreciably further from the ideal distance from track (half a mile for each step in
-      size). A railway yard counts for more the larger it is: a yard of several footbridges over
-      the lines is preferred to a church or a mill unless it lies well over a mile further off.
-      Yards are named <span class="inline-code">RAILWAY STATION</span> or, when large,
+      size). This preference holds between features of one kind only; a church is never set
+      aside for a bridge merely because the bridge is long. A railway yard counts for more the
+      larger it is: a yard of several footbridges over the lines is preferred to a church or a mill
+      unless it lies well over a mile further off. Yards are named
+      <span class="inline-code">RAILWAY STATION</span> or, when large,
       <span class="inline-code">RAIL YARD</span>.</p>
+      <p>(vii) Below 3,000 ft. a feature is judged by how large it will look: a tower twice as tall
+      is worth one twice as far off, for it stands above the hedges. Above 12,000 ft. broad, flat
+      features &mdash; aerodromes, railway yards, lakes, islands, forts &mdash; are preferred, for
+      they keep their shape from height.</p>
+      <p>(viii) Each turning point is served first: a feature within a mile of it is taken before
+      the rest of the leg is filled, so that the turn itself may be made over a known mark.</p>
     </div>
 
-    <div class="step"><h3><span class="num">28.</span> The call in the air</h3>
+    <div class="step"><h3><span class="num">21.</span> The call in the air</h3>
       <p>EDWARD makes two calls upon each selected point.</p>
       <p><b>The warning</b>, about a minute before the point comes abeam, so that the crew know what
       to look for and on which side:&mdash;</p>
@@ -590,6 +502,20 @@
       On time, on track.</span></p>
       <p class="example"><span class="inline-code">Edward: There is Rail Yard, 1 mile to starboard.
       1min 10 seconds late, and we passed 1.1 NM port of track.</span></p>
+      <p>A landmark at a turning point is named some ninety seconds before the turn, between the
+      two-minute and one-minute turn calls. Where it stands on the turning point, the turn is made
+      over it; otherwise the turning point is given from it:&mdash;</p>
+      <p class="example"><span class="inline-code">Edward: Turning point coming up - we turn over
+      Church.</span></p>
+      <p class="example"><span class="inline-code">Edward: Turning point coming up - we turn half a
+      mile east of Church.</span></p>
+      <p>Should the navigator be too busy to name it before the turn, he calls it a few seconds
+      after the turn instead, with the time only. The corner is cut in turning, so a displacement
+      from the old track would mislead; the first fix on the new leg gives it:&mdash;</p>
+      <p class="example"><span class="inline-code">Edward: There is Church, half a mile to port -
+      that was our turning point. On time.</span></p>
+      <p>A landmark standing off the turning point gets, in that case, the ordinary fix call, again
+      with the time only.</p>
       <p>Both calls give the distance out to the landmark, to the nearest half mile (or half
       kilometre, where Settings has kilometres), so that the eye may be put upon it; a landmark
       passing within a quarter of a mile is called &ldquo;close&rdquo;. The warning's figure is
@@ -602,7 +528,7 @@
       call and mark may not be confused.</p>
     </div>
 
-    <div class="step"><h3><span class="num">29.</span> When no call is made</h3>
+    <div class="step"><h3><span class="num">22.</span> When no call is made</h3>
       <p>(i) <b>A landmark passed too wide to have been seen is not called.</b> Low points are
       called within one mile, Medium within three, High within eight, measured from where the
       aircraft actually went. The omission is deliberate: if a landmark is not seen, the crew are to
@@ -619,7 +545,7 @@
       looked for out of the window.</p>
     </div>
 
-    <div class="step"><h3><span class="num">30.</span> In multiplayer</h3>
+    <div class="step"><h3><span class="num">23.</span> In multiplayer</h3>
       <p>In multiplayer only the host's machine can choose points, and a joining player's machine
       can read no F10 marks at all. The points therefore travel in the mission file itself, as nav
       points (the Mission Editor's &ldquo;Initial Nav Point&rdquo;), which every machine receives
@@ -639,13 +565,15 @@
       <p>(iv) The file is made afresh at each single-player load of the original mission. A route
       altered in the Mission Editor afterwards needs that load repeated. A flight whose points are
       already in the file is left as it is.</p>
-      <p>(v) The file is saved by whichever machine runs the mission <p>(v) Nothing is chosen or saved while hosting, nor upon a theatre not yet surveyed.</p>mdash; in single player, or by the host when hosting the original mission <p>(v) Nothing is chosen or saved while hosting, nor upon a theatre not yet surveyed.</p>mdash; never by a joining player; and never upon a theatre not yet surveyed.</p>
+      <p>(v) The file is saved by whichever machine runs the mission in single player, never by a
+      joining player, and never while hosting. Nothing is chosen upon a theatre that has no
+      landmarks.</p>
     </div>
 
   </section>
 
   <footer>
-    Edward &mdash; Dead Reckoning Survey Notes. Complementary to the Edward Menu Notes. See
+    Edward &mdash; Dead Reckoning Landmark Notes. Complementary to the Edward Menu Notes. See
     <code>Documentation/Plans/DeadReckoning_Plan.md</code> in the source repository for the design
     and the open questions behind it.
   </footer>

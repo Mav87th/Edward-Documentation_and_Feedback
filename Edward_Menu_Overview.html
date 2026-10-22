@@ -344,7 +344,7 @@
       simulator modification for the De Havilland Mosquito F.B. Mk. VI. They are complementary to
       the Installation Notes for fitting EDWARD in the first place, and stand on their own for the
       menu itself; <span class="menu-label">By DR Landmarks</span> is described in fuller detail
-      by the separate Dead Reckoning Survey Notes, which are themselves complementary to this
+      by the separate Dead Reckoning Landmark Notes, which are themselves complementary to this
       publication. They are prepared for the guidance of the player only, and create no obligation
       beyond the simulator itself. A demonstration of the menu, copied directly from its own source,
       is given at the foot of these notes.
@@ -356,7 +356,7 @@
 
     <div class="step"><h3><span class="num">1.</span> Complementary publications</h3>
       <p>This publication is complementary to the Installation Notes, and assumes EDWARD has
-      already been installed and found to be working correctly. The Dead Reckoning Survey Notes are
+      already been installed and found to be working correctly. The Dead Reckoning Landmark Notes are
       complementary to this publication, and describe
       <span class="menu-label">By DR Landmarks</span> in fuller detail than is given here.</p>
     </div>
@@ -427,7 +427,7 @@ Settings &mdash; Automations &mdash;
       <p>The centre hub reads <span class="menu-label">Edward</span> by default; where the ring itself
       has some current reading of its own to give &mdash; <span class="menu-label">Navigation</span>'s
       nav picture, <span class="menu-label">Drift-Recorder</span>'s reading, <span class="menu-label">By
-      DR Landmarks</span>' survey count, <span class="menu-label">Radio</span>'s frequency, and
+      DR Landmarks</span>' count on your route, <span class="menu-label">Radio</span>'s frequency, and
       <span class="menu-label">Fuel</span>'s AMPG &mdash; that reading is shown in the hub instead of
       upon a wedge. Such a reading is kept current while its ring stands open: a waypoint selection,
       a drift reading or a tuning completed a moment after the ring was entered appears in place,
@@ -596,6 +596,17 @@ Settings &mdash; Automations &mdash;
       it open. While the ring itself is open, its centre hub shows the target's tag and steering
       heading, and, for a route waypoint, the speed required; a map point carries no planned leg
       time, so its speed is left out.</p>
+      <p>A map point is an F10 mark whose first line reads <span class="menu-label">IP</span>,
+      <span class="menu-label">TGT</span>, <span class="menu-label">NAV</span>,
+      <span class="menu-label">HOME</span> or <span class="menu-label">NEAREST</span>, in either
+      case, and may carry a number: <span class="menu-label">NAV1</span>,
+      <span class="menu-label">nav1</span>, <span class="menu-label">NAV 1</span>,
+      <span class="menu-label">NAV-1</span> and <span class="menu-label">NAV - 1</span> are all held
+      as <span class="menu-label">NAV1</span>, which is a separate point from a plain
+      <span class="menu-label">NAV</span>. Should two marks bear the same name, the later is held under
+      the next free number (<span class="menu-label">NAV2</span>, and so on), though the map
+      continues to show the name as written; it is therefore best to number the marks when placing
+      them.</p>
       <p>Drift Recorder is a single wedge, Check Drift. Clicking it closes the menu outright, and
       the check proceeds in the background:&mdash;</p>
       <p>(a) on the first check in an aircraft the navigator mantles the recorder, which takes about
@@ -612,9 +623,8 @@ Settings &mdash; Automations &mdash;
       <p>The last completed reading is shown in the centre hub upon re-entering the ring, though it
       is not to be understood as live while the ring sits open.</p>
       <p>By D.R. Landmarks is fitted here as a fourth wedge and is described fully in the Dead
-      Reckoning Survey Notes. Its wedge and hub both follow the survey as it goes forward, from the
-      order to create the points, through the survey itself, to the count of points saved and shown
-      upon the map.</p>
+      Reckoning Landmark Notes. Its wedge and hub show the landmarks picked along your route, and
+      keep your own <i>FP -</i> marks for later flights.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">By Waypoints</span> &mdash;
@@ -628,35 +638,26 @@ Settings &mdash; Automations &mdash;
             <span class="menu-label">Check Drift</span>, which reads
             <span class="menu-label">Checking Drift</span> while one is in hand, and
             <span class="menu-label">Cancel Check</span> alongside it</li>
-          <li><span class="menu-label">By DR Landmarks</span> &mdash;
-            <span class="menu-label">Create DR Points</span> &rarr;
-            <span class="menu-label">Surveying <i>nn</i>%</span> &rarr;
-            <span class="menu-label">Save DR Points</span> or
-            <span class="menu-label">Save (<i>n</i> unsaved)</span> &rarr;
-            <span class="menu-label">View on Map (<i>n</i>)</span>, with
-            <span class="menu-label">Clear DR Marks</span>. The hub carries both numbers, because they
-            are different things: <i>n</i> points is the list, <i>n</i> on map (or
-            <span class="menu-label">map clear</span>) is what is drawn. Clear empties the map and
-            leaves the list alone, and says <span class="menu-label">No DR marks on the map</span>
-            when there is nothing to remove. A theatre that has been surveyed once also carries
-            <span class="menu-label">Re-survey Theatre</span>, which surveys it again from the
-            cockpit; it asks first &mdash; the wedge reads
-            <span class="menu-label">Confirm Re-survey</span> for fifteen seconds, and the second
-            click starts the survey. Nothing on disk is touched until you Save. Create and Save are
-            offered only in a survey
-            mission &mdash; exactly one unit, a Mosquito. In any other mission Edward places the DR
-            points along your planned route by itself a few seconds after you take the slot (about one every 20 NM, the easiest to see first; an F10 mark you place reading <i>FP - name</i> joins them within a few seconds), and the
+          <li><span class="menu-label">By DR Landmarks</span> &mdash; Edward places the DR
+            points along your planned route by itself a few seconds after you take the slot (about
+            one every 20 NM, the easiest to see first; an F10 mark you place reading
+            <i>FP - name</i> joins them within a few seconds), and the
             wedge reads <span class="menu-label">View Mission DR Points on Map (<i>n</i>)</span>
             (or <span class="menu-label">Add DR Landmarks to Mission</span> when none are placed),
             which puts them back on the map as picked. Once used, the same wedge reads
             <span class="menu-label">Click to Re-pick for Current Route</span> and picks again for
-            your route as it is now; <span class="menu-label">Clear DR Marks</span> turns it back into
+            your route as it is now; <span class="menu-label">Clear DR Marks</span> takes the marks
+            off the map (the calls go on) and turns it back into
             View. When the mission itself carries DR landmarks for your flight (a
             <i>mission</i>_navpoints.miz, which Edward saves beside a mission each time you load it
             in single player), and always on a multiplayer client, the page reads
             <span class="menu-label">Landmarks on Your Route (<i>n</i>)</span> and
             <span class="menu-label">Where Do They Come From?</span> instead: those landmarks are
-            already on the F10 map as nav points, so there is nothing to view, re-pick or clear</li>
+            already on the F10 map as nav points, so there is nothing to view, re-pick or clear.
+            While any <i>FP -</i> mark of yours stands on the map, a further wedge reads
+            <span class="menu-label">Save My Landmarks (<i>n</i>)</span>: it keeps those marks as your
+            own landmarks for every later flight on this map, takes them off the map, and the hub then
+            reads <span class="menu-label">SAVED <i>n</i> OF YOURS</span>. Single player only.</li>
         </ul>
       </div>
     </div>
@@ -709,6 +710,13 @@ Settings &mdash; Automations &mdash;
       <p>From the IP EDWARD gives the course to the target, and steers by it as on any leg. In the
       last minute before the target he gives the time only &mdash; one minute, thirty seconds, ten
       seconds &mdash; and no further steering, the final run being made by eye.</p>
+      <p>At the IP EDWARD arms the bombs as a crewman would, one switch at a time and a second or
+      so apart: the panel cover open, the changeover to BOMBS, each station that carries a bomb, and
+      tail fuzing. When the last bomb has gone, or the run is stopped, he closes the bomb bay and
+      then puts the whole panel back as it stood before the sortie, again one switch at a time: all
+      four stations off, nose and tail fuzing SAFE, the changeover to CAMERA, and the cover closed.
+      He does so only after a run he armed himself at the IP; bombs armed and dropped by hand are
+      left to the crew. He does not work any control under hard manoeuvring.</p>
       <p>Run In Altitude and Run In Speed are fitted under the map-point branches, a map point
       carrying no authored run-in figures of its own; each is a digit ring, and once a figure is
       given the wedge carries it thereafter. Where the route or the map holds nothing matching the
@@ -810,8 +818,7 @@ Settings &mdash; Automations &mdash;
   <footer>
     Edward &mdash; The Edward Menu. Source: Hooks/EdwardOverlayMenu.lua and
     Hooks/EdwardMenuPoints/{Status,Settings,Fuel,Radio,Navigation,HoldMyAircraft,WeaponsAndBombing}.lua.
-    The automatic use of Dead Reckoning points during a live sortie is not yet in service &mdash;
-    see the Dead Reckoning Survey Notes, Operating Data.
+    The Dead Reckoning landmarks are described in the Dead Reckoning Landmark Notes.
   </footer>
 </main>
 
@@ -1515,69 +1522,29 @@ Settings &mdash; Automations &mdash;
   }
 
   // ---- By DR Landmarks (Hooks/EdwardMenuPoints/Navigation.lua's buildDRLandmarkWedges()) — real,
-  // shipped code (Dead Reckoning Phase 1: the theatre survey + F10-map curation workflow, built and
-  // live-tested 2026-09-16), not a preview - see Distribution/DeadReckoning_Survey_Guide.html for the
-  // full player-facing workflow this drives. Wedge text, order, and the "closes on click, not
-  // keepOpenHere" behaviour below are copied straight from the real function - Martin's own comment
-  // there explains why: "every one of these actions is followed by going to look at the F10 map, and
-  // keepOpenHere would re-show this ring on top of the map the player is trying to reach... The
-  // curation loop is click View -> menu closes -> edit the map -> press 'e' again", same shape as
-  // Check Drift above. Real F10-map curation (deleting a bad point, adding an FP - mark) can't be
-  // represented on this page, so the two "(demo)" -prefixed wedges below stand in for it just to
-  // advance the label state machine - they aren't real menu items, and unlike the wedge above them
-  // they deliberately keep the ring open (keepOpenHere) so this demo stays usable without a real F10
-  // map to click on. Theatre name and point/anchor counts are illustrative placeholders, not the real
-  // Normandy survey's live-tested figures (1,427 points as of 2026-09-16).
-  var drSurveyTimers = [];
-  // realMission / missionPlaced model Phase 2 step B2 (2026-09-21): outside a survey mission the
-  // mission side picks the points along the player's route automatically, and the wedge reads
-  // "View Mission DR Points on Map (n)" - or "Add DR Landmarks to Mission" when nothing is placed.
-  // missionPlaced: -1 = not run yet, 0 = none near the route. Illustrative count.
-  // `drawn` is marks on the F10 map, which is a different number from `points` and moves
-  // independently of it - Clear DR Marks empties it and leaves the point list alone. Modelled here
-  // because without it the demo could not show what the real page could not show either: that Clear
-  // had done anything (2026-09-23).
-  state.drLandmarks = { theatre: 'Normandy', points: 0, drawn: 0, unsavedCount: 0, dirty: false, surveying: false, surveyDone: 0, surveyTotal: 46, realMission: false, missionPlaced: -1 };
-  // Re-survey's two-step confirm, in real seconds, exactly as Navigation.lua's resurveyArmedAt.
-  var drResurveyArmedAt = 0;
-  function drResurveyArmed() { return (Date.now() - drResurveyArmedAt) < 15000; }
+  // shipped code, not a preview - see DeadReckoning_Survey_Guide.html (Landmark Notes) for the full
+  // player-facing description. Since 2026-10-22 the theatre survey is a developer tool
+  // (DevTools/DRSurvey, never shipped), so this demo models the player's page only: the route pick,
+  // Clear, and Save My Landmarks. Wedge text, order, and the "closes on click, not keepOpenHere"
+  // behaviour are copied from the real function: every one of these actions is followed by going
+  // to look at the F10 map, and keepOpenHere would re-show this ring on top of it. Placing an FP -
+  // mark can't be done on this page, so the "(demo)" wedges stand in for it and deliberately keep
+  // the ring open. Counts are illustrative.
+  // missionPlaced: -1 = not run yet, 0 = none near the route. `drawn` is marks on the F10 map; Clear
+  // empties it and leaves the pick alone. `fp` is FP - marks on the map; `lastSaved` the hub's
+  // "SAVED n OF YOURS" after Save My Landmarks.
+  state.drLandmarks = { theatre: 'Normandy', drawn: 9, missionPlaced: 9, missionViewed: false, fp: 0, lastSaved: -1 };
 
   function drStatusLabel() {
     var d = state.drLandmarks;
-    if (d.surveying) return 'Surveying ' + Math.floor(d.surveyDone / d.surveyTotal * 100) + '%';
-    if (d.realMission) {
-      if (d.missionPlaced > 0 && d.missionViewed) return 'Click to Re-pick for\nCurrent Route';
-      return d.missionPlaced > 0 ? ('View Mission DR\nPoints on Map (' + d.missionPlaced + ')') : 'Add DR Landmarks\nto Mission';
-    }
-    if (d.points === 0) return 'Create DR Points';
-    if (d.dirty) return d.unsavedCount > 0 ? ('Save (' + d.unsavedCount + ' unsaved)') : 'Save DR Points';
-    return 'View on Map (' + d.points + ')';
+    if (d.missionPlaced > 0 && d.missionViewed) return 'Click to Re-pick for\nCurrent Route';
+    return d.missionPlaced > 0 ? ('View Mission DR\nPoints on Map (' + d.missionPlaced + ')') : 'Add DR Landmarks\nto Mission';
   }
   function drCentreText() {
     var d = state.drLandmarks;
-    if (d.surveying) return 'DR LANDMARKS\nSurveying ' + d.theatre + '\n' + d.surveyDone + ' of ' + d.surveyTotal;
-    if (d.points === 0) return 'DR LANDMARKS\nNo points yet for\n' + d.theatre;
-    if (d.realMission && d.missionPlaced >= 0) return 'DR LANDMARKS\n' + d.theatre + '\n' + (d.missionPlaced > 0 ? d.missionPlaced + ' on your route' : 'None near your route');
-    var marks = d.drawn > 0 ? ('\n' + d.drawn + ' on map') : '\nmap clear';
-    if (d.dirty) return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points' + marks + '\n' + d.unsavedCount + ' UNSAVED';
-    return 'DR LANDMARKS\n' + d.theatre + '\n' + d.points + ' points' + marks;
-  }
-  function runDrSurveyDemo() {
-    var d = state.drLandmarks;
-    d.surveying = true; d.surveyDone = 0;
-    toast('EDMod: Surveying this theatre for landmarks - this takes a minute for real (sped up here).', 4);
-    function tick() {
-      d.surveyDone = Math.min(d.surveyTotal, d.surveyDone + Math.ceil(d.surveyTotal / 6));
-      if (d.surveyDone >= d.surveyTotal) {
-        // beginSurvey() clears the marks before it builds a new list, so nothing is on the map
-        // when a survey finishes - the real hub reads "map clear" here too.
-        d.surveying = false; d.points = 62; d.drawn = 0; d.dirty = false; d.unsavedCount = 0;
-        toast('EDMod: Survey done - ' + d.points + ' points found (demo)', 5);
-        return;
-      }
-      drSurveyTimers.push(setTimeout(tick, 450));
-    }
-    drSurveyTimers.push(setTimeout(tick, 450));
+    var saved = d.lastSaved >= 0 ? ('\nSAVED ' + d.lastSaved + ' OF YOURS') : '';
+    if (d.missionPlaced >= 0) return 'DR LANDMARKS\n' + d.theatre + '\n' + (d.missionPlaced > 0 ? d.missionPlaced + ' on your route' : 'None near your route') + saved;
+    return 'DR LANDMARKS\n' + d.theatre + saved;
   }
   function drLandmarksWedges() {
     var d = state.drLandmarks;
@@ -1606,27 +1573,12 @@ Settings &mdash; Automations &mdash;
     w.push({
       text: drStatusLabel(),
       action: function () {
-        if (d.surveying) {
-          toast('EDMod: Survey in progress - ' + Math.floor(d.surveyDone / d.surveyTotal * 100) + '% done.', 3);
-        } else if (d.realMission && d.points === 0) {
-          toast('EDMod: No DR points for this theatre. Survey it first, in a mission with a single Mosquito.', 5);
-        } else if (d.realMission) {
-          if (d.missionPlaced > 0 && !d.missionViewed) {
-            toast('EDMod: Placing this mission\'s DR points on the map.', 3);
-            d.missionViewed = true;
-          } else {
-            toast('EDMod: Picking DR points along your current route.', 3);
-            d.missionPlaced = d.missionPlaced > 0 ? 11 : 9;
-          }
-        } else if (d.points === 0) {
-          runDrSurveyDemo();
-        } else if (d.dirty) {
-          toast('EDMod: Saving ' + d.points + ' DR points for ' + d.theatre + ' (keeps a .bak backup of the old file) (demo)', 4);
-          // A save redraws, so the map matches the freshly folded-in point list.
-          d.dirty = false; d.unsavedCount = 0; d.drawn = d.points;
+        if (d.missionPlaced > 0 && !d.missionViewed) {
+          toast('EDMod: Placing this mission\'s DR points on the map.', 3);
+          d.missionViewed = true; d.drawn = d.missionPlaced;
         } else {
-          toast('EDMod: Placed ' + d.points + ' DR -/FP - marks on the F10 map (demo)', 4);
-          d.drawn = d.points;
+          toast('EDMod: Picking DR points along your current route.', 3);
+          d.missionPlaced = 9 + d.fp; d.drawn = 9;
         }
       }
     });
@@ -1635,59 +1587,31 @@ Settings &mdash; Automations &mdash;
       action: function () {
         // Nothing drawn: say so, rather than a "clearing..." that is indistinguishable from a
         // failure. This is the exact case that made the real wedge look broken (2026-09-23).
-        if (d.drawn === 0 && !d.realMission) { toast('EDMod: No DR marks on the map.', 3); return; }
+        if (d.drawn === 0) { toast('EDMod: No DR marks on the map.', 3); return; }
         d.missionViewed = false; d.drawn = 0;
         toast('EDMod: Clearing DR marks from the map (demo) - reopen this ring to put them back.', 4);
       }
     });
-    // Re-survey (2026-09-23): a second survey of a theatre that already has one, without leaving the
-    // cockpit to rename its file. Survey missions only, and only where Create is not already on
-    // offer. Two-step confirm - the ring closes on click, so confirming is press 'e' and click again.
-    if (!d.surveying && !d.realMission && d.points > 0) {
-      var armed = drResurveyArmed();
+    // Save My Landmarks (2026-10-22): only while FP - marks stand on the map, single player only.
+    if (d.fp > 0) {
       w.push({
-        text: armed ? 'Confirm\nRe-survey' : 'Re-survey\nTheatre',
+        text: 'Save My\nLandmarks (' + d.fp + ')',
         action: function () {
-          if (drResurveyArmed()) {
-            drResurveyArmedAt = 0;
-            runDrSurveyDemo();
-          } else {
-            drResurveyArmedAt = Date.now();
-            toast('EDMod: Re-survey ' + d.theatre + '? Click Re-survey again to confirm. The points in memory are replaced; the saved file is not touched until you Save.', 8);
-          }
+          toast('EDMod: Saving your ' + d.fp + ' FP - mark' + (d.fp === 1 ? '' : 's') + ' as landmarks for ' + d.theatre + '.', 4);
+          d.lastSaved = d.fp; d.fp = 0;
         }
       });
     }
-    if (!d.surveying) {
-      w.push({
-        text: d.realMission ? '(demo) switch to a\nsurvey mission' : '(demo) switch to a\nreal mission',
-        keepOpenHere: true,
-        action: function () {
-          d.realMission = !d.realMission;
-          if (d.realMission && d.points === 0) d.points = 62;
-          d.missionPlaced = d.realMission ? 9 : -1;
-        }
-      });
-    }
-    if (!d.surveying && d.realMission) {
-      w.push({
-        text: '(demo) mission carries\nDR nav points',
-        keepOpenHere: true,
-        action: function () { d.fromMission = true; d.missionPlaced = 9; }
-      });
-    }
-    if (!d.surveying && !d.realMission && d.points > 0) {
-      w.push({
-        text: '(demo) place a new FP - mark on the map',
-        keepOpenHere: true,
-        action: function () { d.points += 1; d.unsavedCount += 1; d.dirty = true; }
-      });
-      w.push({
-        text: '(demo) delete a DR - mark on the map',
-        keepOpenHere: true,
-        action: function () { if (d.points > 0) { d.points -= 1; d.unsavedCount += 1; d.dirty = true; } }
-      });
-    }
+    w.push({
+      text: '(demo) place an\nFP - mark on the map',
+      keepOpenHere: true,
+      action: function () { d.fp += 1; d.missionPlaced += 1; }
+    });
+    w.push({
+      text: '(demo) mission carries\nDR nav points',
+      keepOpenHere: true,
+      action: function () { d.fromMission = true; d.missionPlaced = 9; }
+    });
     w.push({ text: 'Go Back', back: true });
     w.centreText = drCentreText();
     return w;

@@ -38,15 +38,14 @@ body:
         - **dcs.log** — `Saved Games\<your DCS folder>\Logs\dcs.log`. Some points ask you to search
           it for a line of text after the flight (open it in a text editor and use Find).
 
-        **Missions** (supplied with the test build): `Edward-FlightA-High.miz` (Part 1),
-        `Edward-DRSurvey-Normandy.miz` (Part 2) and `Edward-FlightA-Landmarks.miz` (Part 3).
+        **Missions** (supplied with the test build): `Edward-FlightA-High.miz` (Parts 1 and 2) and
+        `Edward-FlightA-Landmarks.miz` (Part 3).
 
         **Before you start**
         1. Install the test build (Install.bat) and **restart DCS**.
         2. In flight, menu **Status ▸ Logging**: set to ON (the log lines below need it).
         3. Menu **Settings ▸ Automations**: everything ON.
-        4. In the cockpit of the flying missions (Parts 1 and 3): set the Directional Gyro to the magnetic compass (see above).
-        5. Fly Part 2 before Part 3: Part 3 uses the landmarks you make in Part 2.
+        4. In the cockpit of both missions: set the Directional Gyro to the magnetic compass (see above).
 
   - type: input
     id: build
@@ -115,20 +114,22 @@ body:
     attributes:
       value: |
         ---
-        ## Part 2 — Mission DRSurvey: making the landmark points
+        ## Part 2 — Mission FlightA-High: a landmark of your own
 
-        Edward calls out landmarks (towns, churches, bridges…) as you pass them. He finds them in a
-        one-time survey of the map, which you make here. You start on the ground and the heading
-        doesn't matter, so there is no need to set the Directional Gyro.
+        Edward calls out landmarks (churches, bridges, lakes…) as you pass them. The landmarks for
+        Normandy come with Edward. You can add your own, and keep them for every later flight on the
+        map. Do this in the same flight as Part 1, or in a second one.
 
   - type: dropdown
     id: p2-1
     attributes:
-      label: 2.1 — Making the survey: saving shows a result on the menu
+      label: 2.1 — Save My Landmarks keeps an FP mark
       description: |
-        **Do:** open *Navigation ▸ DR Landmarks* and click *Create DR Points*. Wait about a minute
-        until the survey is done, then click *Save*.
-        **Pass:** the centre of the page shows `SAVED n + 0 YOURS` (n is the number of landmarks found).
+        **Do:** on the F10 map, place a mark on something you can see near the route and give it
+        the text `FP - My Landmark`. Open *Navigation ▸ DR Landmarks* and click
+        *Save My Landmarks (1)*.
+        **Pass:** the mark leaves the F10 map and the centre of the page shows `SAVED 1 OF YOURS`.
+        dcs.log has the line `save my landmarks: 1 new`.
       options: [Not tested, Passed, Not passed]
       default: 0
 
@@ -146,7 +147,7 @@ body:
         ---
         ## Part 3 — Mission FlightA-Landmarks: landmarks saved with the mission
 
-        Needs Part 2 first. Each time you load a mission in single player, Edward picks landmarks
+        Each time you load a mission in single player, Edward picks landmarks
         along the route of every Mosquito flight in it and saves them into a copy of the mission,
         named `<mission>_navpoints.miz`, in the same folder. In that copy the landmarks are ordinary
         navigation points, which is how they reach every player in multiplayer. Set the Directional

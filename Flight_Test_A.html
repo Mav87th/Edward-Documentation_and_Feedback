@@ -199,16 +199,15 @@
         <li>In flight, menu <span class="menu-path">Status &#9656; Logging</span>: set it ON. The log
           checks below need it.</li>
         <li>Menu <span class="menu-path">Settings &#9656; Automations</span>: set everything ON.</li>
-        <li>In the cockpit of the flying missions (Parts 1 and 3): set the Directional Gyro to the
-          magnetic compass (see the box at the top of this page).</li>
-        <li>Fly Part 2 before Part 3: Part 3 uses the landmarks you make in Part 2.</li>
+        <li>In the cockpit of both missions: set the Directional Gyro to the magnetic compass (see
+          the box at the top of this page).</li>
       </ol>
     </div>
   </section>
 
   <section>
     <h2>The missions</h2>
-    <p class="lead">Three missions come with the test build, each with one pilot slot.</p>
+    <p class="lead">Two missions come with the test build, each with one pilot slot.</p>
     <div class="table-wrap">
       <table class="missions">
         <tr><th>Mission</th><th>What it is</th><th>Used in</th></tr>
@@ -216,12 +215,7 @@
           <td>Normandy, an air start at 6,000 ft. Three legs of about 40 NM over inland Normandy,
           with a turn at WP1, WP2 and WP3. You start on <b>183&deg; magnetic</b>: set the
           Directional Gyro to 183.</td>
-          <td>Part 1</td></tr>
-        <tr><td><code>Edward-DRSurvey-Normandy.miz</code></td>
-          <td>Normandy with exactly one aircraft in the whole mission. That is what unlocks making
-          the landmark points Edward uses for the map. You start on the ground; no need to set the
-          Directional Gyro.</td>
-          <td>Part 2</td></tr>
+          <td>Parts 1 and 2</td></tr>
         <tr><td><code>Edward-FlightA-Landmarks.miz</code></td>
           <td>Normandy, an air start at 5,000 ft. About 120 NM over inland Normandy. A second
           Mosquito flight sits in the mission without flying; it is only there so the mission has
@@ -252,23 +246,25 @@
   </section>
 
   <section>
-    <h2>Part 2 &mdash; Mission DRSurvey: making the landmark points</h2>
-    <p class="lead">Edward calls out landmarks (towns, churches, bridges&hellip;) as you pass them.
-    He finds them in a one-time survey of the map, which you make here. You start on the ground
-    and the heading doesn't matter, so there is no need to set the Directional Gyro.</p>
+    <h2>Part 2 &mdash; Mission FlightA-High: a landmark of your own</h2>
+    <p class="lead">Edward calls out landmarks (churches, bridges, lakes&hellip;) as you pass them.
+    The landmarks for Normandy come with Edward. You can add your own, and keep them for every
+    later flight on the map. Do this in the same flight as Part 1, or in a second one.</p>
 
-    <div class="step"><h3><span class="num">2.1</span> Making the survey: saving shows a result on the menu</h3>
-      <p><span class="label">Do</span> Open <span class="menu-path">Navigation &#9656; DR
-      Landmarks</span> and click <i>Create DR Points</i>. Wait about a minute until the survey is
-      done, then click <i>Save</i>.</p>
-      <p><span class="label pass">Pass</span> The centre of the page shows
-      <code>SAVED n + 0 YOURS</code> (n is the number of landmarks found).</p>
+    <div class="step"><h3><span class="num">2.1</span> Save My Landmarks keeps an FP mark</h3>
+      <p><span class="label">Do</span> On the F10 map, place a mark on something you can see near
+      the route and give it the text <code>FP - My Landmark</code>. Open
+      <span class="menu-path">Navigation &#9656; DR Landmarks</span> and click
+      <i>Save My Landmarks (1)</i>.</p>
+      <p><span class="label pass">Pass</span> The mark leaves the F10 map and the centre of the page
+      shows <code>SAVED 1 OF YOURS</code>. After the flight, dcs.log has the line
+      <code>save my landmarks: 1 new</code>.</p>
     </div>
   </section>
 
   <section>
     <h2>Part 3 &mdash; Mission FlightA-Landmarks: landmarks saved with the mission</h2>
-    <p class="lead">Needs Part 2 first. Each time you load a mission in single player, Edward picks
+    <p class="lead">Each time you load a mission in single player, Edward picks
     landmarks along the route of every Mosquito flight in it and saves them into a copy of the
     mission, named <code><i>mission</i>_navpoints.miz</code>, in the same folder. In that copy the
     landmarks are ordinary navigation points, which is how they reach every player in multiplayer.
