@@ -186,7 +186,7 @@ body:
         **Do:** fly the route in this `_navpoints` mission.
         **Pass:** about a minute before each landmark on your route, a heads-up call ("Pinpoint in
         one minute - …"), then a fix call as it passes ("There is …", with how early or late you are
-        and which side of the track). About one landmark every 20 NM, roughly every 5 minutes. In the
+        and which side of the track). A landmark at most turning points, and more along longer legs, roughly every 3-6 minutes. In the
         notes: could you see each one, and did early/late and the side of track match what you saw?
       options: [Not tested, Passed, Not passed]
       default: 0
