@@ -32,7 +32,8 @@ body:
         **Words used below**
         - **Hold** (menu: *Hold My Aircraft*) — Edward holds the aircraft on a set course and
           altitude. You fly the aircraft yourself in this test; use Hold only where a test point
-          asks for it.
+          asks for it. In the pilot seat, moving the stick turns Hold off ("Hold off - you have
+          her."); keep your hand off the stick while Hold is on.
         - **Steer call** — Edward's on-screen line telling you the course to fly, e.g.
           "Two minutes to WP2. Steer 095°M, range 8.1 NM."
         - **dcs.log** — `Saved Games\<your DCS folder>\Logs\dcs.log`. Some points ask you to search
