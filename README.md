@@ -18,8 +18,10 @@ source code lives elsewhere and is not public.
   mod's own source, which you can work through in the browser without starting DCS.
 - **[Dead Reckoning Landmark Notes](DeadReckoning_Survey_Guide.html)** — the landmarks Edward calls
   out for dead reckoning, and how to add your own.
+- **[Dead Reckoning — The Navigator's Calls](DeadReckoning_Rules.html)** — the full rules: how
+  Edward chooses the landmarks along your route, and when, how and why he calls them in the air.
 
-Both are written in the manner of a wartime Air Publication, which felt like the right register for
+All three are written in the manner of a wartime Air Publication, which felt like the right register for
 an aeroplane of this vintage.
 
 ## Reporting a bug or asking for something

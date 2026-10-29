@@ -341,10 +341,10 @@
     </div>
 
     <div class="step"><h3><span class="num">8.</span> Points placed by hand</h3>
-      <p>A landmark may be added by the player: an ordinary F10 map mark whose text begins
-      <span class="inline-code">FP -</span>, e.g. <span class="inline-code">FP - Church</span>. Such a
+      <p>A landmark may be added by the player: a mark he creates himself upon the F10 map, whose text begins
+      <span class="inline-code">FP -</span>, e.g. <span class="inline-code">FP - Road Intersection</span>. Such a
       point is accepted without question; EDWARD does not verify what is on the ground there. If
-      the player states a band &mdash; <span class="inline-code">FP - Church - Low</span> &mdash; the
+      the player states a band &mdash; <span class="inline-code">FP - Road Intersection - Low</span> &mdash; the
       point is treated exactly as a supplied point of that band; if no band is stated, Medium is
       given.</p>
     </div>
@@ -446,9 +446,9 @@
       and, once used, <span class="inline-code">CLICK TO RE-PICK FOR CURRENT ROUTE</span>. A re-pick
       works upon the route <i>as it now stands</i>, so an alteration made in the air is taken
       up.</p>
-      <p>A landmark of the crew's own may be added in the air: an F10 map mark whose text begins
+      <p>A landmark of the crew's own may be added in the air: a mark the player creates upon the F10 map, whose text begins
       <span class="inline-code">FP - </span> (para. 10; for example
-      <span class="inline-code">FP - Water Mill - LOW</span>). EDWARD takes it up within a few
+      <span class="inline-code">FP - Distinct Farm - LOW</span>). EDWARD takes it up within a few
       seconds, without any wedge being pressed, and calls it as he would any other point; a
       landmark already called is not called again. Such a mark serves for that mission only
       &mdash; to keep it for every flight, use <span class="inline-code">SAVE MY LANDMARKS</span>
@@ -459,35 +459,45 @@
     <div class="step"><h3><span class="num">20.</span> Selection by height</h3>
       <p>A point is offered according to the height at which that leg is to be flown, taken as the
       mean height above ground of its two waypoints:&mdash;</p>
-      <p>(i) Below 3,000 ft. A.G.L., points of every band are offered, the nearest to track
-      winning, out to 2&frac12; miles.</p>
-      <p>(ii) Between 3,000 ft. and 12,000 ft. A.G.L., points of every band are offered between a
-      half and three miles of track, an offset of about a mile and a half preferred; a small feature
-      lying directly beneath the track is set aside in favour of one to a side, a large and
-      unmistakable feature excepted.</p>
+      <p>(i) Below 3,000 ft. A.G.L., points of every band are offered out to 2&frac12; miles of
+      track. A feature is judged by how large it will look from the cockpit: a tower twice as tall
+      is worth one twice as far off, for it stands above the hedges, and one lower than the trees is
+      worth little upon a wooded theatre. A feature that looks large &mdash; tall, upon a rise, or
+      standing alone in open country &mdash; may be offered out to five miles.</p>
+      <p>(ii) Between 3,000 ft. and 12,000 ft. A.G.L., points of every band are offered out to three
+      miles of track, the nearer preferred, size counting for half as much as below 3,000 ft. A High
+      point (a container yard, a solar farm), or one placed by hand, within a mile and a half of track
+      counts as lying upon it.</p>
       <p>(iii) Above 12,000 ft. A.G.L., Low points are withheld &mdash; a feature without
       surroundings cannot be read from that height &mdash; and Medium and High points are offered
-      out to five miles.</p>
-      <p>(iv) A point placed by hand is offered regardless of the ordinary spacing, claims its place
-      upon the leg, and sets aside any automatic point within a mile of it in an overlapping
-      band.</p>
-      <p>(v) No point is offered within fifteen miles of the first waypoint or five of the last.</p>
-      <p>(vi) At most one point is offered in each twenty miles of a leg. Where two churches, or two
-      bridges, compete for the same stretch, the larger is preferred &mdash; a large church before a
-      medium one, a medium before the smallest; a long bridge before a short one &mdash; unless it
-      lies appreciably further from the ideal distance from track (half a mile for each step in
-      size). This preference holds between features of one kind only; a church is never set
-      aside for a bridge merely because the bridge is long. A railway yard counts for more the
-      larger it is: a yard of several footbridges over the lines is preferred to a church or a mill
-      unless it lies well over a mile further off. Yards are named
-      <span class="inline-code">RAILWAY STATION</span> or, when large,
-      <span class="inline-code">RAIL YARD</span>.</p>
-      <p>(vii) Below 3,000 ft. a feature is judged by how large it will look: a tower twice as tall
-      is worth one twice as far off, for it stands above the hedges. Above 12,000 ft. broad, flat
-      features &mdash; aerodromes, railway yards, lakes, islands, forts &mdash; are preferred, for
-      they keep their shape from height.</p>
-      <p>(viii) Each turning point is served first: a feature within a mile of it is taken before
-      the rest of the leg is filled, so that the turn itself may be made over a known mark.</p>
+      out to five miles. Broad, flat features &mdash; aerodromes, railway yards, lakes, islands,
+      prisons, forts, castles and the larger railway junctions &mdash; are preferred, for they keep
+      their shape from height.</p>
+      <p>(iv) A point placed by hand is taken first, claims its place upon the leg, and sets aside
+      any automatic point within a mile of it in an overlapping band.</p>
+      <p>(v) No point is offered within three miles of the first waypoint, nor within five of the
+      last.</p>
+      <p>(vi) Each turning point is served next: the best feature within a mile of it is taken, so
+      that the turn itself may be made over a known mark.</p>
+      <p>(vii) The rest of the route is then filled: a stretch of ten miles or less between points
+      already taken is left empty, and a longer one is given at most one point for every twenty
+      miles or part of it, each at least three miles clear of the points at either end. This gives
+      about one landmark every five minutes at cruising speed.</p>
+      <p>(viii) Where two churches, or two bridges, compete for the same stretch, the larger is
+      preferred &mdash; a large church before a medium one, a medium before the smallest; the larger
+      kinds of bridge before the smaller &mdash; unless it lies appreciably further from track
+      (half a mile to a mile and a half, according to the step in size). This preference holds
+      between features of one kind only; a church is never set aside for a bridge merely because
+      the bridge is large. A long or high bridge carrying a road over a railway, or crossing a river
+      across the line of flight, counts by its length and is not hidden by trees. A railway yard
+      counts for more the larger it is: a yard of several footbridges over the lines is preferred to
+      a large church or a tall chimney unless it lies well over a mile further off, and a major railway junction
+      is likewise preferred. Yards are named <span class="inline-code">RAILWAY STATION</span> or,
+      when large, <span class="inline-code">RAIL YARD</span>.</p>
+      <p>(ix) Two points within a mile of each other in an overlapping band count as the same, and
+      only one is kept.</p>
+      <p>The full rules, with their figures and reasons, are set out in
+      <a href="DeadReckoning_Rules.html">Dead Reckoning &mdash; The Navigator's Calls</a>.</p>
     </div>
 
     <div class="step"><h3><span class="num">21.</span> The call in the air</h3>
@@ -502,20 +512,28 @@
       On time, on track.</span></p>
       <p class="example"><span class="inline-code">Edward: There is Rail Yard, 1 mile to starboard.
       1min 10 seconds late, and we passed 1.1 NM port of track.</span></p>
-      <p>A landmark at a turning point is named some ninety seconds before the turn, between the
-      two-minute and one-minute turn calls. Where it stands on the turning point, the turn is made
-      over it; otherwise the turning point is given from it:&mdash;</p>
-      <p class="example"><span class="inline-code">Edward: Turning point coming up - we turn over
-      Church.</span></p>
-      <p class="example"><span class="inline-code">Edward: Turning point coming up - we turn half a
-      mile east of Church.</span></p>
+      <p>A displacement under 0.3 of a mile is &ldquo;on track&rdquo;. Where the mission carries no
+      planned times, neither the time nor &ldquo;on track&rdquo; is said; a larger displacement is
+      still given.</p>
+      <p>A landmark at a turning point is named instead, some ninety seconds before the turn,
+      between the two-minute and one-minute turn calls. Where it stands within a quarter of a mile
+      of the turning point it marks it; otherwise the turning point is given from it, to the nearest
+      half mile and the nearest of eight points of the compass:&mdash;</p>
+      <p class="example"><span class="inline-code">Edward: Turning point coming up - Church marks
+      it.</span></p>
+      <p class="example"><span class="inline-code">Edward: Turning point coming up - half a mile
+      north-east of Church.</span></p>
+      <p>Only the turn at the waypoint now being flown to is named. The navigator does not say
+      &ldquo;we turn over&rdquo; the landmark: EDWARD begins the turn early so that the aircraft rolls
+      out upon the new track, and the landmark is usually not overflown.</p>
       <p>Should the navigator be too busy to name it before the turn, he calls it a few seconds
       after the turn instead, with the time only. The corner is cut in turning, so a displacement
       from the old track would mislead; the first fix on the new leg gives it:&mdash;</p>
       <p class="example"><span class="inline-code">Edward: There is Church, half a mile to port -
       that was our turning point. On time.</span></p>
-      <p>A landmark standing off the turning point gets, in that case, the ordinary fix call, again
-      with the time only.</p>
+      <p>A landmark standing off the turning point gets, in that case, the ordinary fix call
+      without a displacement. (At present it may add &ldquo;on track&rdquo;, which is to be
+      disregarded.)</p>
       <p>Both calls give the distance out to the landmark, to the nearest half mile (or half
       kilometre, where Settings has kilometres), so that the eye may be put upon it; a landmark
       passing within a quarter of a mile is called &ldquo;close&rdquo;. The warning's figure is
@@ -524,21 +542,23 @@
       against where it <i>did</i> pass, and is a fix upon the aircraft's position &mdash; not a
       comparison of headings. The correction itself is left to the existing off-track and schedule
       calls, which are not to be duplicated.</p>
-      <p>The name given is the point's own label, exactly as it appears upon its F10 mark, so that
-      call and mark may not be confused.</p>
+      <p>The name given is the point's own label. Its F10 mark may add the nearest town
+      (&ldquo;Church, &lt;town&gt;&rdquo;); the call gives the label alone.</p>
     </div>
 
     <div class="step"><h3><span class="num">22.</span> When no call is made</h3>
       <p>(i) <b>A landmark passed too wide to have been seen is not called.</b> Low points are
-      called within one mile, Medium within three, High within eight, measured from where the
-      aircraft actually went. The omission is deliberate: if a landmark is not seen, the crew are to
-      stick to their courses and times and wait for the next, not hunt for it.</p>
-      <p>(ii) No call is made while nav updates are switched off, during a bombing run, or while
-      EDWARD is counting down a turn. A call falling in such a moment is held and made when he is
-      free, or abandoned if it has gone stale.</p>
-      <p>(iii) Calls are spaced, and only one is made at a time.</p>
+      called within one mile (up to two, below 3,000 ft., for one that looks large), Medium within
+      three, High within eight, measured from where the aircraft actually went. The omission is
+      deliberate: if a landmark is not seen, the crew are to stick to their courses and times and
+      wait for the next, not hunt for it.</p>
+      <p>(ii) No call is made while nav updates are switched off. No warning or fix is made while
+      EDWARD is counting down a turn, for six seconds after the turn, or while a drift reading is
+      being taken. A call falling in such a moment is held and made when he is free, or abandoned if
+      it is more than twenty seconds old.</p>
+      <p>(iii) Calls are spaced at least fifteen seconds apart, and only one is made at a time.</p>
       <p>(iv) <b>The time is stated only where the mission carries planned times.</b> Where the
-      Mission Editor has set none, the landmark and the displacement are given and nothing is said
+      Mission Editor has set none, the landmark and any displacement are given and nothing is said
       of the clock &mdash; a time invented from an assumed speed being worse than none.</p>
       <p>(v) Clearing the D.R. marks from the map does <i>not</i> stop the calls. The marks are a
       convenience upon the chart; the calls are the navigator's work, and the landmark is to be
@@ -573,9 +593,9 @@
   </section>
 
   <footer>
-    Edward &mdash; Dead Reckoning Landmark Notes. Complementary to the Edward Menu Notes. See
-    <code>Documentation/Plans/DeadReckoning_Plan.md</code> in the source repository for the design
-    and the open questions behind it.
+    Edward &mdash; Dead Reckoning Landmark Notes. Complementary to the Edward Menu Notes. The full
+    rules for choosing and calling the landmarks are in
+    <a href="DeadReckoning_Rules.html">Dead Reckoning &mdash; The Navigator's Calls</a>.
   </footer>
 </main>
 </body>
