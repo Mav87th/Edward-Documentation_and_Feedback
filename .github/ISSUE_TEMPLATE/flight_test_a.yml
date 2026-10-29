@@ -88,17 +88,18 @@ body:
   - type: dropdown
     id: p1-1
     attributes:
-      label: 1.1 — "Turn now" comes before the waypoint
+      label: 1.1 — The turn comes at the waypoint
       description: |
-        **What:** Edward calls each turn before the waypoint, worked out for a 30° bank turn (the
-        first mark on the bank indicator) at your present speed, so you roll out on the line to the
-        next waypoint instead of overshooting it.
-        **Do:** watch the range to WP1 on the Navigation page as the turn call comes. Do the same at
-        WP2 and WP3.
-        **Pass:** "Turn starboard now for heading … New track …" (or port) comes before each
-        waypoint: about half a mile out for a gentle turn, a little over a mile for a right-angle
-        turn, more for a sharper one. dcs.log has one line `turn point for WP1`, and the same for WP2
-        and WP3. In the notes, write the range shown when each call came.
+        **What:** you turn at each waypoint, not before it. Edward works the turn out for a 45° bank
+        (the 45° mark on the bank indicator) at your present speed. The heading he gives already
+        allows for the turn, so after it you fly straight to the next waypoint.
+        **Do:** when Edward says "On WP1 now. Turn starboard to heading …" (or port), roll into a 45°
+        bank turn and roll out on the heading he gave. Hold that heading. Do the same at WP2 and WP3.
+        **Pass:** the call comes as you reach each waypoint (the Navigation page shows under 0.3
+        miles). After the turn, the steer on the Navigation page stays within about 3° of the heading
+        Edward gave, and he gives no "Off track" call on the new leg. dcs.log has one line
+        `turn point WP1`, and the same for WP2 and WP3. In the notes, write the steer shown a minute
+        after each turn.
       options: [Not tested, Passed, Not passed]
       default: 0
 
@@ -106,7 +107,7 @@ body:
     id: notes-1
     attributes:
       label: Notes on Part 1
-      description: The range at each turn call, and anything that looked odd.
+      description: The steer a minute after each turn, and anything that looked odd.
     validations:
       required: false
 
