@@ -385,7 +385,7 @@
 Settings &mdash; Automations &mdash;
     Master ................. Fuel Management ....... Arming Management
     Pitot Heat .............. Radiator Management .... Bombbay Automation
-    Nav Updates</pre>
+    Bomb Run Calls ......... Nav Updates</pre>
   </section>
 
   <section>
@@ -414,6 +414,10 @@ Settings &mdash; Automations &mdash;
       quick action that may reasonably be followed by another of the same kind, instead return the
       dial to the ring it was opened from, so that a further click may be made at once without the
       menu having to be reopened.</p>
+      <p>In VR the dial is drawn at three-quarters of its size on a monitor, a full-size dial filling
+      too much of the view in the headset. The proportion is set by the line
+      <code>vrMenuScale = 0.75</code> in <code>Scripts\Hooks\EdwardConfig.lua</code>, from 0.4 to 1.5,
+      and takes effect on DCS being restarted; on a monitor the dial is always drawn full size.</p>
       <p>Wedge wording is stamped in placard capitals, a decimal point being drawn as a middle dot,
       as in a frequency of <span class="menu-label">8&middot;000 MC</span>.</p>
       <p>A list too long for one ring is paged: route waypoints eight to a ring, split three ways or
@@ -461,10 +465,18 @@ Settings &mdash; Automations &mdash;
       switch for all of them, and one switch each for Fuel Management, Arming Management, Pitot
       Heat, Radiator Management, Bombbay Automation, and Nav Updates (see Check List). Bombbay
       Automation governs whether EDWARD works the bomb doors himself during a run, separate from
-      Arming Management, which gates the run controller as a whole. Nav Updates governs whether
+      Arming Management, which gates the run controller as a whole. Bomb Run Calls holds three
+      switches for what EDWARD says between the IP and the target (see 4.7): Landmark Calls, Height
+      &amp; Speed Calls, and Target Cue; each re-shows its own ring when clicked, and all three are
+      on again at the start of every mission. Nav Updates governs whether
       EDWARD calls out navigation information at all; it is already turned on the moment a waypoint
       or map point is selected under Navigation, so this switch chiefly serves to turn it off again.
-      Messages chooses where EDWARD's messages appear: in his own message box at the lower left of
+      The master switch also covers one action with no switch of its own: on an air start, or a
+      start on the ground with the engines already running (not a cold start), some five seconds
+      after the game is first unpaused, EDWARD sets the Direction Indicator to the
+      magnetic heading (&ldquo;Edward: DI set to 159&deg;M.&rdquo;). He does so only when the DI
+      rotation fix is installed in the Mosquito's cockpit files; on an unaltered installation the
+      DI is left alone. Messages chooses where EDWARD's messages appear: in his own message box at the lower left of
       the screen (the default, and the one that also shows in VR), or in DCS's own message window,
       which keeps them in the game's message history. The choice is kept between flights. In
       multiplayer, a player who joins someone else's game always gets the message box. Move
@@ -505,6 +517,11 @@ Settings &mdash; Automations &mdash;
                 <span class="menu-label">is OFF</span></li>
               <li><span class="menu-label">Bombbay Automation is ON</span> /
                 <span class="menu-label">is OFF</span></li>
+              <li><span class="menu-label">Bomb Run Calls</span> &mdash;
+                <span class="menu-label">Landmark Calls are ON</span> / <span class="menu-label">are OFF</span>,
+                <span class="menu-label">Height &amp; Speed Calls are ON</span> / <span class="menu-label">are OFF</span>,
+                <span class="menu-label">Target Cue is ON</span> / <span class="menu-label">is OFF</span>,
+                with <span class="menu-label">Go Back</span></li>
               <li><span class="menu-label">Nav Updates are ON</span> /
                 <span class="menu-label">are OFF</span></li>
             </ul>
@@ -522,13 +539,17 @@ Settings &mdash; Automations &mdash;
       book over ten minutes or more, EDWARD says so. A.M.P.G. gives the air miles per gallon at
       once, upon a single click: true airspeed over that same book burn rate. Both rings remain
       open after a reading, as at 4.1 above. Fuel to Point gives the gallons and time required to reach the Waypoint,
-      Homebase, or Map Point selected, calculated the moment the ring is opened and re-checked upon
+      Homebase, Landing field, or Map Point selected, calculated the moment the ring is opened and re-checked upon
       a further click. Being worked from the present speed and fuel burn, it is only given in
       flight: below 120 mph, on the ground or in the take-off run, each wedge reads "when airborne"
       instead. Homebase is EDWARD's own determination of the flight's starting airfield,
       found by a fourfold test &mdash; the nearest field to a cold or hot start; failing that, the
       first or last waypoint if authored as a ground point; failing that, the nearest friendly field
-      there is.</p>
+      there is. The Landing field is where the route plans to land: the field of its last Land
+      waypoint, or, on a route loaded from the F10 map (where every point is a turning point), the
+      field nearest the last point when that point is named Home, Land or Landing. Where the route
+      lands back at its home field, both wedges show the same figure; where it plans no landing,
+      the wedge says so.</p>
       <p><i>Note.&mdash;</i> The distances governing this test have not been confirmed in flight;
       the airfield found is usually, but not certainly, correct.</p>
       <div class="markings"><span class="head">Markings</span>
@@ -548,6 +569,9 @@ Settings &mdash; Automations &mdash;
               <li><span class="menu-label">To Homebase</span>, reading
                 <span class="menu-label">Homebase not detected</span> where the field is yet to be
                 determined</li>
+              <li><span class="menu-label">To Landing</span>, giving the field's name
+                (<span class="menu-label">Landing (Carpiquet)</span>), or reading
+                <span class="menu-label">To Landing &mdash; none on route</span></li>
               <li><span class="menu-label">To Map Point</span> &mdash; one wedge for each marker
                 held: <span class="menu-label">IP</span>, <span class="menu-label">TGT</span>,
                 <span class="menu-label">NAV</span>, <span class="menu-label">HOME</span>,
@@ -565,6 +589,11 @@ Settings &mdash; Automations &mdash;
       with its preset letter and frequency. The R-1155 may be tuned to any frequency typed; the
       T-1154 is to be set only to one of its fixed presets, and a frequency typed upon it is snapped
       to the nearest of these.</p>
+      <p>The centre hub gives each set's present frequency. While a set is at work, its line gives
+      the work instead, blinking so that it is noticed: the transmitter&rsquo;s warming up, which
+      takes about a minute after it is switched on and is counted down in seconds; a tune in hand;
+      or a tune waiting, since a tune asked for during the warm-up is made only once the set is
+      warm.</p>
       <p>Manual Radio Tuning is fitted as a fourth wedge and hands the sets over to the player
       entirely: the menu closes, the player is moved to the navigator's seat, and the camera is
       brought upon the radio panel, the player working the sets by hand and returning to the pilot's
@@ -596,6 +625,17 @@ Settings &mdash; Automations &mdash;
       it open. While the ring itself is open, its centre hub shows the target's tag and steering
       heading, and, for a route waypoint, the speed required; a map point carries no planned leg
       time, so its speed is left out.</p>
+      <p>Load Route, on the By Waypoints ring, flies a route you drew yourself. Draw it with the
+      F10 map&rsquo;s route tool and save it under a name; Load Route lists the routes saved for
+      this map, and choosing one makes them the route after <span class="menu-label">WP0</span>,
+      your Home: the first saved point becomes <span class="menu-label">WP1</span>, and the names
+      you gave the points are kept (<span class="menu-label">WP4 IP</span>,
+      <span class="menu-label">WP5 TGT</span>, <span class="menu-label">WP8 Home</span>). Edward
+      says &ldquo;Route1 loaded, WP1 to WP8&rdquo;; pick a waypoint from By Waypoints to start.
+      Directions, the target preselect and the bomb run all follow it, as do the D.R. landmarks
+      where the map has any. The times saved with the route are not used. It works the same in
+      single player, as host and on someone else&rsquo;s server, and lasts until you choose
+      <span class="menu-label">Mission Route</span>, change slot or leave the mission.</p>
       <p>A map point is an F10 mark whose first line reads <span class="menu-label">IP</span>,
       <span class="menu-label">TGT</span>, <span class="menu-label">NAV</span>,
       <span class="menu-label">HOME</span> or <span class="menu-label">NEAREST</span>, in either
@@ -630,7 +670,9 @@ Settings &mdash; Automations &mdash;
           <li><span class="menu-label">By Waypoints</span> &mdash;
             <span class="menu-label">WP0</span>&ndash;<span class="menu-label">WP14</span>, five to a
             ring, each with its name where it has one (<span class="menu-label">WP5 TGT</span>),
-            with <span class="menu-label">Refresh</span></li>
+            with <span class="menu-label">Refresh</span> and <span class="menu-label">Load Route</span>
+            (your saved routes for this map, and <span class="menu-label">Mission Route</span>
+            while one is loaded)</li>
           <li><span class="menu-label">By Map Points</span> &mdash; <span class="menu-label">IP</span>,
             <span class="menu-label">TGT</span>, <span class="menu-label">NAV</span>,
             <span class="menu-label">HOME</span>, <span class="menu-label">NEAREST</span></li>
@@ -669,6 +711,10 @@ Settings &mdash; Automations &mdash;
       outside these is not accepted. The course is the one to steer: the nose is held upon it, and
       no allowance is made for wind. To make good a track, the course given by EDWARD's steer calls
       or the centre hub is to be set.</p>
+      <p>From the pilot&rsquo;s seat, a firm movement of the stick takes the aircraft back from EDWARD:
+      Hold is turned off, EDWARD says &ldquo;Hold off - you have her.&rdquo;, and the wedge reads
+      Hold is OFF. The rudder pedals do not do so, nor does the stick in the navigator&rsquo;s seat.
+      The DCS window must have the focus for the stick to be seen.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">Hold is ON</span> / <span class="menu-label">is OFF</span></li>
@@ -717,12 +763,49 @@ Settings &mdash; Automations &mdash;
       four stations off, nose and tail fuzing SAFE, the changeover to CAMERA, and the cover closed.
       He does so only after a run he armed himself at the IP; bombs armed and dropped by hand are
       left to the crew. He does not work any control under hard manoeuvring.</p>
+      <p>If the target is passed within a mile with every bomb still aboard, EDWARD says so &mdash;
+      &ldquo;Target passed, bombs still aboard.&rdquo; &mdash; and closes the bomb bay, but leaves
+      the panel as it is. The run stays armed: fly back to the IP and a new run begins there.
+      If only some of the bombs have gone, the run is over: he closes the bay, switches off the
+      stations now empty, puts the changeover to CAMERA and closes the cover, but leaves the
+      stations still carrying bombs, and their fuzing, as they are.</p>
+      <p>Between the IP and the target EDWARD calls what a navigator in the nose would see. Each
+      landmark within a mile of the run-in line is called as it comes abeam, with its side and
+      distance &mdash; &ldquo;Church passing to port, half a mile.&rdquo;, &ldquo;Rail Yard under us
+      now.&rdquo; &mdash; but none in the last mile. Every fifteen or twenty seconds he checks the
+      height against the target waypoint's and the true airspeed against its planned speed, and
+      speaks only when they are off: &ldquo;A little high.&rdquo;, &ldquo;Way low.&rdquo;,
+      &ldquo;Speed 215, we want 230.&rdquo;; the speed calls stop a minute out and the height calls
+      ten seconds out. At one mile he gives the target cue: &ldquo;Target coming up &mdash; just past
+      the Church, dead ahead.&rdquo;, or, with nothing near it to name, &ldquo;Target dead ahead,
+      one mile.&rdquo; Each of the three may be switched off under Settings &mdash; Automations
+      &mdash; Bomb Run Calls. In multiplayer, a player who joins someone else's game hears only the
+      landmarks EDWARD carries for the map, not the F10 marks.</p>
+      <p>Where the target has a planned time &mdash; the TGT waypoint's own, or a time typed on the
+      TGT mark &mdash; EDWARD tells how the flight stands against it, to the second and in time
+      only: &ldquo;1min 12 seconds late for target.&rdquo; or &ldquo;On time for target.&rdquo;
+      He does so at the start of every leg up to the IP, and again whenever the difference passes a
+      further whole minute, but never in the last minute before the target. The speeds to fly
+      remain those of the waypoints, given with each new leg.</p>
       <p>Run In Altitude and Run In Speed are fitted under the map-point branches, a map point
       carrying no authored run-in figures of its own; each is a digit ring, and once a figure is
       given the wedge carries it thereafter. Where the route or the map holds nothing matching the
       name sought, the ring offers the whole of it instead, as All Waypoints or All Map Points.</p>
-      <p><i>Note.&mdash;</i> Jettison is fitted but does not yet operate anything, and is not to be
-      relied upon; clicking it explains only that those controls have not been live-tested.</p>
+      <p>Jettison stands beside Arm Weapons and offers three wedges: Jettison Station 1 + 2 (the
+      wings), Jettison Station 3 + 4 (the bomb bay) and Jettison All Stations. There is no
+      confirming wedge; a choice is acted upon at once. The navigator works at a hand&rsquo;s pace:
+      for the bomb bay he first opens the bomb doors; he opens the panel cover, selects the chosen
+      stations one by one, puts the changeover to BOMBS and lifts the flap of the Bomb Containers
+      and Wing Drop Tanks Jettison button. Where the bomb bay is concerned he waits for the bomb
+      doors light, which shows only when the doors are fully open, and a second more, before he
+      presses the button. He then puts everything back in turn: the changeover to CAMERA, the
+      stations off, the cover closed and the bomb doors shut. For the wings alone the bomb doors
+      are not touched. Should the doors not open within fifteen seconds, he gives it up and puts
+      the panel back. The pilot&rsquo;s wing tank jettison, on the port wall, is the pilot&rsquo;s
+      alone and is not touched.</p>
+      <p><i>Note.&mdash;</i> In DCS at present the navigator&rsquo;s jettison button releases
+      nothing. Should nothing leave the aircraft, a message says so and points to the pilot&rsquo;s
+      wing tank jettison.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">TGT &mdash; <i>selection</i></span> &mdash;
@@ -750,9 +833,12 @@ Settings &mdash; Automations &mdash;
                 <span class="menu-label">is OFF</span>,
                 <span class="menu-label">Tail is ON</span> /
                 <span class="menu-label">is OFF</span>)</li>
-              <li><span class="menu-label">Jettison</span></li>
             </ul>
           </li>
+          <li><span class="menu-label">Jettison</span> &mdash;
+            <span class="menu-label">Jettison Station 1 + 2</span>,
+            <span class="menu-label">Jettison Station 3 + 4</span>,
+            <span class="menu-label">Jettison All Stations</span></li>
           <li>The state of the run, upon the root wedge:
             <span class="menu-label">No Target Set</span> &rarr;
             <span class="menu-label">Stop the Run</span> &rarr;
@@ -1075,6 +1161,19 @@ Settings &mdash; Automations &mdash;
     });
     return wedges;
   }
+  function bombCallWedges() {
+    var a = state.automation;
+    var list = [['bombCallsLandmarks', 'Landmark Calls', ' are '], ['bombCallsHeightSpeed', 'Height & Speed Calls', ' are '],
+      ['bombCallsTargetCue', 'Target Cue', ' is ']];
+    var wedges = [{ text: 'Go Back', back: true }];
+    list.forEach(function (s) {
+      if (a[s[0]] === undefined) a[s[0]] = true;
+      wedges.push({ text: s[1] + s[2] + (a[s[0]] ? 'ON' : 'OFF'),
+        action: function () { a[s[0]] = !a[s[0]]; toast('EDMod: Bomb run ' + s[1] + ': ' + (a[s[0]] ? 'ON' : 'OFF')); },
+        gotoLevel: bombCallWedges, gotoLevelLabel: ['Settings', 'Automations', 'Bomb Run Calls'] });
+    });
+    return wedges;
+  }
   function automationWedges() {
     var a = state.automation;
     function toggleWedge(key, label) {
@@ -1105,6 +1204,9 @@ Settings &mdash; Automations &mdash;
             : 'Bomb bay automation OFF - the bomb bay is yours. (demo)'), 5);
         },
         gotoLevel: automationWedges, gotoLevelLabel: ['Settings', 'Automations'] },
+      // Bomb Run Calls (2026-11-11, Next_Steps_Plan 7.2): the three cueing-call switches, each
+      // re-showing its own ring like Bombbay Automation (Settings.lua's buildBombCallWedges).
+      { text: 'Bomb Run Calls', submenu: bombCallWedges },
       // Moved here from Navigation (2026-09-10). Plain keepOpen like the toggles above, not
       // gotoLevel like Bombbay - this one doesn't need to show its new state in place. Its own
       // bridge (state.navActive), not part of the automation table `a` above - in the real code
@@ -1236,16 +1338,20 @@ Settings &mdash; Automations &mdash;
   // ring's own "Go Back" wedge - safe to drop since right-click still steps back everywhere, same
   // convention Settings ▸ Automations already relies on.
   var DEMO_HOMEBASE = 'Maupertus';
+  // To Landing (2026-11-11, Next_Steps_Plan 7.1): the route's landing field - the last Land
+  // waypoint, or a last point named Home / Land / Landing (Fuel.lua's buildLandingWedge).
+  var DEMO_LANDING = 'Carpiquet';
   function fuelToPointWedges() {
     // Eager-calculated (2026-09-12, same change as the WP/map-point rings above).
     if (!state.fuelToPoint.home) state.fuelToPoint.home = fuelToPointResult('Home (' + DEMO_HOMEBASE + ')');
-    // Order matters for layout, not just reading order: with 3 equal 120° wedges and no rotation,
-    // index 1 of 3 is the one that lands at the bottom (index 0 lands upper-right, index 2 upper-
-    // left) - To Homebase is placed there deliberately (Martin's ask, 2026-09-12), not first.
+    if (!state.fuelToPoint.landing) state.fuelToPoint.landing = fuelToPointResult('Landing (' + DEMO_LANDING + ')');
+    // The two long field labels sit in the middle slots, the short submenu labels at the ends.
     return [
       { text: 'To Waypoint', submenu: fuelWaypointChunks },
       { text: state.fuelToPoint.home, keepOpenHere: true,
         action: function () { state.fuelToPoint.home = fuelToPointResult('Home (' + DEMO_HOMEBASE + ')'); } },
+      { text: state.fuelToPoint.landing, keepOpenHere: true,
+        action: function () { state.fuelToPoint.landing = fuelToPointResult('Landing (' + DEMO_LANDING + ')'); } },
       { text: 'To Map Point', submenu: fuelMarkerWedges }
     ];
   }
@@ -1785,12 +1891,20 @@ Settings &mdash; Automations &mdash;
   function armWeaponsWedges() {
     return [
       { text: 'Go Back', back: true },
-      { text: 'Bombs', submenu: bombsWedges },
-      // Single leaf, NOT a submenu - deliberately non-functional (real code's own comment: the
-      // jettison args are the same device family as confirmed controls but were never live-tested,
-      // and guessing at a write that dumps real stores isn't worth the risk for a convenience wedge).
-      { text: 'Jettison', keepOpenHere: true,
-        action: function () { toast('EDMod: Jettison is not wired up yet - those controls have not been live-tested against the aircraft, so Edward will not guess at them. Use the cockpit levers. (demo)', 6); } }
+      { text: 'Bombs', submenu: bombsWedges }
+    ];
+  }
+
+  function jettisonWedges() {
+    return [
+      { text: 'Go Back', back: true },
+      // No confirm page (real code: buildJettisonWedges); the doors only for the bomb bay.
+      { text: 'Jettison Station 1 + 2',
+        action: function () { toast('Edward: Jettisoning stations 1 and 2. (demo)', 5); } },
+      { text: 'Jettison Station 3 + 4',
+        action: function () { toast('Edward: Jettisoning stations 3 and 4. Bomb doors opening. (demo)', 5); } },
+      { text: 'Jettison All Stations',
+        action: function () { toast('Edward: Jettisoning all stations. Bomb doors opening. (demo)', 5); } }
     ];
   }
 
@@ -1822,6 +1936,7 @@ Settings &mdash; Automations &mdash;
         ];
       } },
       { text: 'Arm Weapons', submenu: armWeaponsWedges },
+      { text: 'Jettison', submenu: jettisonWedges },
       { text: stopTheRunLabel(), keepOpen: true,
         action: function () {
           if (!state.weapons.selectedTarget) { toast('EDMod: No run to stop - pick a target under TGT first. (demo)', 3); return; }
