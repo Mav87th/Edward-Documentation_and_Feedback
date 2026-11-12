@@ -332,6 +332,40 @@
   @media (max-width: 560px) {
     main { padding: 32px 16px 56px; }
   }
+
+  /* ---- On screen: room around the text and between paragraphs ----
+     Side margins grow with the window (24px on a phone, up to 120px on a wide monitor); a
+     paragraph is followed by a blank-line's space and each numbered section by more, so the
+     text reads as separate paragraphs rather than one block. */
+  @media screen {
+    main { padding: 56px clamp(24px, 7vw, 120px) 80px; }
+    .step { margin: 0 0 2.4em; }
+    .step h3 { margin: 0 0 0.8em; }
+    .step p { margin: 0 0 1em; }
+    .markings { margin-top: 1.2em; }
+  }
+
+  /* ---- Printed / PDF (the copy shipped with the mod) ----
+     A4 with page margins, black on white whatever the screen theme, fixed type size, and no
+     interactive demonstration (it cannot work on paper). A heading is kept with its text and a
+     Markings box is not split across pages. */
+  @page { size: A4; margin: 22mm 20mm 24mm; }
+  @media print {
+    :root {
+      --bg: #fff; --ink: #000; --ink-muted: #222; --ink-faint: #444;
+      --surface-2: #f4f4f4; --line: #999; --code-bg: #f4f4f4;
+    }
+    html { font-size: 10.5pt; }
+    body { background: #fff; color: #000; }
+    main { max-width: none; padding: 0; }
+    section { margin-bottom: 14pt; }
+    .step { margin: 0 0 14pt; }
+    .step h3 { margin: 0 0 6pt; break-after: avoid; page-break-after: avoid; }
+    .step p { margin: 0 0 7pt; orphans: 3; widows: 3; }
+    h2 { break-after: avoid; page-break-after: avoid; }
+    .markings, pre { break-inside: avoid; page-break-inside: avoid; }
+    section.demo, .screen-only { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -346,8 +380,8 @@
       menu itself; <span class="menu-label">By DR Landmarks</span> is described in fuller detail
       by the separate Dead Reckoning Landmark Notes, which are themselves complementary to this
       publication. They are prepared for the guidance of the player only, and create no obligation
-      beyond the simulator itself. A demonstration of the menu, copied directly from its own source,
-      is given at the foot of these notes.
+      beyond the simulator itself.<span class="screen-only"> A demonstration of the menu, copied
+      directly from its own source, is given at the foot of these notes.</span>
     </p>
   </header>
 
@@ -393,51 +427,55 @@ Settings &mdash; Automations &mdash;
 
     <div class="step"><h3><span class="num">4.</span> The Edward Menu</h3>
       <p>The menu is a radial dial superimposed upon the cockpit, opened and closed with the
-      &ldquo;e&rdquo; key while flying; it is available only during flight in the Mosquito F.B. Mk.
+      &ldquo;e&rdquo; key while flying. It is available only during flight in the Mosquito F.B. Mk.
       VI, and not in the Mission Editor or the main menu. It is fitted with eight root wedges,
-      described below at 4.1&ndash;4.8. Stepping back &mdash; by right-click, or by a wedge marked
+      described below at 4.1&ndash;4.8.</p>
+      <p>Stepping back &mdash; by right-click, or by a wedge marked
       <span class="menu-label">Go Back</span> where one is fitted &mdash; rebuilds the parent ring
-      afresh from current data, exactly as drilling into a wedge that opens a further ring does. A
-      ring is never drawn of fewer than three wedges: where a list has only one or two listings, its
-      ring is filled out with a <span class="menu-label">Refresh</span> wedge, and
+      afresh from current data, exactly as drilling into a wedge that opens a further ring does.</p>
+      <p>A ring is never drawn of fewer than three wedges. Where a list has only one or two
+      listings, its ring is filled out with a <span class="menu-label">Refresh</span> wedge, and
       <span class="menu-label">Go Back</span> where that is still short; where it has none, with a
       wedge saying so, <span class="menu-label">Refresh</span> and
-      <span class="menu-label">Go Back</span>. A ring listing waypoints or map points redraws
-      itself in place when a fresher list arrives while it is open, so that a route still being
-      loaded &mdash; on first taking a slot, or after changing one &mdash; appears without the ring
-      having to be reopened. Where a ring calls for a number
-      &mdash; <span class="menu-label">Manually Tune</span> under
+      <span class="menu-label">Go Back</span>.</p>
+      <p>A ring listing waypoints or map points redraws itself in place when a fresher list arrives
+      while it is open, so that a route still being loaded &mdash; on first taking a slot, or after
+      changing one &mdash; appears without the ring having to be reopened.</p>
+      <p>Where a ring calls for a number &mdash; <span class="menu-label">Manually Tune</span> under
       <span class="menu-label">Radio</span>, or <span class="menu-label">Set Course</span> and
       <span class="menu-label">Set Altitude</span> under <span class="menu-label">Hold My
       Aircraft</span> &mdash; digits are to be clicked to build it, and the centre hub clicked to
-      confirm. Confirming an action ordinarily closes the menu outright; certain wedges, given to a
-      quick action that may reasonably be followed by another of the same kind, instead return the
-      dial to the ring it was opened from, so that a further click may be made at once without the
-      menu having to be reopened.</p>
+      confirm.</p>
+      <p>Confirming an action ordinarily closes the menu outright. Certain wedges, given to a quick
+      action that may reasonably be followed by another of the same kind, instead return the dial to
+      the ring it was opened from, so that a further click may be made at once without the menu
+      having to be reopened.</p>
       <p>In VR the dial is drawn at three-quarters of its size on a monitor, a full-size dial filling
       too much of the view in the headset. The proportion is set by the line
       <code>vrMenuScale = 0.75</code> in <code>Scripts\Hooks\EdwardConfig.lua</code>, from 0.4 to 1.5,
       and takes effect on DCS being restarted; on a monitor the dial is always drawn full size.</p>
       <p>Wedge wording is stamped in placard capitals, a decimal point being drawn as a middle dot,
       as in a frequency of <span class="menu-label">8&middot;000 MC</span>.</p>
-      <p>A list too long for one ring is paged: route waypoints eight to a ring, split three ways or
-      further where there are more than eight, each split kept as even as it may be made so that no
-      ring is left holding one or two waypoints only; and radio preset letters eight to a ring, one
+      <p>A list too long for one ring is paged. Route waypoints go eight to a ring, split three ways
+      or further where there are more than eight, each split kept as even as it may be made so that
+      no ring is left holding one or two waypoints only. Radio preset letters go eight to a ring, one
       ring to a range, the letters I and O being passed over so that they are not mistaken for the
-      figures 1 and 0. A digit ring is composed of
+      figures 1 and 0.</p>
+      <p>A digit ring is composed of
       <span class="menu-label">0</span>&ndash;<span class="menu-label">9</span> and
       <span class="menu-label">DEL</span>, a decimal point being added where a frequency or a run-in
       figure calls for one.</p>
-      <p>The centre hub reads <span class="menu-label">Edward</span> by default; where the ring itself
-      has some current reading of its own to give &mdash; <span class="menu-label">Navigation</span>'s
+      <p>The centre hub reads <span class="menu-label">Edward</span> by default. Where the ring
+      itself has some current reading of its own to give &mdash; <span class="menu-label">Navigation</span>'s
       nav picture, <span class="menu-label">Drift-Recorder</span>'s reading, <span class="menu-label">By
       DR Landmarks</span>' count on your route, <span class="menu-label">Radio</span>'s frequency, and
       <span class="menu-label">Fuel</span>'s AMPG &mdash; that reading is shown in the hub instead of
-      upon a wedge. Such a reading is kept current while its ring stands open: a waypoint selection,
-      a drift reading or a tuning completed a moment after the ring was entered appears in place,
-      as does a change in a ring's own wedges, such as the target and IP first selected on the
-      mission starting. The AMPG is the exception, being worked out afresh only when its wedge is
-      tapped; below 120 m.p.h. indicated it reads <span class="menu-label">No AMPG &middot; Below 120 Mph</span>,
+      upon a wedge.</p>
+      <p>Such a reading is kept current while its ring stands open: a waypoint selection, a drift
+      reading or a tuning completed a moment after the ring was entered appears in place, as does a
+      change in a ring's own wedges, such as the target and IP first selected on the mission
+      starting. The AMPG is the exception, being worked out afresh only when its wedge is tapped;
+      below 120 m.p.h. indicated it reads <span class="menu-label">No AMPG &middot; Below 120 Mph</span>,
       the figure having no meaning on the ground or in the circuit.</p>
       <p><i>Note.&mdash;</i> In the markings given at 4.1&ndash;4.8 below, wording set in capitals is
       the wedge's own; <i>wording set thus</i> stands for a figure or a name filled in by EDWARD as
@@ -461,31 +499,31 @@ Settings &mdash; Automations &mdash;
     <div class="step"><h3><span class="num">4.2</span> Settings</h3>
       <p>Distance, Headings, Speed, and Altitude are each a simple choice among the units offered
       &mdash; Nautical Miles or Kilometers; Magnetic or True; Knots, M.P.H., or K.P.H.; Feet or
-      Metres. Automations lists every action EDWARD is able to take of his own accord: a master
-      switch for all of them, and one switch each for Fuel Management, Arming Management, Pitot
-      Heat, Radiator Management, Bombbay Automation, and Nav Updates (see Check List). Bombbay
-      Automation governs whether EDWARD works the bomb doors himself during a run, separate from
-      Arming Management, which gates the run controller as a whole. Bomb Run Calls holds three
-      switches for what EDWARD says between the IP and the target (see 4.7): Landmark Calls, Height
-      &amp; Speed Calls, and Target Cue; each re-shows its own ring when clicked, and all three are
-      on again at the start of every mission. Nav Updates governs whether
-      EDWARD calls out navigation information at all; it is already turned on the moment a waypoint
-      or map point is selected under Navigation, so this switch chiefly serves to turn it off again.
-      The master switch also covers one action with no switch of its own: on an air start, or a
-      start on the ground with the engines already running (not a cold start), some five seconds
-      after the game is first unpaused, EDWARD sets the Direction Indicator to the
-      magnetic heading (&ldquo;Edward: DI set to 159&deg;M.&rdquo;). He does so only when the DI
-      rotation fix is installed in the Mosquito's cockpit files; on an unaltered installation the
-      DI is left alone. Messages chooses where EDWARD's messages appear: in his own message box at the lower left of
-      the screen (the default, and the one that also shows in VR), or in DCS's own message window,
-      which keeps them in the game's message history. The choice is kept between flights. In
-      multiplayer, a player who joins someone else's game always gets the message box. Move
-      Message Box closes the menu and shows the box with a bar along its top: drag it by that bar
-      to wherever suits, then click Done. The new place is kept between flights. Reset Message Box
-      puts it back at the lower left.
-      Choosing a unit, the Messages choice, or any automation switch, is to be understood as
-      resetting the menu to its root and leaving it open, Bombbay Automation excepted, which
-      re-shows the Automations ring itself instead.</p>
+      Metres.</p>
+      <p>Automations lists every action EDWARD is able to take of his own accord: a master switch
+      for all of them, and one switch each for Fuel Management, Arming Management, Pitot Heat,
+      Radiator Management, Bombbay Automation, Bomb Run Calls and Nav Updates (see Check List).</p>
+      <p>Arming Management governs the bomb run as a whole. Bombbay Automation governs only whether
+      EDWARD works the bomb doors himself during a run. Bomb Run Calls holds three switches for what
+      EDWARD says between the IP and the target (see 4.7): Landmark Calls, Height &amp; Speed Calls,
+      and Target Cue; all three are on again at the start of every mission.</p>
+      <p>Nav Updates governs whether EDWARD calls out navigation information at all. It is turned on
+      the moment a waypoint or map point is selected under Navigation, so this switch chiefly serves
+      to turn it off again.</p>
+      <p>The master switch also covers one action with no switch of its own: on an air start, or a
+      start on the ground with the engines already running, some five seconds after the game is
+      first unpaused, EDWARD sets the Direction Indicator to the magnetic heading
+      (&ldquo;Edward: DI set to 159&deg;M.&rdquo;).</p>
+      <p>Messages chooses where EDWARD's messages appear: in his own message box at the lower left
+      of the screen (the default, and the one that also shows in VR), or in DCS's own message
+      window, which keeps them in the game's message history. The choice is kept between flights. In
+      multiplayer, a player who joins someone else's game always gets the message box.</p>
+      <p>Move Message Box closes the menu and shows the box with a bar along its top: drag it by that
+      bar to wherever suits, then click Done. The new place is kept between flights. Reset Message
+      Box puts it back at the lower left.</p>
+      <p>Choosing a unit, the Messages choice, or an automation switch resets the menu to its root
+      and leaves it open. Bombbay Automation and the Bomb Run Calls switches are the exception: they
+      re-show their own ring, so the new setting is seen at once.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">Distance &mdash; <i>unit</i></span> &mdash;
@@ -532,26 +570,26 @@ Settings &mdash; Automations &mdash;
 
     <div class="step"><h3><span class="num">4.3</span> Fuel</h3>
       <p>Time Left gives the remaining flight time and gallons for All, Outer, or Mains, the overall
-      burn rate being used regardless of which tank the engines are actually drawing from. That
-      burn rate is taken, as a navigator took it, from the Pilot's Notes consumption table for the
-      boost and mixture the engines are set to, and the fuel gauges are watched against it over
+      burn rate being used regardless of which tank the engines are actually drawing from.</p>
+      <p>That burn rate is taken, as a navigator took it, from the Pilot's Notes consumption table
+      for the boost and mixture the engines are set to. The fuel gauges are watched against it over
       the longer run: should the fuel go more than about fifteen per cent faster or slower than the
-      book over ten minutes or more, EDWARD says so. A.M.P.G. gives the air miles per gallon at
-      once, upon a single click: true airspeed over that same book burn rate. Both rings remain
-      open after a reading, as at 4.1 above. Fuel to Point gives the gallons and time required to reach the Waypoint,
-      Homebase, Landing field, or Map Point selected, calculated the moment the ring is opened and re-checked upon
-      a further click. Being worked from the present speed and fuel burn, it is only given in
-      flight: below 120 mph, on the ground or in the take-off run, each wedge reads "when airborne"
-      instead. Homebase is EDWARD's own determination of the flight's starting airfield,
-      found by a fourfold test &mdash; the nearest field to a cold or hot start; failing that, the
-      first or last waypoint if authored as a ground point; failing that, the nearest friendly field
-      there is. The Landing field is where the route plans to land: the field of its last Land
-      waypoint, or, on a route loaded from the F10 map (where every point is a turning point), the
-      field nearest the last point when that point is named Home, Land or Landing. Where the route
-      lands back at its home field, both wedges show the same figure; where it plans no landing,
-      the wedge says so.</p>
-      <p><i>Note.&mdash;</i> The distances governing this test have not been confirmed in flight;
-      the airfield found is usually, but not certainly, correct.</p>
+      book over ten minutes or more, EDWARD says so.</p>
+      <p>A.M.P.G. gives the air miles per gallon at once, upon a single click: true airspeed over
+      that same book burn rate. Both rings remain open after a reading, as at 4.1 above.</p>
+      <p>Fuel to Point gives the gallons and time required to reach the Waypoint, Homebase, Landing
+      field, or Map Point selected, calculated the moment the ring is opened and re-checked upon a
+      further click. Being worked from the present speed and fuel burn, it is only given in flight:
+      below 120 mph, on the ground or in the take-off run, each wedge reads &ldquo;when
+      airborne&rdquo; instead.</p>
+      <p>Homebase is the airfield the flight started from: the field the aircraft stands on at a
+      cold or hot start; failing that, the field at the first or last waypoint where that waypoint
+      is on the ground; failing that, the nearest friendly field there is.</p>
+      <p>The Landing field is where the route plans to land: the field of its last Land waypoint,
+      or, on a route loaded from the F10 map (where every point is a turning point), the field
+      nearest the last point when that point is named Home, Land or Landing. Where the route lands
+      back at its home field, both wedges show the same figure; where it plans no landing, the wedge
+      says so.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">Time Left</span> &mdash; <span class="menu-label">All</span>,
@@ -563,8 +601,8 @@ Settings &mdash; Automations &mdash;
           <li><span class="menu-label">Fuel to Point</span> &mdash;
             <ul>
               <li><span class="menu-label">To Waypoint</span> &mdash;
-                <span class="menu-label">WP0</span>&ndash;<span class="menu-label">WP14</span>, five
-                to a ring, each with its name where it has one (<span class="menu-label">WP5 TGT</span>),
+                <span class="menu-label">WP0</span>&ndash;<span class="menu-label">WP14</span>, up to
+                eight to a ring, each with its name where it has one (<span class="menu-label">WP5 TGT</span>),
                 with <span class="menu-label">Refresh</span></li>
               <li><span class="menu-label">To Homebase</span>, reading
                 <span class="menu-label">Homebase not detected</span> where the field is yet to be
@@ -583,12 +621,12 @@ Settings &mdash; Automations &mdash;
     </div>
 
     <div class="step"><h3><span class="num">4.4</span> Radio</h3>
-      <p>The T-1154 transmitter and the R-1155 receiver are each governed independently, each having
-      a power switch, a Manually Tune digit ring (para. 4), and a Predefined Frequencies list
-      covering all twenty-four channels laid down in the Mission Editor for that radio, each shown
-      with its preset letter and frequency. The R-1155 may be tuned to any frequency typed; the
-      T-1154 is to be set only to one of its fixed presets, and a frequency typed upon it is snapped
-      to the nearest of these.</p>
+      <p>The T-1154 transmitter and the R-1155 receiver are each tuned independently, each having a
+      Manually Tune digit ring (para. 4) and a Predefined Frequencies list covering all twenty-four
+      channels laid down in the Mission Editor for that radio, each shown with its preset letter and
+      frequency. The transmitter also has its power switch on this ring.</p>
+      <p>The R-1155 may be tuned to any frequency typed. The T-1154 is to be set only to one of its
+      fixed presets, and a frequency typed upon it is snapped to the nearest of these.</p>
       <p>The centre hub gives each set's present frequency. While a set is at work, its line gives
       the work instead, blinking so that it is noticed: the transmitter&rsquo;s warming up, which
       takes about a minute after it is switched on and is counted down in seconds; a tune in hand;
@@ -620,21 +658,22 @@ Settings &mdash; Automations &mdash;
     <div class="step"><h3><span class="num">4.5</span> Navigation</h3>
       <p>By Waypoints and By Map Points list the route and the map markers presently held, each
       refreshed automatically upon being opened and redrawn should the fresh list arrive a moment
-      later. Selecting one begins navigation to it and turns on
-      navigation callouts if they were not already on, then resets the menu to its root and leaves
-      it open. While the ring itself is open, its centre hub shows the target's tag and steering
-      heading, and, for a route waypoint, the speed required; a map point carries no planned leg
-      time, so its speed is left out.</p>
+      later.</p>
+      <p>Selecting one begins navigation to it and turns on navigation callouts if they were not
+      already on, then resets the menu to its root and leaves it open. While the ring itself is
+      open, its centre hub shows the target's tag and the heading to steer, and, for a route
+      waypoint, the speed required; a map point carries no planned leg time, so its speed is left
+      out.</p>
       <p>Load Route, on the By Waypoints ring, flies a route you drew yourself. Draw it with the
-      F10 map&rsquo;s route tool and save it under a name; Load Route lists the routes saved for
+      F10 map&rsquo;s route tool and save it under a name. Load Route lists the routes saved for
       this map, and choosing one makes them the route after <span class="menu-label">WP0</span>,
       your Home: the first saved point becomes <span class="menu-label">WP1</span>, and the names
       you gave the points are kept (<span class="menu-label">WP4 IP</span>,
-      <span class="menu-label">WP5 TGT</span>, <span class="menu-label">WP8 Home</span>). Edward
-      says &ldquo;Route1 loaded, WP1 to WP8&rdquo;; pick a waypoint from By Waypoints to start.
-      Directions, the target preselect and the bomb run all follow it, as do the D.R. landmarks
-      where the map has any. The times saved with the route are not used. It works the same in
-      single player, as host and on someone else&rsquo;s server, and lasts until you choose
+      <span class="menu-label">WP5 TGT</span>, <span class="menu-label">WP8 Home</span>).</p>
+      <p>EDWARD says &ldquo;Route1 loaded, WP1 to WP8&rdquo;; pick a waypoint from By Waypoints to
+      start. Directions, the target preselect and the bomb run all follow the loaded route, as do the
+      D.R. landmarks where the map has any. The times saved with the route are not used. It works the
+      same in single player, as host and on someone else&rsquo;s server, and lasts until you choose
       <span class="menu-label">Mission Route</span>, change slot or leave the mission.</p>
       <p>A map point is an F10 mark whose first line reads <span class="menu-label">IP</span>,
       <span class="menu-label">TGT</span>, <span class="menu-label">NAV</span>,
@@ -643,18 +682,20 @@ Settings &mdash; Automations &mdash;
       <span class="menu-label">nav1</span>, <span class="menu-label">NAV 1</span>,
       <span class="menu-label">NAV-1</span> and <span class="menu-label">NAV - 1</span> are all held
       as <span class="menu-label">NAV1</span>, which is a separate point from a plain
-      <span class="menu-label">NAV</span>. Should two marks bear the same name, the later is held under
+      <span class="menu-label">NAV</span>.</p>
+      <p>Should two marks bear the same name, the later is held under
       the next free number (<span class="menu-label">NAV2</span>, and so on), though the map
       continues to show the name as written; it is therefore best to number the marks when placing
       them.</p>
-      <p>Drift Recorder is a single wedge, Check Drift. Clicking it closes the menu outright, and
-      the check proceeds in the background:&mdash;</p>
-      <p>(a) on the first check in an aircraft the navigator mantles the recorder, which takes about
+      <p>Drift Recorder holds Check Drift, with Cancel Check beside it while a check is in hand.
+      Clicking Check Drift closes the menu outright, and the check proceeds in the
+      background:&mdash;</p>
+      <p>(a) on the first check in an aircraft the navigator mounts the recorder, which takes about
       thirty seconds, and thereafter leaves it mounted; each check then takes a measuring window of
       fifteen to twenty-five seconds, varying from one check to the next, with a &ldquo;Steady&rdquo;
-      callout given at intervals. A check interrupted during the mantle leaves the recorder unmounted,
-      and the next check mantles afresh; a new aircraft or a reloaded mission likewise requires a
-      fresh mantle;</p>
+      callout given at intervals. A check interrupted while the recorder is being mounted leaves it
+      unmounted, and the next check mounts it afresh; a new aircraft or a reloaded mission likewise
+      requires it to be mounted afresh;</p>
       <p>(b) Drift, Groundspeed, and Estimated Wind are then reported in turn, a few seconds apart,
       each by toast;</p>
       <p>(c) should any other action be taken elsewhere in the menu while the check is running, it
@@ -668,8 +709,8 @@ Settings &mdash; Automations &mdash;
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">By Waypoints</span> &mdash;
-            <span class="menu-label">WP0</span>&ndash;<span class="menu-label">WP14</span>, five to a
-            ring, each with its name where it has one (<span class="menu-label">WP5 TGT</span>),
+            <span class="menu-label">WP0</span>&ndash;<span class="menu-label">WP14</span>, up to eight
+            to a ring, each with its name where it has one (<span class="menu-label">WP5 TGT</span>),
             with <span class="menu-label">Refresh</span> and <span class="menu-label">Load Route</span>
             (your saved routes for this map, and <span class="menu-label">Mission Route</span>
             while one is loaded)</li>
@@ -706,11 +747,12 @@ Settings &mdash; Automations &mdash;
 
     <div class="step"><h3><span class="num">4.6</span> Hold My Aircraft</h3>
       <p>Hold turns EDWARD's holding of a fixed heading and altitude on or off. Set Course and Set
-      Altitude are digit rings, worked as at 4.4 above. Set Course accepts 0&deg; to 359&deg; only;
+      Altitude are digit rings, worked as at 4. above. Set Course accepts 0&deg; to 359&deg; only;
       Set Altitude accepts 0 to 60,000 (feet or metres, according to the unit chosen); a value
-      outside these is not accepted. The course is the one to steer: the nose is held upon it, and
-      no allowance is made for wind. To make good a track, the course given by EDWARD's steer calls
-      or the centre hub is to be set.</p>
+      outside these is not accepted.</p>
+      <p>The course is the one to steer: the nose is held upon it, and no allowance is made for
+      wind. To make good a track, the course given by EDWARD's steer calls or the centre hub is to be
+      set.</p>
       <p>From the pilot&rsquo;s seat, a firm movement of the stick takes the aircraft back from EDWARD:
       Hold is turned off, EDWARD says &ldquo;Hold off - you have her.&rdquo;, and the wedge reads
       Hold is OFF. The rudder pedals do not do so, nor does the stick in the navigator&rsquo;s seat.
@@ -727,82 +769,89 @@ Settings &mdash; Automations &mdash;
     </div>
 
     <div class="step"><h3><span class="num">4.7</span> Weapons and Bombing</h3>
-      <p>TGT and IP are each chosen from a route Waypoint or a Map Point. Where the mission carries
-      a waypoint named TGT or IP, EDWARD chooses it of his own accord as soon as the mission's route
-      is known to him &mdash; once only in a mission, and only where none has already been chosen by
-      hand, which always overrides it. He chooses them without announcement; the pair and the
-      planned time on target stand upon this page's centre hub. A Map Point must always be placed
-      and chosen by hand. Both lists of waypoints are matched by name alone, so the mission's
-      waypoints must be named for them; a DCS Bombing task is not read, the target being the TGT
-      waypoint itself and its altitude the height to which it is set. In choosing of his own accord
-      he takes the route in order of authority: a waypoint named exactly TGT or IP; failing that,
-      one whose name merely begins with those letters.
-      The point at which the aircraft begins its flight is not offered upon this page at all, being
-      neither a target nor a point of run-in.</p>
+      <p>TGT and IP are each chosen from a route Waypoint or a Map Point. A Map Point must always be
+      placed and chosen by hand.</p>
+      <p>Where the mission carries a waypoint named TGT or IP, EDWARD chooses it of his own accord
+      as soon as the mission's route is known to him &mdash; once only in a mission, and only where
+      none has already been chosen by hand, which always overrides it. He chooses them without
+      announcement; the pair and the planned time on target stand upon this page's centre hub. He
+      takes a waypoint named exactly TGT or IP first; failing that, one whose name merely begins
+      with those letters.</p>
+      <p>Waypoints are matched by name alone, so the mission's waypoints must be named for them. A
+      DCS Bombing task is not read: the target is the TGT waypoint itself, and its altitude and
+      speed are those set on it. The point at which the aircraft begins its flight is not offered
+      upon this page at all, being neither a target nor a point of run-in.</p>
       <p>Upon this page the centre hub shows the run at a glance: the IP and the target by number,
       as <span class="menu-label">WP12 &gt;&gt; WP13</span>, with the planned time on target beneath
       where the route supplies one. The TGT and IP wedges give the waypoint by number alone where
       its name merely repeats TGT or IP; a name saying more than that is kept, and the lists from
       which a point is chosen always give the name in full.</p>
       <p>Arm Weapons governs the physical setup: Select Bombs toggles each of the four bomb
-      stations, and Select Fuzes toggles Nose and Tail fuzing, both reading the actual cockpit
-      switches, so that a switch worked by hand in the cockpit is shown here too. A final wedge
-      shows the state of the run and doubles as the means of starting or stopping it. Upon a run
-      being stopped, the mission's own TGT and IP are restored a few seconds later rather than the
-      page being left empty; the run itself does not begin afresh until the aircraft has left the IP
-      and come upon it again. Choosing a TGT or IP lands upon the Weapons and Bombing root; toggling
-      a station or fuze lands upon Select Bombs or Select Fuzes itself, so that the freshly altered
-      marking is seen at once.</p>
-      <p>From the IP EDWARD gives the course to the target, and steers by it as on any leg. In the
-      last minute before the target he gives the time only &mdash; one minute, thirty seconds, ten
-      seconds &mdash; and no further steering, the final run being made by eye.</p>
+      stations, and Select Fuzes toggles Nose and Tail fuzing. Both read the actual cockpit
+      switches, so that a switch worked by hand in the cockpit is shown here too.</p>
+      <p>A final wedge shows the state of the run and doubles as the means of starting or stopping
+      it. Upon a run being stopped, the mission's own TGT and IP are restored a few seconds later
+      rather than the page being left empty; the run itself does not begin afresh until the aircraft
+      has left the IP and come upon it again.</p>
+      <p>Choosing a TGT or IP lands upon the Weapons and Bombing root; toggling a station or fuze
+      lands upon Select Bombs or Select Fuzes itself, so that the freshly altered marking is seen at
+      once.</p>
+      <p>From the IP EDWARD gives the course to the target, and gives directions along it as on any
+      leg. In the last minute before the target he gives the time only &mdash; one minute, thirty
+      seconds, ten seconds &mdash; and no further directions, the final run being made by eye.</p>
       <p>At the IP EDWARD arms the bombs as a crewman would, one switch at a time and a second or
       so apart: the panel cover open, the changeover to BOMBS, each station that carries a bomb, and
-      tail fuzing. When the last bomb has gone, or the run is stopped, he closes the bomb bay and
-      then puts the whole panel back as it stood before the sortie, again one switch at a time: all
-      four stations off, nose and tail fuzing SAFE, the changeover to CAMERA, and the cover closed.
-      He does so only after a run he armed himself at the IP; bombs armed and dropped by hand are
-      left to the crew. He does not work any control under hard manoeuvring.</p>
+      tail fuzing. The bomb bay he opens about four miles from the target.</p>
+      <p>When the last bomb has gone, or the run is stopped, he closes the bomb bay and then puts the
+      whole panel back as it stood before the sortie, again one switch at a time: all four stations
+      off, nose and tail fuzing SAFE, the changeover to CAMERA, and the cover closed. He does so only
+      after a run he armed himself at the IP; bombs armed and dropped by hand are left to the crew.
+      He does not work any control under hard manoeuvring.</p>
       <p>If the target is passed within a mile with every bomb still aboard, EDWARD says so &mdash;
       &ldquo;Target passed, bombs still aboard.&rdquo; &mdash; and closes the bomb bay, but leaves
-      the panel as it is. The run stays armed: fly back to the IP and a new run begins there.
-      If only some of the bombs have gone, the run is over: he closes the bay, switches off the
+      the panel as it is. The run stays armed: fly back to the IP and a new run begins there.</p>
+      <p>If only some of the bombs have gone, the run is over: he closes the bay, switches off the
       stations now empty, puts the changeover to CAMERA and closes the cover, but leaves the
       stations still carrying bombs, and their fuzing, as they are.</p>
-      <p>Between the IP and the target EDWARD calls what a navigator in the nose would see. Each
-      landmark within a mile of the run-in line is called as it comes abeam, with its side and
+      <p>Between the IP and the target EDWARD calls what a navigator in the nose would see:&mdash;</p>
+      <p>(a) each landmark within a mile of the run-in line, as it comes abeam, with its side and
       distance &mdash; &ldquo;Church passing to port, half a mile.&rdquo;, &ldquo;Rail Yard under us
-      now.&rdquo; &mdash; but none in the last mile. Every fifteen or twenty seconds he checks the
-      height against the target waypoint's and the true airspeed against its planned speed, and
-      speaks only when they are off: &ldquo;A little high.&rdquo;, &ldquo;Way low.&rdquo;,
-      &ldquo;Speed 215, we want 230.&rdquo;; the speed calls stop a minute out and the height calls
-      ten seconds out. At one mile he gives the target cue: &ldquo;Target coming up &mdash; just past
-      the Church, dead ahead.&rdquo;, or, with nothing near it to name, &ldquo;Target dead ahead,
-      one mile.&rdquo; Each of the three may be switched off under Settings &mdash; Automations
-      &mdash; Bomb Run Calls. In multiplayer, a player who joins someone else's game hears only the
-      landmarks EDWARD carries for the map, not the F10 marks.</p>
+      now.&rdquo; &mdash; but none in the last mile;</p>
+      <p>(b) every fifteen or twenty seconds, the height against the target waypoint's and the true
+      airspeed against its planned speed, spoken only when they are off &mdash; &ldquo;A little
+      high.&rdquo;, &ldquo;Way low.&rdquo;, &ldquo;Speed 215, we want 230.&rdquo; The speed calls
+      stop a minute out and the height calls ten seconds out. A map point carries no height or speed
+      of its own, so with a map-point target these calls are not given;</p>
+      <p>(c) at one mile, the target cue &mdash; &ldquo;Target coming up &mdash; just past the
+      Church, dead ahead.&rdquo;, or, with nothing near it to name, &ldquo;Target dead ahead, one
+      mile.&rdquo;</p>
+      <p>Each of the three may be switched off under Settings &mdash; Automations &mdash; Bomb Run
+      Calls. In multiplayer, a player who joins someone else's game hears only the landmarks EDWARD
+      carries for the map, not the F10 marks.</p>
       <p>Where the target has a planned time &mdash; the TGT waypoint's own, or a time typed on the
       TGT mark &mdash; EDWARD tells how the flight stands against it, to the second and in time
-      only: &ldquo;1min 12 seconds late for target.&rdquo; or &ldquo;On time for target.&rdquo;
-      He does so at the start of every leg up to the IP, and again whenever the difference passes a
-      further whole minute, but never in the last minute before the target. The speeds to fly
+      only: &ldquo;1min 12 seconds late for target.&rdquo; or &ldquo;On time for target.&rdquo;</p>
+      <p>He does so at the start of every leg up to the IP, and again whenever the difference passes
+      a further whole minute, but never in the last minute before the target. The speeds to fly
       remain those of the waypoints, given with each new leg.</p>
       <p>Run In Altitude and Run In Speed are fitted under the map-point branches, a map point
       carrying no authored run-in figures of its own; each is a digit ring, and once a figure is
-      given the wedge carries it thereafter. Where the route or the map holds nothing matching the
-      name sought, the ring offers the whole of it instead, as All Waypoints or All Map Points.</p>
+      given the wedge carries it thereafter.</p>
+      <p>Where the route or the map holds nothing matching the name sought, the ring offers the
+      whole of it instead, as All Waypoints or All Map Points.</p>
       <p>Jettison stands beside Arm Weapons and offers three wedges: Jettison Station 1 + 2 (the
       wings), Jettison Station 3 + 4 (the bomb bay) and Jettison All Stations. There is no
-      confirming wedge; a choice is acted upon at once. The navigator works at a hand&rsquo;s pace:
-      for the bomb bay he first opens the bomb doors; he opens the panel cover, selects the chosen
-      stations one by one, puts the changeover to BOMBS and lifts the flap of the Bomb Containers
-      and Wing Drop Tanks Jettison button. Where the bomb bay is concerned he waits for the bomb
-      doors light, which shows only when the doors are fully open, and a second more, before he
-      presses the button. He then puts everything back in turn: the changeover to CAMERA, the
-      stations off, the cover closed and the bomb doors shut. For the wings alone the bomb doors
-      are not touched. Should the doors not open within fifteen seconds, he gives it up and puts
-      the panel back. The pilot&rsquo;s wing tank jettison, on the port wall, is the pilot&rsquo;s
-      alone and is not touched.</p>
+      confirming wedge; a choice is acted upon at once.</p>
+      <p>The navigator works at a hand&rsquo;s pace. For the bomb bay he first opens the bomb doors;
+      he opens the panel cover, selects the chosen stations one by one, puts the changeover to BOMBS
+      and lifts the flap of the Bomb Containers and Wing Drop Tanks Jettison button. Where the bomb
+      bay is concerned he waits for the bomb doors light, which shows only when the doors are fully
+      open, and a second more, before he presses the button.</p>
+      <p>He then puts everything back in turn: the changeover to CAMERA, the stations off, the cover
+      closed and the bomb doors shut. For the wings alone the bomb doors are not touched. Should the
+      doors not open within fifteen seconds, he gives it up and puts the panel back. The
+      pilot&rsquo;s wing tank jettison, on the port wall, is the pilot&rsquo;s alone and is not
+      touched.</p>
       <p><i>Note.&mdash;</i> In DCS at present the navigator&rsquo;s jettison button releases
       nothing. Should nothing leave the aircraft, a message says so and points to the pilot&rsquo;s
       wing tank jettison.</p>
@@ -852,11 +901,12 @@ Settings &mdash; Automations &mdash;
     <div class="step"><h3><span class="num">4.8</span> Earlier Calls</h3>
       <p>A single wedge, opening no further ring. Clicking it closes the menu and shows, in EDWARD's
       message box, the last ten messages of the present flight, each preceded by the time upon the
-      mission clock at which it was given, the latest at the foot. The list stands for thirty
-      seconds, or until the wedge is clicked a second time; a message arriving meanwhile is added to
-      it, and messages carry on as usual once it closes. It serves to recover a call missed or half
-      read at a busy moment, as in a turn or upon the bomb run. Looking back in this way does not
-      interrupt a drift check in progress. The list is begun afresh with each flight, and holds only
+      mission clock at which it was given, the latest at the foot. It serves to recover a call missed
+      or half read at a busy moment, as in a turn or upon the bomb run.</p>
+      <p>The list stands for thirty seconds, or until the wedge is clicked a second time; a message
+      arriving meanwhile is added to it, and messages carry on as usual once it closes. Looking back
+      in this way does not interrupt a drift check in progress.</p>
+      <p>The list is begun afresh with each flight, and holds only
       the messages shown in EDWARD's box: where Settings &mdash; Messages has them sent to DCS's own
       window, the list says so instead, the game's own message history then serving the purpose.</p>
       <div class="markings"><span class="head">Markings</span>
@@ -867,7 +917,7 @@ Settings &mdash; Automations &mdash;
     </div>
   </section>
 
-  <section>
+  <section class="demo">
     <h2>Demonstration Menu</h2>
 
     <div class="step"><h3><span class="num">5.</span> Demonstration Menu</h3>
