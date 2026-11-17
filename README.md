@@ -8,13 +8,13 @@ in the cockpit, opened with the `e` key.
 Named after Edward Sismore, the RAF navigator who led the Mosquitos to Amiens prison in February
 1944.
 
-This repository holds the **documentation** and takes **bug reports and feature requests**. The mod's
-source code lives elsewhere and is not public.
+This repository holds the **documentation**, the **download**, and takes **bug reports and feature
+requests**. The mod's source code lives elsewhere and is not public.
 
 ## Documentation
 
 - **[Edward at a Glance](Edward_At_A_Glance.html)** — start here: what Edward does, one line per
-  feature, how to install it, and a clickable demonstration of the menu you can try in the browser
+  feature, where to start, and a clickable demonstration of the menu you can try in the browser
   without starting DCS.
 - **[The Edward Menu](Edward_Menu_Overview.html)** — every wedge of the cockpit menu, what it
   does and what it shows, in full.
@@ -49,8 +49,14 @@ lack of detail.
 
 ## Status
 
-**Edward is not available to download yet.** The documentation is here so the mod can be read about
-and discussed while it is finished; there is nothing to install from this repository for the moment.
+**Edward is not available to download yet.** When it is released, the download
+(`Edward_Mod_Files.zip`) will be on this repository's
+[Releases page](https://github.com/Mav87th/Edward-Documentation_and_Feedback/releases), and also on
+the [DCS World User Files](https://www.digitalcombatsimulator.com/en/files/). The documentation is
+here so the mod can be read about and discussed while it is finished.
+
+The download will include `INSTALL_GUIDE.txt`, with the install steps and how to fly Edward in
+multiplayer.
 
 Edward is in active development and is not finished. Things move, and some of what is described in
 the documentation has been tested more thoroughly than the rest — where that matters, the guides say
