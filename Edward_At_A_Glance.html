@@ -1530,16 +1530,25 @@
     ];
   }
 
+  // Each choice opens a confirm ring first (real code: confirmJettisonWedges / buildJettisonWedges);
+  // the doors only for the bomb bay.
+  function confirmJettisonWedges(title, msg) {
+    return [
+      { text: title + '?', keepOpenHere: true },
+      { text: 'Confirm\nJettison', action: function () { toast(msg, 5); } },
+      { text: 'Cancel', back: true }
+    ];
+  }
+
   function jettisonWedges() {
     return [
       { text: 'Go Back', back: true },
-      // No confirm page (real code: buildJettisonWedges); the doors only for the bomb bay.
-      { text: 'Jettison Station 1 + 2',
-        action: function () { toast('Edward: Jettisoning stations 1 and 2. (demo)', 5); } },
-      { text: 'Jettison Station 3 + 4',
-        action: function () { toast('Edward: Jettisoning stations 3 and 4. Bomb doors opening. (demo)', 5); } },
-      { text: 'Jettison All Stations',
-        action: function () { toast('Edward: Jettisoning all stations. Bomb doors opening. (demo)', 5); } }
+      { text: 'Jettison Station 1 + 2', submenu: function () {
+        return confirmJettisonWedges('Jettison Station 1 + 2', 'Edward: Jettisoning stations 1 and 2. (demo)'); } },
+      { text: 'Jettison Station 3 + 4', submenu: function () {
+        return confirmJettisonWedges('Jettison Station 3 + 4', 'Edward: Jettisoning stations 3 and 4. Bomb doors opening. (demo)'); } },
+      { text: 'Jettison All Stations', submenu: function () {
+        return confirmJettisonWedges('Jettison All Stations', 'Edward: Jettisoning all stations. Bomb doors opening. (demo)'); } }
     ];
   }
 
