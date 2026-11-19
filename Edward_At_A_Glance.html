@@ -1152,6 +1152,39 @@
     }
     return w;
   }
+  // Load Route (Navigation.lua buildLoadRouteWedges): a route saved with the F10 map's route tool
+  // replaces everything after WP0 (Home), saved names kept. "Mission Route" only shows while a saved
+  // route is loaded. Navigation's By Waypoints only - the Weapons "All Waypoints" fallback reuses
+  // waypointChunks above without it, as in the real code.
+  var MISSION_ROUTE = { count: DEMO_WAYPOINTS, names: DEMO_WP_NAMES };
+  var DEMO_SAVED_ROUTES = [
+    { name: 'Route1', names: { 3: 'IP', 4: 'TGT', 8: 'Home' }, count: 9 },
+    { name: 'Long Way Round', names: { 6: 'IP', 7: 'TGT', 11: 'Home' }, count: 12 }
+  ];
+  state.loadedRoute = null;
+  function loadRouteWedges() {
+    var w = [{ text: 'Go Back', back: true }];
+    DEMO_SAVED_ROUTES.forEach(function (r) {
+      w.push({ text: r.name.substring(0, 14), keepOpen: true, action: function () {
+        state.loadedRoute = r.name;
+        DEMO_WAYPOINTS = r.count;
+        DEMO_WP_NAMES = r.names;
+        toast('Edward: ' + r.name + ' loaded, WP1 to WP' + (r.count - 1) + '. (demo)', 6);
+      } });
+    });
+    if (state.loadedRoute) {
+      w.push({ text: 'Mission\nRoute', keepOpen: true, action: function () {
+        state.loadedRoute = null;
+        DEMO_WAYPOINTS = MISSION_ROUTE.count;
+        DEMO_WP_NAMES = MISSION_ROUTE.names;
+        toast('Edward: Back on the mission route. (demo)', 5);
+      } });
+    }
+    return w;
+  }
+  function navWaypointChunks() {
+    return [{ text: 'Load\nRoute', submenu: loadRouteWedges }].concat(waypointChunks());
+  }
   function markerWedges() {
     var w = [{ text: 'Go Back', back: true }];
     DEMO_MARKERS.forEach(function (tag) {
@@ -1255,8 +1288,17 @@
     });
   }
   function driftRecorderWedges() {
+    var wasChecking = driftCheckTimers.length > 0;
     var w = [
-      { text: state.driftChecking ? 'Checking Drift - stb.' : 'Check Drift', skipDriftInterrupt: true, action: startDriftCheckDemo }
+      { text: state.driftChecking ? 'Checking Drift - stb.' : 'Check Drift', skipDriftInterrupt: true, action: startDriftCheckDemo },
+      // Cancel Check (Navigation.lua buildDriftRecorderWedges): no skipDriftInterrupt, so the click's
+      // own drift interrupt stops a running check; it only speaks when nothing was running. Like the
+      // real code, "running" is read when the ring is entered - the interrupt has already run by the
+      // time this action does.
+      { text: 'Cancel Check', action: function () {
+        if (!wasChecking) toast('EDMod: No drift check running.', 3);
+      } },
+      { text: 'Go Back', back: true }
     ];
     w.centreText = state.driftResults;
     return w;
@@ -1379,7 +1421,7 @@
     // real ring 2026-09-16). "Drift-Recorder" is hyphenated rather than wrapped, same as the real
     // wedge. Order matches buildNavigationWedges() exactly.
     var w = [
-      { text: 'By\nWaypoints', submenu: waypointChunks },
+      { text: 'By\nWaypoints', submenu: navWaypointChunks },
       { text: 'By\nMap Points', submenu: markerWedges },
       { text: 'Drift-Recorder', submenu: driftRecorderWedges },
       { text: 'By\nDR Landmarks', submenu: drLandmarksWedges }
