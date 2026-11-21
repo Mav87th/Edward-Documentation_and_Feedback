@@ -58,6 +58,11 @@ here so the mod can be read about and discussed while it is finished.
 The download will include `INSTALL_GUIDE.txt`, with the install steps and how to fly Edward in
 multiplayer.
 
+Edward works when you host a game and when you join one, as long as the server allows aircraft data
+export. Some servers switch it off (the server setting "Allow player export"). Edward cannot see your
+aircraft there, so he switches himself off for that flight and tells you so when you get into the
+cockpit.
+
 Edward is in active development and is not finished. Things move, and some of what is described in
 the documentation has been tested more thoroughly than the rest — where that matters, the guides say
 so rather than leaving you to find out in the air.

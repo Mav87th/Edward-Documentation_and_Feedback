@@ -471,12 +471,24 @@ Settings &mdash; Automations &mdash;
       DR Landmarks</span>' count on your route, <span class="menu-label">Radio</span>'s frequency, and
       <span class="menu-label">Fuel</span>'s AMPG &mdash; that reading is shown in the hub instead of
       upon a wedge.</p>
+      <p>The first ring, opened by a single press of the key, likewise gives
+      <span class="menu-label">Navigation</span>'s nav picture in its hub whenever navigation is on
+      and a waypoint or map point is selected, so that the heading to steer is to be had without
+      going further; otherwise it reads <span class="menu-label">Edward</span>.</p>
       <p>Such a reading is kept current while its ring stands open: a waypoint selection, a drift
       reading or a tuning completed a moment after the ring was entered appears in place, as does a
       change in a ring's own wedges, such as the target and IP first selected on the mission
       starting. The AMPG is the exception, being worked out afresh only when its wedge is tapped;
       below 120 m.p.h. indicated it reads <span class="menu-label">No AMPG &middot; Below 120 Mph</span>,
       the figure having no meaning on the ground or in the circuit.</p>
+      <p>On a multiplayer server that withholds aircraft data from its pilots (the server setting
+      &ldquo;Allow player export&rdquo; being off), EDWARD cannot know the aircraft's position,
+      heading or speed, and stands down for the whole of that flight. On entering the cockpit a
+      message to that effect is shown for one minute, and the key then opens a ring coloured red
+      throughout, bearing no wedge wording, its hub reading
+      <span class="menu-label">Edward disabled &ndash; server blocks aircraft data</span> in white
+      upon red. A click upon that ring does nothing; a right-click, or the key again, closes it.
+      EDWARD returns of himself in the next mission, on a server that permits the data.</p>
       <p><i>Note.&mdash;</i> In the markings given at 4.1&ndash;4.8 below, wording set in capitals is
       the wedge's own; <i>wording set thus</i> stands for a figure or a name filled in by EDWARD as
       the wedge is drawn.</p>
@@ -486,12 +498,21 @@ Settings &mdash; Automations &mdash;
       <p>Two groups are given, both read-only: Weather (Wind, Temp, QNH) and Aircraft (Ammo,
       Damage). Each reading is given immediately upon the wedge being clicked, and the ring remains
       open afterward, so that several readings may be taken in succession.</p>
+      <p>A third wedge, <span class="menu-label">Debug Log</span>, shows whether Edward is writing
+      his extra log lines and switches them on or off. With it off, as delivered, Edward writes to
+      DCS's log only what he needs: failures, start-up, and the events of a flight. With it on he
+      writes also every message given, the clicks upon the menu, and the detail of each step &mdash;
+      wanted only when something is to be reported as misbehaving. The choice is kept in
+      <code>EdwardConfig.lua</code>; the scripts of the mission take it up at the next mission
+      load.</p>
       <div class="markings"><span class="head">Markings</span>
         <ul>
           <li><span class="menu-label">Weather</span> &mdash; <span class="menu-label">Wind</span>,
             <span class="menu-label">Temp</span>, <span class="menu-label">QNH</span></li>
           <li><span class="menu-label">Aircraft</span> &mdash; <span class="menu-label">Ammo</span>,
             <span class="menu-label">Damage</span></li>
+          <li><span class="menu-label">Debug Log is ON</span> /
+            <span class="menu-label">Debug Log is OFF</span></li>
         </ul>
       </div>
     </div>
@@ -632,8 +653,9 @@ Settings &mdash; Automations &mdash;
       <p>The centre hub gives each set's present frequency. While a set is at work, its line gives
       the work instead, blinking so that it is noticed: the transmitter&rsquo;s warming up, which
       takes about a minute after it is switched on and is counted down in seconds; a tune in hand;
-      or a tune waiting, since a tune asked for during the warm-up is made only once the set is
-      warm.</p>
+      or a tune waiting. Switching the transmitter on takes the navigator but a few seconds, after
+      which he is free: an R-1155 tune asked for during the warm-up is made at once, whereas a
+      T-1154 tune waits until the set is warm, there being no purpose in tuning it cold.</p>
       <p>Manual Radio Tuning is fitted as a fourth wedge and hands the sets over to the player
       entirely: the menu closes, the player is moved to the navigator's seat, and the camera is
       brought upon the radio panel, the player working the sets by hand and returning to the pilot's
@@ -698,11 +720,19 @@ Settings &mdash; Automations &mdash;
       callout given at intervals. A check interrupted while the recorder is being mounted leaves it
       unmounted, and the next check mounts it afresh; a new aircraft or a reloaded mission likewise
       requires it to be mounted afresh;</p>
-      <p>(b) Drift, Groundspeed, and Estimated Wind are then reported in turn, a few seconds apart,
-      each by toast;</p>
+      <p>(b) Drift, Groundspeed (in miles per hour), and Estimated Wind are then reported in turn, a
+      few seconds apart, each by toast;</p>
       <p>(c) should any other action be taken elsewhere in the menu while the check is running, it
       is interrupted early and no reading is given for that attempt; drilling into a submenu or
-      stepping back does not interrupt it.</p>
+      stepping back does not interrupt it;</p>
+      <p>(d) the turn calls take precedence. Should the next turn be too near for the whole check to
+      be completed before the first turn call, two minutes out, the navigator says
+      &ldquo;Turn coming up &ndash; I'll check drift once we're steady on the new leg&rdquo; and
+      waits; the wedge then reads <span class="menu-label">Drift Check After Turn</span>. Once the
+      aircraft has been steady on the new leg for a few seconds, with the following turn far enough
+      off, the check begins of its own accord. A check already running when the turn draws near in
+      this way is stopped and taken again after the turn. Other menu actions do not disturb a check
+      that is waiting; Cancel Check does.</p>
       <p>The last completed reading is shown in the centre hub upon re-entering the ring, though it
       is not to be understood as live while the ring sits open.</p>
       <p>By D.R. Landmarks is fitted here as a fourth wedge and is described fully in the Dead
