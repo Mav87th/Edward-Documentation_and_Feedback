@@ -58,10 +58,19 @@ here so the mod can be read about and discussed while it is finished.
 The download will include `INSTALL_GUIDE.txt`, with the install steps and how to fly Edward in
 multiplayer.
 
-Edward works when you host a game and when you join one, as long as the server allows aircraft data
-export. Some servers switch it off (the server setting "Allow player export"). Edward cannot see your
-aircraft there, so he switches himself off for that flight and tells you so when you get into the
-cockpit.
+### When Edward switches himself off
+
+Edward needs two things from DCS. If either is missing, he does not half-work: he switches himself
+off, tells you why when you get into the cockpit, and the `e` menu shows a red ring saying
+"Edward disabled" with the reason.
+
+- **Aircraft data.** Edward works when you host a game and when you join one, as long as the server
+  allows aircraft data export. Some servers switch it off (the server setting "Allow player
+  export"). Edward cannot see your aircraft there, so he is off for that flight. Nothing to fix on
+  your side; on another server, or in single player, he works again.
+- **Mission scripting.** The installer relaxes DCS's mission scripting so Edward can run in
+  missions. A DCS update or repair locks it again. Edward notices, and asks you to close DCS and run
+  `Install.bat` again. After that and a DCS restart, he works again.
 
 Edward is in active development and is not finished. Things move, and some of what is described in
 the documentation has been tested more thoroughly than the rest — where that matters, the guides say
